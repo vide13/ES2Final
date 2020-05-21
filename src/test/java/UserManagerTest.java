@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 class UserManagerTest {
 
-    @BeforeAll static void setupData() {
+    @BeforeAll static void setUp() {
         UserManager userManager = UserManager.getInstance();
         userManager.myUsers.add(
             new User(1, "teste1@teste.com", "test_first_name", "test_last_name", "avatar_url"));
