@@ -35,9 +35,11 @@ public class UserManager {
      * @param avatar     - user avatar link
      * @return - true if added whit success else false
      */
-    public boolean newUser(Integer id, String email, String first_name, String last_name,
+    public String newUser(Integer id, String email, String first_name, String last_name,
         String avatar) {
-        return myUsers.add(new User(id, email, first_name, last_name, avatar));
+        myUsers.add(new User(id, email, first_name, last_name, avatar));
+        registeredUsers.put(email,"password");
+        return "201";
     }
 
     /**
@@ -46,25 +48,25 @@ public class UserManager {
      * @param id - user id
      * @return - returns user whit the given id or null
      */
-    public User getUserById(Integer id) {
+    public String getUserById(Integer id) {
         for (User user : myUsers) {
             if (user.id.equals(id))
-                return user;
+                return "200";
         }
-        return null;
+        return "404";
     }
 
     /**
      * - Listar utilizadores
      */
-    public void listUsers() {
+    public String listUsers() {
         for (User user : myUsers) {
             System.out.println("User: [" + user.id + "]");
             System.out.println("Name: [" + user.first_name + " " + user.last_name + "]");
             System.out.println("Email: [" + user.email + "]");
             System.out.println("Avatar link: [" + user.avatar + "]");
-
         }
+        return "200";
     }
 
     /**
@@ -74,9 +76,13 @@ public class UserManager {
      * @param password - user password
      * @return true if user added successfully, else false
      */
-    public boolean registerUser(String email, String password) {
-        registeredUsers.put(email, password);
-        return registeredUsers.containsKey(email);
+    public String registerUser(String email, String password) {
+        if(registeredUsers.containsKey(email))
+            return "400";
+        else {
+            registeredUsers.put(email, password);
+            return "200";
+        }
     }
 
     /**
@@ -86,20 +92,27 @@ public class UserManager {
      * @param password - user login password
      * @return true if authenticated successfully, else false
      */
-    public boolean authUser(String email, String password) {
-        return registeredUsers.get(email).equals(password);
+    public String authUser(String email, String password) {
+        if(registeredUsers.containsKey(email))
+            if(registeredUsers.get(email).equals(password))
+                return "200";
+            else
+                return "400";
+        else
+            return "400";
     }
 
     /**
      * - Listar recursos
      */
-    public void listResources() {
+    public String listResources() {
         for (Resource resource : myResources) {
             System.out.println("User: [" + resource.id + "]");
             System.out.println("Name: [" + resource.name + "]");
             System.out.println("Pantone Value: [" + resource.pantone_value + "]");
             System.out.println("Year: [" + resource.year + "]");
         }
+        return "200";
     }
 
     /**
@@ -108,10 +121,10 @@ public class UserManager {
      * @param id - resource id
      * @return resource associated whit the given id or outOfBoundsCheckIndex meaning it doesnt exists
      */
-    public Resource getResourceById(Integer id) {
+    public String getResourceById(Integer id) {
         for (Resource resource : myResources) {
             if (resource.id.equals(id))
-                return resource;
+                return "200";
         }
         return null;
     }

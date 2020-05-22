@@ -19,40 +19,52 @@ class UserManagerTest {
 
     @Test void newUser() {
         UserManager userManager = UserManager.getInstance();
-        Assertions.assertTrue(userManager
-            .newUser(1, "teste@teste.com", "test_first_name", "test_last_name", "avatar_url"));
+        Assertions.assertEquals("201", userManager.newUser(
+                1, "teste@teste.com", "test_first_name", "test_last_name", "avatar_url"));
     }
 
     @Test void getUserById() {
         UserManager userManager = UserManager.getInstance();
-        Assertions.assertEquals(2, userManager.getUserById(2).id);
+        Assertions.assertEquals("200", userManager.getUserById(2));
     }
 
     //TODO - Test prints
     @Test void listUsers() {
         UserManager userManager = UserManager.getInstance();
-        userManager.listUsers();
+        Assertions.assertEquals("200", userManager.listUsers());
     }
 
-    @Test void registerUser() {
+    @Test void registerUserSuccessful() {
         UserManager userManager = UserManager.getInstance();
-        Assertions.assertTrue(userManager.registeredUsers.containsKey("register@test.com"));
+        Assertions.assertEquals("200", userManager.registerUser("teste@teste.com", "password"));
     }
 
-    @Test void authUser() {
+    @Test void registerUserUnsuccessful() {
         UserManager userManager = UserManager.getInstance();
-        Assertions.assertTrue(userManager.authUser("register@test.com", "1234"));
+        userManager.registeredUsers.put("teste1@teste.com", "pass");
+        Assertions.assertEquals("400", userManager.registerUser("teste1@teste.com", "pass"));
+    }
+
+    @Test void authUserSuccessful() {
+        UserManager userManager = UserManager.getInstance();
+        userManager.registeredUsers.put("register@teste.com", "1234");
+        Assertions.assertEquals("200", userManager.authUser("register@test.com", "1234"));
+    }
+
+    @Test void authUserUnsuccessful() {
+        UserManager userManager = UserManager.getInstance();
+        Assertions.assertEquals("400", userManager.authUser("no_register@test.com", "1234"));
     }
 
     //TODO - Test resources
     @Test void listResources() {
         UserManager userManager = UserManager.getInstance();
-        userManager.listResources();
+        Assertions.assertEquals("200", userManager.listResources());
     }
 
     @Test void getResourceById() {
         UserManager userManager = UserManager.getInstance();
         userManager.myResources.add(new Resource(4, "resource3", "2000", "blue", "PANTONE 186 C"));
-        Assertions.assertEquals(4, userManager.getResourceById(4).id);
+        Assertions.assertEquals("200", userManager.getResourceById(4));
     }
 }
