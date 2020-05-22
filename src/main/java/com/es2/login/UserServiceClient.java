@@ -1,45 +1,42 @@
 package com.es2.login;
 
-import okhttp3.OkHttpClient;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import network.APIManager;
+import network.CreateUserAPIResponse;
+import network.UsersApiResponse;
 import retrofit2.Call;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.es2.login.APIClient.getClient;
 
 public class UserServiceClient {
     public static void main(String[] args) {
-		/*HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-		logging.setLevel(HttpLoggingInterceptor.Level.BASIC);*/
 
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        APIManager service = getClient().create(APIManager.class);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://reqres.in/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient.build())
-                .build();
-
-        APIManager service = retrofit.create(APIManager.class);
-		
-		/*// Calling '/api/users'
-		Call<UsersApiResponse> callSync = service.getUsers(10, 2);
-		 
-		try {
-		    Response<UsersApiResponse> response = callSync.execute();
-		    UsersApiResponse apiResponse = response.body();
-		    System.out.println(apiResponse);
-		} catch (Exception ex) { 
-			ex.printStackTrace();
-		}*/
-
-        // Calling '/api/users/2'
-        Call<UserApiResponse> callSync = service.getUser(2);
+        Call<UsersApiResponse> callSync = service.getUsers(2, 1);
 
         try {
-            Response<UserApiResponse> response = callSync.execute();
-            UserApiResponse apiResponse = response.body();
-            System.out.println(apiResponse);
+            Response<UsersApiResponse> response = callSync.execute();
+            UsersApiResponse apiResponse = response.body();
+
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String jsonOutput = gson.toJson(apiResponse);
+            System.out.println(jsonOutput);
         } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        Call<CreateUserAPIResponse> callUser = service.createUser(new UserJob("Test1","tester"));
+
+        try {
+            Response<CreateUserAPIResponse> response = callUser.execute();
+            CreateUserAPIResponse  apiResponse = response.body();
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String jsonOutput = gson.toJson(apiResponse);
+            System.out.println(jsonOutput);
+        }catch (Exception ex) {
             ex.printStackTrace();
         }
     }
