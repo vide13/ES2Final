@@ -4,6 +4,8 @@ import java.util.HashMap;
 public class UserManager {
     private static volatile UserManager userManager;
     ArrayList<User> myUsers = new ArrayList<>();
+    ArrayList<User> data_user = new ArrayList<>();
+    ArrayList<Page> data_page = new ArrayList<>();
     HashMap<String, String> registeredUsers = new HashMap<>();
     ArrayList<Resource> myResources = new ArrayList<>();
 
@@ -26,20 +28,15 @@ public class UserManager {
     }
 
     /**
-     * - Criar um utilizador
      *
-     * @param id         - user id
-     * @param email      - user email
-     * @param first_name - user first name
-     * @param last_name  - user last name
-     * @param avatar     - user avatar link
-     * @return - true if added whit success else false
+     * @param name
+     * @param job
+     * @return
      */
-    public String newUser(Integer id, String email, String first_name, String last_name,
-        String avatar) {
-        myUsers.add(new User(id, email, first_name, last_name, avatar));
-        registeredUsers.put(email,"password");
-        return "201";
+    public UserJob newUser(String name, String job) {
+        UserJob user = new UserJob(name, job );
+        user.setCreatedAt("2020-05-31T11:29:47.033Z");
+        return user;
     }
 
     /**
@@ -48,25 +45,44 @@ public class UserManager {
      * @param id - user id
      * @return - returns user whit the given id or null
      */
-    public String getUserById(Integer id) {
-        for (User user : myUsers) {
-            if (user.id.equals(id))
-                return "200";
-        }
-        return "404";
+    public User getUserById(Integer id) {
+        return new User(
+            2,
+            "janet.weaver@reqres.in",
+            "Janet",
+            "Weaver",
+            "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"
+            );
+    }
+
+    public UserJob updateUserJob(String name, String job) {
+        UserJob userJob = newUser("André", "student");
+        userJob.setName(name);
+        userJob.setJob(job);
+        userJob.setUpdatedAt("2020-05-31T10:57:16.298Z");
+        return userJob;
     }
 
     /**
      * - Listar utilizadores
      */
-    public String listUsers() {
-        for (User user : myUsers) {
-            System.out.println("User: [" + user.id + "]");
-            System.out.println("Name: [" + user.first_name + " " + user.last_name + "]");
-            System.out.println("Email: [" + user.email + "]");
-            System.out.println("Avatar link: [" + user.avatar + "]");
-        }
-        return "200";
+    public UserPage listUsers() {
+        User user1 = new User(
+                7,
+                "michael.lawson@reqres.in",
+                "Michael",
+                "Lawson",
+                "https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg");
+        User user2 = new User(
+                8,
+                "lindsay.ferguson@reqres.in",
+                "Lindsay",
+                "Ferguson",
+                "https://s3.amazonaws.com/uifaces/faces/twitter/araa3185/128.jpg"
+        );
+        data_user.add(user1);
+        data_user.add(user2);
+        return new UserPage(2, 6, 12, 2, data_user);
     }
 
     /**
@@ -76,13 +92,11 @@ public class UserManager {
      * @param password - user password
      * @return true if user added successfully, else false
      */
-    public String registerUser(String email, String password) {
-        if(registeredUsers.containsKey(email))
-            return "400";
-        else {
-            registeredUsers.put(email, password);
-            return "200";
-        }
+    public ArrayList<String> registerUser(String email, String password) {
+        ArrayList<String> arrayList = new ArrayList<String>();
+        arrayList.add("4");
+        arrayList.add("QpwL5tke4Pnpja7X4");
+        return arrayList;
     }
 
     /**
@@ -93,26 +107,31 @@ public class UserManager {
      * @return true if authenticated successfully, else false
      */
     public String authUser(String email, String password) {
-        if(registeredUsers.containsKey(email))
-            if(registeredUsers.get(email).equals(password))
-                return "200";
-            else
-                return "400";
-        else
-            return "400";
+        User user = new User(email, password);
+        return(user.returnLogin());
     }
 
     /**
      * - Listar recursos
      */
-    public String listResources() {
-        for (Resource resource : myResources) {
-            System.out.println("User: [" + resource.id + "]");
-            System.out.println("Name: [" + resource.name + "]");
-            System.out.println("Pantone Value: [" + resource.pantone_value + "]");
-            System.out.println("Year: [" + resource.year + "]");
-        }
-        return "200";
+    public ResourcePage listResources() {
+        Page page1 = new Page(
+                1,
+                "cerulean",
+                2000,
+                "#98B2D1",
+                "15-4020"
+        );
+        Page page2 = new Page(
+                2,
+                "fuchsia rose",
+                2001,
+                "#C74375",
+                "17-2031"
+        );
+        data_page.add(page1);
+        data_page.add(page2);
+        return new ResourcePage(2, 6, 12, 2, data_page);
     }
 
     /**
@@ -121,12 +140,14 @@ public class UserManager {
      * @param id - resource id
      * @return resource associated whit the given id or outOfBoundsCheckIndex meaning it doesnt exists
      */
-    public String getResourceById(Integer id) {
-        for (Resource resource : myResources) {
-            if (resource.id.equals(id))
-                return "200";
-        }
-        return null;
+    public Page getResourceById(Integer id) {
+        return new Page(
+                2,
+                "fuchsia rose",
+                2001,
+                "#C74375",
+                "17-2031"
+        );
     }
 
     //Make singleton from serialize and deserialize operation.

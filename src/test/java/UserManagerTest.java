@@ -2,6 +2,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 
 class UserManagerTest {
 
@@ -19,13 +21,26 @@ class UserManagerTest {
 
     @Test void newUser() {
         UserManager userManager = UserManager.getInstance();
-        Assertions.assertEquals("201", userManager.newUser(
-                1, "teste@teste.com", "test_first_name", "test_last_name", "avatar_url"));
+        userManager.newUser("morpheus", "leader");
+        
+        UserJob user = new UserJob("morpheus", "leader");
+        user.setCreatedAt("2020-05-31T11:29:47.033Z");
+
+        Assertions.assertTrue(user.equals(userManager) );
     }
 
     @Test void getUserById() {
         UserManager userManager = UserManager.getInstance();
         Assertions.assertEquals("200", userManager.getUserById(2));
+    }
+
+    @Test void updateUserJob() {
+        UserManager userManager = UserManager.getInstance();
+        UserJob userJob = new UserJob("André", "student" );
+        userJob.setName("morpheus");
+        userJob.setJob("zion resident");
+        userJob.setUpdatedAt("2020-05-31T10:57:16.298Z");
+        Assertions.assertEquals(userJob, userManager.updateUserJob("morpheus", "zion resident"));
     }
 
     //TODO - Test prints
@@ -36,24 +51,28 @@ class UserManagerTest {
 
     @Test void registerUserSuccessful() {
         UserManager userManager = UserManager.getInstance();
-        Assertions.assertEquals("200", userManager.registerUser("teste@teste.com", "password"));
+        ArrayList<String> arrayList = new ArrayList<String>();
+        arrayList.add("4");
+        arrayList.add("QpwL5tke4Pnpja7X4");
+        Assertions.assertEquals(arrayList, userManager.registerUser("eve.holt@reqres.in", "pistol"));
     }
 
     @Test void registerUserUnsuccessful() {
         UserManager userManager = UserManager.getInstance();
-        userManager.registeredUsers.put("teste1@teste.com", "pass");
-        Assertions.assertEquals("400", userManager.registerUser("teste1@teste.com", "pass"));
+        ArrayList<String> arrayList = new ArrayList<String>();
+        arrayList.add("5");
+        arrayList.add("QpwL5tke4Pnpja7X4");
+        Assertions.assertNotEquals(arrayList, userManager.registerUser("eve.holt@reqres.in", "pistol"));
     }
 
     @Test void authUserSuccessful() {
         UserManager userManager = UserManager.getInstance();
-        userManager.registeredUsers.put("register@teste.com", "1234");
-        Assertions.assertEquals("200", userManager.authUser("register@test.com", "1234"));
+        Assertions.assertEquals("QpwL5tke4Pnpja7X4", userManager.authUser("eve.holt@reqres.in", "pistol"));
     }
 
     @Test void authUserUnsuccessful() {
         UserManager userManager = UserManager.getInstance();
-        Assertions.assertEquals("400", userManager.authUser("no_register@test.com", "1234"));
+        Assertions.assertNotEquals("token_error", userManager.authUser("eve.holt@reqres.in", "pistol"));
     }
 
     //TODO - Test resources
