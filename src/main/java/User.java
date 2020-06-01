@@ -24,14 +24,38 @@ public class User {
         this.id = 4;
     }
 
-    public ArrayList<String> returnRegister(){
-        ArrayList<String> arrayList = new ArrayList<String>();
+    public ArrayList<String> returnRegister() {
+        ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add(id.toString());
         arrayList.add(token);
         return arrayList;
     }
 
-    public String returnLogin(){
+    public String getToken() {
+        return token;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public String returnLogin() {
         return token;
     }
 }

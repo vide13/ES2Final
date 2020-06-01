@@ -3,9 +3,17 @@ import java.time.LocalDateTime;
 public class UserJob {
     private String name;
     private String job;
-    private String id;
+    private final String id;
     private String createdAt;
     private String updatedAt;
+
+    public UserJob(String name, String job, String id, String createdAt) {
+        this.name = name;
+        this.job = job;
+        this.id = id;
+        this.createdAt = createdAt;
+        this.updatedAt = null;
+    }
 
     public UserJob(String name, String job) {
         this.name = name;

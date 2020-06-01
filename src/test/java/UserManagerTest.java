@@ -21,40 +21,58 @@ class UserManagerTest {
 
     @Test void newUser() {
         UserManager userManager = UserManager.getInstance();
-        userManager.newUser("morpheus", "leader");
-        
-        UserJob user = new UserJob("morpheus", "leader");
-        user.setCreatedAt("2020-05-31T11:29:47.033Z");
+        UserJob expected = new UserJob("morpheus", "leader", "49", "2020-05-31T11:29:47.033Z");
+        UserJob actual = userManager.newUser();
 
-        Assertions.assertTrue(user.equals(userManager) );
+        Assertions.assertEquals(expected.getCreatedAt(), actual.getCreatedAt());
     }
 
     @Test void getUserById() {
         UserManager userManager = UserManager.getInstance();
-        Assertions.assertEquals("200", userManager.getUserById(2));
-    }
-
-    @Test void updateUserJob() {
-        UserManager userManager = UserManager.getInstance();
-        UserJob userJob = new UserJob("André", "student" );
-        userJob.setName("morpheus");
-        userJob.setJob("zion resident");
-        userJob.setUpdatedAt("2020-05-31T10:57:16.298Z");
-        Assertions.assertEquals(userJob, userManager.updateUserJob("morpheus", "zion resident"));
+        User expected = new User(
+                2,
+                "janet.weaver@reqres.in",
+                "Janet",
+                "Weaver",
+                "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"
+        );
+        User actual = userManager.getUserById();
+        Assertions.assertEquals(expected.getId(), actual.getId());
+        Assertions.assertEquals(expected.getEmail(), actual.getEmail());
+        Assertions.assertEquals(expected.getFirst_name(), actual.getFirst_name());
+        Assertions.assertEquals(expected.getLast_name(), actual.getLast_name());
+        Assertions.assertEquals(expected.getAvatar(), actual.getAvatar());
     }
 
     //TODO - Test prints
     @Test void listUsers() {
         UserManager userManager = UserManager.getInstance();
-        Assertions.assertEquals("200", userManager.listUsers());
+        ArrayList<User> data_user = new ArrayList<>();
+        data_user.add(new User(
+                7,
+                "michael.lawson@reqres.in",
+                "Michael",
+                "Lawson",
+                "https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg"));
+        data_user.add(new User(
+                8,
+                "lindsay.ferguson@reqres.in",
+                "Lindsay",
+                "Ferguson",
+                "https://s3.amazonaws.com/uifaces/faces/twitter/araa3185/128.jpg"));
+        UserPage expected = new UserPage(2, 6, 12, 2, data_user);
+        UserPage actual = userManager.listUsers();
+        Assertions.assertEquals(expected.getPage(), actual.getPage());
+        Assertions.assertEquals(expected.getPer_page(), actual.getPer_page());
+        Assertions.assertEquals(expected.getTotal(), actual.getTotal());
+        Assertions.assertEquals(expected.getTotal_pages(), actual.getTotal_pages());
+        Assertions.assertEquals(expected.getData().get(0).id, actual.getData().get(0).id);
     }
 
     @Test void registerUserSuccessful() {
         UserManager userManager = UserManager.getInstance();
-        ArrayList<String> arrayList = new ArrayList<String>();
-        arrayList.add("4");
-        arrayList.add("QpwL5tke4Pnpja7X4");
-        Assertions.assertEquals(arrayList, userManager.registerUser("eve.holt@reqres.in", "pistol"));
+        Assertions.assertEquals("4", userManager.registerUser("eve.holt@reqres.in", "pistol").get("id"));
+        Assertions.assertEquals("QpwL5tke4Pnpja7X4", userManager.registerUser("eve.holt@reqres.in", "pistol").get("token"));
     }
 
     @Test void registerUserUnsuccessful() {
@@ -76,14 +94,47 @@ class UserManagerTest {
     }
 
     //TODO - Test resources
-    @Test void listResources() {
+    @Test
+    void listResources() {
         UserManager userManager = UserManager.getInstance();
-        Assertions.assertEquals("200", userManager.listResources());
+        Assertions.assertEquals(1, userManager.listResources().data.get(0).id);
+        Assertions.assertEquals("cerulean", userManager.listResources().data.get(0).name);
+        Assertions.assertEquals(2000, userManager.listResources().data.get(0).year);
+        Assertions.assertEquals("#98B2D1", userManager.listResources().data.get(0).color);
+        Assertions.assertEquals("17-2031", userManager.listResources().data.get(1).pantone_value);
     }
 
-    @Test void getResourceById() {
+    @Test
+    void getResourceById() {
         UserManager userManager = UserManager.getInstance();
-        userManager.myResources.add(new Resource(4, "resource3", "2000", "blue", "PANTONE 186 C"));
-        Assertions.assertEquals("200", userManager.getResourceById(4));
+        Page actual = userManager.getResourceById();
+
+        Assertions.assertEquals(2, actual.getId());
+        Assertions.assertEquals("fuchsia rose", actual.getName());
+        Assertions.assertEquals(2001, actual.getYear());
+        Assertions.assertEquals("#C74375", actual.getColor());
+        Assertions.assertEquals("17-2031", actual.getPantone_value());
     }
+
+    @Test
+    void updateUser() {
+    }
+
+    @Test
+    void singleUserNotFound() {
+    }
+
+    @Test
+    void singleResourceNotFound() {
+    }
+
+    @Test
+    void deleteUser() {
+    }
+
+    @Test
+    void delayedResponse() {
+    }
+
+
 }

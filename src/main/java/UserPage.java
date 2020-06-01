@@ -14,4 +14,24 @@ public class UserPage {
         this.total_pages = total_pages;
         this.data = data;
     }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public Integer getPer_page() {
+        return per_page;
+    }
+
+    public Integer getTotal() {
+        return total;
+    }
+
+    public Integer getTotal_pages() {
+        return total_pages;
+    }
+
+    public ArrayList<User> getData() {
+        return data;
+    }
 }
