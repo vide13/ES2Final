@@ -1,47 +1,27 @@
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
 
 class UserManagerTest {
-
-    @BeforeAll static void setUp() {
-        UserManager userManager = UserManager.getInstance();
-        userManager.myUsers.add(
-            new User(1, "teste1@teste.com", "test_first_name", "test_last_name", "avatar_url"));
-        userManager.myUsers.add(
-            new User(2, "teste2@teste.com", "test_first_name", "test_last_name", "avatar_url"));
-        userManager.myUsers.add(
-            new User(3, "teste3@teste.com", "test_first_name", "test_last_name", "avatar_url"));
-        userManager.registeredUsers.put("register@test.com", "1234");
-        userManager.myResources.add(new Resource(1, "resource1", "2000", "blue", "PANTONE 186 C"));
-    }
-
     @Test void newUser() {
         UserManager userManager = UserManager.getInstance();
-        UserJob expected = new UserJob("morpheus", "leader", "49", "2020-05-31T11:29:47.033Z");
         UserJob actual = userManager.newUser();
 
-        Assertions.assertEquals(expected.getCreatedAt(), actual.getCreatedAt());
+        Assertions.assertEquals("49", actual.getId());
+        Assertions.assertEquals("2020-06-01T21:00:08.929Z", actual.getCreatedAt());
     }
 
     @Test void getUserById() {
         UserManager userManager = UserManager.getInstance();
-        User expected = new User(
-                2,
-                "janet.weaver@reqres.in",
-                "Janet",
-                "Weaver",
-                "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"
-        );
-        User actual = userManager.getUserById();
-        Assertions.assertEquals(expected.getId(), actual.getId());
-        Assertions.assertEquals(expected.getEmail(), actual.getEmail());
-        Assertions.assertEquals(expected.getFirst_name(), actual.getFirst_name());
-        Assertions.assertEquals(expected.getLast_name(), actual.getLast_name());
-        Assertions.assertEquals(expected.getAvatar(), actual.getAvatar());
+        User actual = userManager.getUserById(2);
+
+        Assertions.assertEquals(2, actual.getId());
+        Assertions.assertEquals("janet.weaver@reqres.in", actual.getEmail());
+        Assertions.assertEquals("Janet", actual.getFirst_name());
+        Assertions.assertEquals("Weaver", actual.getLast_name());
+        Assertions.assertEquals("https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg", actual.getAvatar());
     }
 
     //TODO - Test prints
@@ -77,20 +57,18 @@ class UserManagerTest {
 
     @Test void registerUserUnsuccessful() {
         UserManager userManager = UserManager.getInstance();
-        ArrayList<String> arrayList = new ArrayList<String>();
-        arrayList.add("5");
-        arrayList.add("QpwL5tke4Pnpja7X4");
-        Assertions.assertNotEquals(arrayList, userManager.registerUser("eve.holt@reqres.in", "pistol"));
+        Assertions.assertEquals("Missing email or username", userManager.registerUser("", "pistol").get("error"));
+        Assertions.assertEquals("Missing password", userManager.registerUser("eve.holt@reqres.in", "").get("error"));
     }
 
     @Test void authUserSuccessful() {
         UserManager userManager = UserManager.getInstance();
-        Assertions.assertEquals("QpwL5tke4Pnpja7X4", userManager.authUser("eve.holt@reqres.in", "pistol"));
+        Assertions.assertEquals("QpwL5tke4Pnpja7X4", userManager.authUser("eve.holt@reqres.in", "pistol").get("token"));
     }
 
     @Test void authUserUnsuccessful() {
         UserManager userManager = UserManager.getInstance();
-        Assertions.assertNotEquals("token_error", userManager.authUser("eve.holt@reqres.in", "pistol"));
+        Assertions.assertEquals("Missing password", userManager.authUser("eve.holt@reqres.in", "").get("error"));
     }
 
     //TODO - Test resources
@@ -118,23 +96,35 @@ class UserManagerTest {
 
     @Test
     void updateUser() {
+        UserManager userManager = UserManager.getInstance();
+        Assertions.assertEquals("morpheus", userManager.updateUser().get("name"));
+        Assertions.assertEquals("zion resident", userManager.updateUser().get("job"));
+        Assertions.assertEquals("2020-06-01T21:29:54.801Z", userManager.updateUser().get("updatedAt"));
     }
 
     @Test
-    void singleUserNotFound() {
-    }
+    void getUserByIdUnseccessfull() {
+        UserManager userManager = UserManager.getInstance();
 
-    @Test
-    void singleResourceNotFound() {
+        Assertions.assertNull(userManager.getUserById(null));
     }
 
     @Test
     void deleteUser() {
+        UserManager userManager = UserManager.getInstance();
+        Assertions.assertNull(userManager.deleteUser());
     }
 
-    @Test
-    void delayedResponse() {
-    }
+    /*@Test
+    void delayedResponse() throws InterruptedException {
+        UserManager userManager = UserManager.getInstance();
+
+        Assertions.assertEquals(1, userManager.delayedResponse().data.get(0).id);
+        Assertions.assertEquals("cerulean", userManager.delayedResponse().data.get(0).name);
+        Assertions.assertEquals(2000, userManager.delayedResponse().data.get(0).year);
+        Assertions.assertEquals("#98B2D1", userManager.delayedResponse().data.get(0).color);
+        Assertions.assertEquals("17-2031", userManager.delayedResponse().data.get(1).pantone_value);
+    }*/
 
 
 }

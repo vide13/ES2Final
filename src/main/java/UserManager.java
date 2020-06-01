@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static java.lang.Thread.sleep;
+
 public class UserManager {
     private static volatile UserManager userManager;
     ArrayList<User> myUsers = new ArrayList<>();
@@ -26,11 +28,13 @@ public class UserManager {
 
 
     public UserJob newUser() {
-        return new UserJob("morpheus", "leader", "49", "2020-05-31T11:29:47.033Z");
+        return new UserJob("morpheus", "leader");
     }
 
 
-    public User getUserById() {
+    public User getUserById(Integer id) {
+        if (id == null)
+            return null;
         return new User(
                 2,
                 "janet.weaver@reqres.in",
@@ -61,15 +65,33 @@ public class UserManager {
 
     public HashMap<String, String> registerUser(String email, String password) {
         HashMap<String, String> hashMap = new HashMap<>();
+        if (email.isEmpty()) {
+            hashMap.put("error", "Missing email or username");
+            return hashMap;
+        }
+        if (password.isEmpty()) {
+            hashMap.put("error", "Missing password");
+            return hashMap;
+        }
         hashMap.put("id", "4");
         hashMap.put("token", "QpwL5tke4Pnpja7X4");
         return hashMap;
     }
 
 
-    public String authUser(String email, String password) {
-        User user = new User(email, password);
-        return (user.returnLogin());
+    public HashMap<String, String> authUser(String email, String password) {
+        HashMap<String, String> hashMap = new HashMap<>();
+        if (email.isEmpty()) {
+            hashMap.put("error", "Missing email or username");
+            return hashMap;
+        }
+        if (password.isEmpty()) {
+            hashMap.put("error", "Missing password");
+            return hashMap;
+        }
+
+        hashMap.put("token", "QpwL5tke4Pnpja7X4");
+        return hashMap;
     }
 
 
@@ -103,6 +125,24 @@ public class UserManager {
                 "17-2031"
         );
     }
+
+    public String deleteUser() {
+        return null;
+    }
+
+    public HashMap<String, String> updateUser() {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("name", "morpheus");
+        hashMap.put("job", "zion resident");
+        hashMap.put("updatedAt", "2020-06-01T21:29:54.801Z");
+        return hashMap;
+    }
+
+    public ResourcePage delayedResponse() throws InterruptedException {
+        sleep(3000);
+        return listResources();
+    }
+
 
     //Make singleton from serialize and deserialize operation.
     protected UserManager readResolve() {

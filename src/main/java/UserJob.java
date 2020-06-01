@@ -1,46 +1,23 @@
-import java.time.LocalDateTime;
-
 public class UserJob {
-    private String name;
-    private String job;
+    private final String name;
+    private final String job;
     private final String id;
-    private String createdAt;
-    private String updatedAt;
+    private final String createdAt;
+    private final String updatedAt;
 
-    public UserJob(String name, String job, String id, String createdAt) {
+    public UserJob(String name, String id) {
         this.name = name;
-        this.job = job;
-        this.id = id;
-        this.createdAt = createdAt;
+        this.job = "job";
+        this.id = "49";
+        this.createdAt = "2020-06-01T21:00:08.929Z";
         this.updatedAt = null;
-    }
-
-    public UserJob(String name, String job) {
-        this.name = name;
-        this.job = job;
-        this.id = "421";
-        LocalDateTime dataHora = LocalDateTime.now();
-        this.createdAt = dataHora.toString();
-        this.updatedAt = null;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setJob(String job) {
-        this.job = job;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
     }
 
     public String getCreatedAt() {
         return createdAt;
+    }
+
+    public String getId() {
+        return id;
     }
 }
