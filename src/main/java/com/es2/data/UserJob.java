@@ -1,12 +1,12 @@
-package data;
+package com.es2.data;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class UserJob {
-    private String name;
-    private String job;
+    private final String name;
+    private final String job;
 
     public UserJob(String name, String job) {
         this.name = name;

@@ -1,12 +1,12 @@
-package data;
+package com.es2.data;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class UserCredentials {
-    private String email;
-    private String password;
+    private final String email;
+    private final String password;
 
     public UserCredentials(String email, String password) {
         this.email = email;

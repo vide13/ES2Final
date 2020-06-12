@@ -1,4 +1,4 @@
-package data;
+package com.es2.data;
 
 public class User {
     private Integer id;

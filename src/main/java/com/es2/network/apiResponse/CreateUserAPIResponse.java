@@ -1,4 +1,4 @@
-package network.apiResponse;
+package com.es2.network.apiResponse;
 
 public class CreateUserAPIResponse {
     private String id;

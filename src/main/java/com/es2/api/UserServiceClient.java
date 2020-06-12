@@ -1,10 +1,10 @@
 package com.es2.api;
 
-import data.UserJob;
+import com.es2.data.UserJob;
+import com.es2.network.APIManager;
+import com.es2.network.apiResponse.CreateUserAPIResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import network.APIManager;
-import network.apiResponse.CreateUserAPIResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
