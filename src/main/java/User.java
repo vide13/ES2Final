@@ -7,7 +7,6 @@ public class User {
     String last_name;
     String avatar;
     String token;
-    String password;
 
     public User(Integer id, String email, String first_name, String last_name, String avatar) {
         this.id = id;
@@ -19,7 +18,6 @@ public class User {
 
     public User(String email, String password) {
         this.email = email;
-        this.password = password;
         this.token = "QpwL5tke4Pnpja7X4";
         this.id = 4;
     }

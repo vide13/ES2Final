@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class UserPage {
     Integer page;
@@ -13,6 +16,10 @@ public class UserPage {
         this.total = total;
         this.total_pages = total_pages;
         this.data = data;
+    }
+
+    public JsonObject toJsonObject() {
+        return new JsonParser().parse(new Gson().toJson(this)).getAsJsonObject();
     }
 
     public Integer getPage() {

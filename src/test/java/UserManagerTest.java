@@ -85,7 +85,7 @@ class UserManagerTest {
     @Test
     void getResourceById() {
         UserManager userManager = UserManager.getInstance();
-        Page actual = userManager.getResourceById();
+        Resource actual = userManager.getResourceById();
 
         Assertions.assertEquals(2, actual.getId());
         Assertions.assertEquals("fuchsia rose", actual.getName());

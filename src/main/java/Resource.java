@@ -1,11 +1,12 @@
+
 public class Resource {
     Integer id;
     String name;
-    String year;
+    Integer year;
     String color;
     String pantone_value;
 
-    public Resource(Integer id, String name, String year, String color, String pantone_value) {
+    public Resource(Integer id, String name, Integer year, String color, String pantone_value) {
         this.id = id;
         this.name = name;
         this.year = year;
@@ -13,5 +14,23 @@ public class Resource {
         this.pantone_value = pantone_value;
     }
 
+    public Integer getId() {
+        return id;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public String getPantone_value() {
+        return pantone_value;
+    }
 }
