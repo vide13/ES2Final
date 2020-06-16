@@ -27,7 +27,7 @@ class APITest {
     }
 
     @Test
-    void getUserById() throws IOException {
+    void getUserByIdSuccessful() throws IOException {
         APIManager service = getClient().create(APIManager.class);
 
         Call<UserApiResponse> callUser = service.getUser(1);
