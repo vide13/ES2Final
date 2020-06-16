@@ -1,3 +1,4 @@
+package com.es2.cache;
 
 public class MainTestes {
 
@@ -9,7 +10,7 @@ public class MainTestes {
         createStaticPages(userManager);
 
         //criar user job
-        System.out.println("Create User Job!");
+        System.out.println("Create com.es2.cache.User Job!");
         UserJob userJob = userManager.createUserJob("morpheus", "leader", "2");
         System.out.println("\tName: " + userJob.getName());
         System.out.println("\tJob: " + userJob.getJob());
@@ -23,7 +24,7 @@ public class MainTestes {
 
 
         //single user
-        System.out.println("\nSingle User(2)!");
+        System.out.println("\nSingle com.es2.cache.User(2)!");
         User user_single = userManager.singleUser(2);
         if(user_single != null){
             System.out.println("\tId: " + user_single.getId());
@@ -40,7 +41,7 @@ public class MainTestes {
 
 
         //single resource
-        System.out.println("\nSingle Resource(2)!");
+        System.out.println("\nSingle com.es2.cache.Resource(2)!");
         Resource resource_single = userManager.singleResource(2);
         if(user_single != null){
             System.out.println("\tId: " + resource_single.getId());
@@ -51,7 +52,7 @@ public class MainTestes {
         }
 
         //update user job
-        System.out.println("\nUpdate User Job!");
+        System.out.println("\nUpdate com.es2.cache.User Job!");
         UserJob update_userJob = userManager.updateUserJob("2", "morpheus", "zion resident");
         System.out.println("\tName: " + update_userJob.getName());
         System.out.println("\tJob: " + update_userJob.getJob());
@@ -59,19 +60,19 @@ public class MainTestes {
 
 
         //delete user Job
-        System.out.println("\nDelete User Job!");
+        System.out.println("\nDelete com.es2.cache.User Job!");
         userManager.deleteUserJob("2");
 
 
         //register user credentials
-        System.out.println("\nCreate User Credentials!");
+        System.out.println("\nCreate com.es2.cache.User Credentials!");
         UserCredentials register_userCredentials = userManager.registerUser("eve.holt@reqres.in", "pistol");
         System.out.println("\tId: " + register_userCredentials.getId());
         System.out.println("\tToken: " + register_userCredentials.getToken());
 
 
         //login user credentials
-        System.out.println("\nLogin User Credentials!");
+        System.out.println("\nLogin com.es2.cache.User Credentials!");
         UserCredentials login_userCredentials = userManager.loginUser("eve.holt@reqres.in", "pistol");
         System.out.println("\tToken: " + login_userCredentials.getToken());
 

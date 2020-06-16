@@ -1,3 +1,5 @@
+package com.es2.cache;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -5,7 +7,9 @@ import java.util.ArrayList;
 
 
 class UserManagerTest {
-    @Test void newUser() {
+    //TODO - Check this
+    @Test
+    void newUser() {
         UserManager userManager = UserManager.getInstance();
         UserJob actual = userManager.newUser();
 
@@ -13,7 +17,8 @@ class UserManagerTest {
         Assertions.assertEquals("2020-06-01T21:00:08.929Z", actual.getCreatedAt());
     }
 
-    @Test void getUserById() {
+    @Test
+    void getUserById() {
         UserManager userManager = UserManager.getInstance();
         User actual = userManager.getUserById(2);
 
@@ -117,7 +122,7 @@ class UserManagerTest {
 
     /*@Test
     void delayedResponse() throws InterruptedException {
-        UserManager userManager = UserManager.getInstance();
+        com.es2.cache.UserManager userManager = com.es2.cache.UserManager.getInstance();
 
         Assertions.assertEquals(1, userManager.delayedResponse().data.get(0).id);
         Assertions.assertEquals("cerulean", userManager.delayedResponse().data.get(0).name);

@@ -1,3 +1,5 @@
+package com.es2.cache;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,7 +14,7 @@ public class UserManager {
     private UserManager() {
         if (userManager != null) {
             throw new RuntimeException(
-                "Use getInstance() method to get the single instance of this class.");
+                    "Use getInstance() method to get the single instance of this class.");
         }
     }
 

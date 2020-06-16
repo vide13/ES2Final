@@ -1,3 +1,4 @@
+package com.es2.cache;
 
 public class Resource {
     Integer id;

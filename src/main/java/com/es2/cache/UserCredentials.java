@@ -1,3 +1,5 @@
+package com.es2.cache;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

@@ -1,10 +1,12 @@
+package com.es2.cache;
+
 import java.time.LocalDateTime;
 
 public class UserJob {
     private String name;
     private String job;
-    private String id;
-    private String createdAt = LocalDateTime.now().toString();
+    private final String id;
+    private final String createdAt = LocalDateTime.now().toString();
     private String updatedAt;
 
     public UserJob(String name, String job) {

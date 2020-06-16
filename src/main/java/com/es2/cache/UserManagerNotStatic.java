@@ -1,22 +1,22 @@
+package com.es2.cache;
+
 import com.google.gson.JsonObject;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static java.lang.Thread.sleep;
-
 public class UserManagerNotStatic {
     private static volatile UserManagerNotStatic userManager;
-    private ArrayList<UserJob> arrayListUsersJob = new ArrayList<>();
-    private ArrayList<User> arrayListUsers = new ArrayList<>();
-    private ArrayList<Resource> arrayListResources = new ArrayList<>();
-    private ArrayList<UserCredentials> arrayListUsersCredentials = new ArrayList<>();
+    private final ArrayList<UserJob> arrayListUsersJob = new ArrayList<>();
+    private final ArrayList<User> arrayListUsers = new ArrayList<>();
+    private final ArrayList<Resource> arrayListResources = new ArrayList<>();
+    private final ArrayList<UserCredentials> arrayListUsersCredentials = new ArrayList<>();
 
     UserManagerNotStatic() {
         if (userManager != null) {
             throw new RuntimeException(
-                "Use getInstance() method to get the single instance of this class.");
+                    "Use getInstance() method to get the single instance of this class.");
         }
     }
 
@@ -62,7 +62,7 @@ public class UserManagerNotStatic {
                 return arrayListUser;
             }
         }
-        throw new NullPointerException("User not found!");
+        throw new NullPointerException("com.es2.cache.User not found!");
     }
 
     JsonObject listResources() {
@@ -72,7 +72,7 @@ public class UserManagerNotStatic {
         System.out.println("\tPer_page: " + resourcePage.getPer_page());
         System.out.println("\tTotal: " + resourcePage.getTotal());
         System.out.println("\tTotal_pages: " + resourcePage.getTotal_pages());
-        for (Resource arrayListResource : arrayListResources) {
+        for (com.es2.cache.Resource arrayListResource : arrayListResources) {
             System.out.println("\tId: " + arrayListResource.getId());
             System.out.println("\t\tName: " + arrayListResource.getName());
             System.out.println("\t\tYear: " + arrayListResource.getYear());
@@ -87,7 +87,7 @@ public class UserManagerNotStatic {
                 return arrayListResource;
             }
         }
-        throw new NullPointerException("Resource not found!");
+        throw new NullPointerException("com.es2.cache.Resource not found!");
     }
 
 
@@ -106,7 +106,7 @@ public class UserManagerNotStatic {
                 return userJob;
             }
         }
-        throw new NullPointerException("User not found!");
+        throw new NullPointerException("com.es2.cache.User not found!");
     }
 
     void deleteUserJob(String id) {
@@ -146,7 +146,7 @@ public class UserManagerNotStatic {
                 }
             }
         }
-        throw new NullPointerException("User not found!");
+        throw new NullPointerException("com.es2.cache.User not found!");
     }
 
 }

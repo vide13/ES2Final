@@ -1,17 +1,19 @@
+package com.es2.cache;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
 
-public class ResourcePage {
+public class UserPage {
     Integer page;
     Integer per_page;
     Integer total;
     Integer total_pages;
-    ArrayList<Resource> data;
+    ArrayList<User> data;
 
-    public ResourcePage(Integer page, Integer per_page, Integer total, Integer total_pages, ArrayList<Resource> data) {
+    public UserPage(Integer page, Integer per_page, Integer total, Integer total_pages, ArrayList<User> data) {
         this.page = page;
         this.per_page = per_page;
         this.total = total;
@@ -39,7 +41,7 @@ public class ResourcePage {
         return total_pages;
     }
 
-    public ArrayList<Resource> getData() {
+    public ArrayList<User> getData() {
         return data;
     }
 }
