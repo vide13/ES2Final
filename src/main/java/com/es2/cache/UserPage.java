@@ -1,3 +1,9 @@
+package com.es2.cache;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import java.util.ArrayList;
 
 public class UserPage {
@@ -13,6 +19,10 @@ public class UserPage {
         this.total = total;
         this.total_pages = total_pages;
         this.data = data;
+    }
+
+    public JsonObject toJsonObject() {
+        return new JsonParser().parse(new Gson().toJson(this)).getAsJsonObject();
     }
 
     public Integer getPage() {

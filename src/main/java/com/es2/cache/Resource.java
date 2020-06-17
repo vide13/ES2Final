@@ -1,13 +1,13 @@
+package com.es2.cache;
 
-
-public class Page {
+public class Resource {
     Integer id;
     String name;
     Integer year;
     String color;
     String pantone_value;
 
-    public Page(Integer id, String name, Integer year, String color, String pantone_value) {
+    public Resource(Integer id, String name, Integer year, String color, String pantone_value) {
         this.id = id;
         this.name = name;
         this.year = year;

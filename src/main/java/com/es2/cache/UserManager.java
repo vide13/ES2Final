@@ -1,3 +1,5 @@
+package com.es2.cache;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,7 +14,7 @@ public class UserManager {
     private UserManager() {
         if (userManager != null) {
             throw new RuntimeException(
-                "Use getInstance() method to get the single instance of this class.");
+                    "Use getInstance() method to get the single instance of this class.");
         }
     }
 
@@ -96,15 +98,15 @@ public class UserManager {
 
 
     public ResourcePage listResources() {
-        ArrayList<Page> data_page = new ArrayList<>();
-        data_page.add(new Page(
+        ArrayList<Resource> data_page = new ArrayList<>();
+        data_page.add(new Resource(
                 1,
                 "cerulean",
                 2000,
                 "#98B2D1",
                 "15-4020"
         ));
-        data_page.add(new Page(
+        data_page.add(new Resource(
                 2,
                 "fuchsia rose",
                 2001,
@@ -116,8 +118,8 @@ public class UserManager {
     }
 
 
-    public Page getResourceById() {
-        return new Page(
+    public Resource getResourceById() {
+        return new Resource(
                 2,
                 "fuchsia rose",
                 2001,
