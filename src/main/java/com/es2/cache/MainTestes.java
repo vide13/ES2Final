@@ -16,11 +16,11 @@ public class MainTestes {
 
         //criar user job
         System.out.println("Create com.es2.data.User Job!");
-        UserJob userJob = userManager.createUserJob("morpheus", "leader", "2");
-        System.out.println("\tName: " + userJob.getName());
-        System.out.println("\tJob: " + userJob.getJob());
-        System.out.println("\tId: " + userJob.getId());
-        System.out.println("\tCreatedAt: " + userJob.getCreatedAt());
+//        UserJob userJob = userManager.createUserJob("morpheus", "leader");
+//        System.out.println("\tName: " + userJob.getName());
+//        System.out.println("\tJob: " + userJob.getJob());
+//        System.out.println("\tId: " + userJob.getId());
+//        System.out.println("\tCreatedAt: " + userJob.getCreatedAt());
 
 
         //listar users

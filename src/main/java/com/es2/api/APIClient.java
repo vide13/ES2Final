@@ -7,14 +7,19 @@ public class APIClient {
 
     private static final String BASE_URL = "https://reqres.in";
 
-    private static final Retrofit retrofit = null;
+    private static Retrofit retrofit;
 
     public static Retrofit getClient() {
-        if (retrofit != null)
-            return retrofit;
-        return new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        if (retrofit == null) {
+            synchronized (Retrofit.class) {
+                if (retrofit == null) {
+                    retrofit = new Retrofit.Builder()
+                            .baseUrl(BASE_URL)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                }
+            }
+        }
+        return retrofit;
     }
 }

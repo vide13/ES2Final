@@ -31,7 +31,7 @@ public class UserManagerNotStatic {
         return userManager;
     }
 
-    void createUser(Integer id, String email, String first_name, String last_name, String avatar) {
+    public void createUser(Integer id, String email, String first_name, String last_name, String avatar) {
         User user = new User(id, email, first_name, last_name, avatar);
         arrayListUsers.add(user);
     }
@@ -92,8 +92,8 @@ public class UserManagerNotStatic {
     }
 
 
-    UserJob createUserJob(String name, String job, String id) {
-        UserJob userJob = new UserJob(name, job, id);
+    public UserJob createUserJob(String name, String job, String id, String createdAt) {
+        UserJob userJob = new UserJob(name, job, id,createdAt);
         arrayListUsersJob.add(userJob);
         return userJob;
     }

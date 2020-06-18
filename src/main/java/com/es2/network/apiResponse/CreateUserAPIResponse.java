@@ -5,4 +5,12 @@ public class CreateUserAPIResponse {
     private String name;
     private String job;
     private String createdAt;
+
+    public String getId() {
+        return id;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
 }

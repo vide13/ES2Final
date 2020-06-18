@@ -7,32 +7,38 @@ import com.google.gson.JsonParser;
 import java.time.LocalDateTime;
 
 public class UserJob {
+    private String id;
+    private String createdAt;
     private String name;
     private String job;
-    private final String id;
-    private final String createdAt = LocalDateTime.now().toString();
     private String updatedAt;
 
     public UserJob(String name, String job) {
         this.name = name;
         this.job = job;
-        this.id = "49";
-        this.updatedAt = null;
     }
 
-    public UserJob(String name, String job, String id) {
+    public UserJob(String id, String createdAt, String name, String job) {
+        this.id = id;
+        this.createdAt = createdAt;
         this.name = name;
         this.job = job;
-        this.id = id;
-        this.updatedAt = null;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getJob() {
         return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
     }
 
     public String getId() {
@@ -45,14 +51,6 @@ public class UserJob {
 
     public String getUpdatedAt() {
         return updatedAt;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setJob(String job) {
-        this.job = job;
     }
 
     public void setUpdatedAt(String updatedAt) {
