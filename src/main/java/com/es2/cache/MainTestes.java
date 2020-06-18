@@ -1,5 +1,10 @@
 package com.es2.cache;
 
+import com.es2.data.Resource;
+import com.es2.data.User;
+import com.es2.data.UserCredentials;
+import com.es2.data.UserJob;
+
 public class MainTestes {
 
     public static void main(String[] args) {
@@ -10,7 +15,7 @@ public class MainTestes {
         createStaticPages(userManager);
 
         //criar user job
-        System.out.println("Create com.es2.cache.User Job!");
+        System.out.println("Create com.es2.data.User Job!");
         UserJob userJob = userManager.createUserJob("morpheus", "leader", "2");
         System.out.println("\tName: " + userJob.getName());
         System.out.println("\tJob: " + userJob.getJob());
@@ -24,7 +29,7 @@ public class MainTestes {
 
 
         //single user
-        System.out.println("\nSingle com.es2.cache.User(2)!");
+        System.out.println("\nSingle com.es2.data.User(2)!");
         User user_single = userManager.singleUser(2);
         if(user_single != null){
             System.out.println("\tId: " + user_single.getId());
@@ -41,7 +46,7 @@ public class MainTestes {
 
 
         //single resource
-        System.out.println("\nSingle com.es2.cache.Resource(2)!");
+        System.out.println("\nSingle com.es2.data.Resource(2)!");
         Resource resource_single = userManager.singleResource(2);
         if(user_single != null){
             System.out.println("\tId: " + resource_single.getId());
@@ -52,7 +57,7 @@ public class MainTestes {
         }
 
         //update user job
-        System.out.println("\nUpdate com.es2.cache.User Job!");
+        System.out.println("\nUpdate com.es2.data.User Job!");
         UserJob update_userJob = userManager.updateUserJob("2", "morpheus", "zion resident");
         System.out.println("\tName: " + update_userJob.getName());
         System.out.println("\tJob: " + update_userJob.getJob());
@@ -60,19 +65,19 @@ public class MainTestes {
 
 
         //delete user Job
-        System.out.println("\nDelete com.es2.cache.User Job!");
+        System.out.println("\nDelete com.es2.data.User Job!");
         userManager.deleteUserJob("2");
 
 
         //register user credentials
-        System.out.println("\nCreate com.es2.cache.User Credentials!");
+        System.out.println("\nCreate com.es2.data.User Credentials!");
         UserCredentials register_userCredentials = userManager.registerUser("eve.holt@reqres.in", "pistol");
         System.out.println("\tId: " + register_userCredentials.getId());
         System.out.println("\tToken: " + register_userCredentials.getToken());
 
 
         //login user credentials
-        System.out.println("\nLogin com.es2.cache.User Credentials!");
+        System.out.println("\nLogin com.es2.data.User Credentials!");
         UserCredentials login_userCredentials = userManager.loginUser("eve.holt@reqres.in", "pistol");
         System.out.println("\tToken: " + login_userCredentials.getToken());
 

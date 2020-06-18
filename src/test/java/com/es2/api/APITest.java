@@ -1,6 +1,7 @@
 package com.es2.api;
 
 import com.es2.data.UserCredentials;
+import com.es2.data.UserCredentialsRequest;
 import com.es2.data.UserJob;
 import com.es2.network.APIManager;
 import com.es2.network.apiResponse.*;
@@ -57,7 +58,7 @@ class APITest {
     void registerUserSuccessful() throws IOException {
         APIManager service = getClient().create(APIManager.class);
 
-        UserCredentials userCredentials = new UserCredentials("eve.holt@reqres.in", "qwerty");
+        UserCredentialsRequest userCredentials = new UserCredentialsRequest("eve.holt@reqres.in", "qwerty");
         Call<RegisterAndLoginUserAPIResponse> callUser = service.registerUser(userCredentials.toJsonObject());
         Response<RegisterAndLoginUserAPIResponse> response = callUser.execute();
         Assertions.assertEquals(OK, response.code());
@@ -67,7 +68,7 @@ class APITest {
     void registerUserUnsuccessful() throws IOException {
         APIManager service = getClient().create(APIManager.class);
 
-        UserCredentials userCredentials = new UserCredentials("invalid credentials", "qwerty");
+        UserCredentialsRequest userCredentials = new UserCredentialsRequest("invalid credentials", "qwerty");
         Call<RegisterAndLoginUserAPIResponse> callUser = service.registerUser(userCredentials.toJsonObject());
         Response<RegisterAndLoginUserAPIResponse> response = callUser.execute();
         Assertions.assertEquals(BAD_REQUEST, response.code());
@@ -77,7 +78,7 @@ class APITest {
     void authUserSuccessful() throws IOException {
         APIManager service = getClient().create(APIManager.class);
 
-        UserCredentials userCredentials = new UserCredentials("eve.holt@reqres.in", "cityslicka");
+        UserCredentialsRequest userCredentials = new UserCredentialsRequest("eve.holt@reqres.in", "cityslicka");
         Call<RegisterAndLoginUserAPIResponse> callUser = service.loginUser(userCredentials.toJsonObject());
         Response<RegisterAndLoginUserAPIResponse> response = callUser.execute();
         Assertions.assertEquals(OK, response.code());
@@ -87,7 +88,7 @@ class APITest {
     void authUserUnsuccessful() throws IOException {
         APIManager service = getClient().create(APIManager.class);
 
-        UserCredentials userCredentials = new UserCredentials("wrong_mail@reqres.in", "cityslicka");
+        UserCredentialsRequest userCredentials = new UserCredentialsRequest("wrong_mail@reqres.in", "cityslicka");
         Call<RegisterAndLoginUserAPIResponse> callUser = service.loginUser(userCredentials.toJsonObject());
         Response<RegisterAndLoginUserAPIResponse> response = callUser.execute();
         Assertions.assertEquals(BAD_REQUEST, response.code());

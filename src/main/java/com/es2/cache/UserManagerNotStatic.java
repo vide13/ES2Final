@@ -1,5 +1,6 @@
 package com.es2.cache;
 
+import com.es2.data.*;
 import com.google.gson.JsonObject;
 
 import java.time.LocalDateTime;
@@ -62,7 +63,7 @@ public class UserManagerNotStatic {
                 return arrayListUser;
             }
         }
-        throw new NullPointerException("com.es2.cache.User not found!");
+        throw new NullPointerException("com.es2.data.User not found!");
     }
 
     JsonObject listResources() {
@@ -72,7 +73,7 @@ public class UserManagerNotStatic {
         System.out.println("\tPer_page: " + resourcePage.getPer_page());
         System.out.println("\tTotal: " + resourcePage.getTotal());
         System.out.println("\tTotal_pages: " + resourcePage.getTotal_pages());
-        for (com.es2.cache.Resource arrayListResource : arrayListResources) {
+        for (com.es2.data.Resource arrayListResource : arrayListResources) {
             System.out.println("\tId: " + arrayListResource.getId());
             System.out.println("\t\tName: " + arrayListResource.getName());
             System.out.println("\t\tYear: " + arrayListResource.getYear());
@@ -87,7 +88,7 @@ public class UserManagerNotStatic {
                 return arrayListResource;
             }
         }
-        throw new NullPointerException("com.es2.cache.Resource not found!");
+        throw new NullPointerException("com.es2.data.Resource not found!");
     }
 
 
@@ -106,7 +107,7 @@ public class UserManagerNotStatic {
                 return userJob;
             }
         }
-        throw new NullPointerException("com.es2.cache.User not found!");
+        throw new NullPointerException("com.es2.data.User not found!");
     }
 
     void deleteUserJob(String id) {
@@ -146,7 +147,7 @@ public class UserManagerNotStatic {
                 }
             }
         }
-        throw new NullPointerException("com.es2.cache.User not found!");
+        throw new NullPointerException("com.es2.data.User not found!");
     }
 
 }

@@ -1,5 +1,7 @@
 package com.es2.cache;
 
+import com.es2.data.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 

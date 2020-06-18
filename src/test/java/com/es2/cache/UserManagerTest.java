@@ -1,5 +1,9 @@
 package com.es2.cache;
 
+import com.es2.data.Resource;
+import com.es2.data.User;
+import com.es2.data.UserJob;
+import com.es2.data.UserPage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +34,8 @@ class UserManagerTest {
     }
 
     //TODO - Test prints
-    @Test void listUsers() {
+    @Test
+    void listUsers() {
         UserManager userManager = UserManager.getInstance();
         ArrayList<User> data_user = new ArrayList<>();
         data_user.add(new User(
@@ -51,27 +56,31 @@ class UserManagerTest {
         Assertions.assertEquals(expected.getPer_page(), actual.getPer_page());
         Assertions.assertEquals(expected.getTotal(), actual.getTotal());
         Assertions.assertEquals(expected.getTotal_pages(), actual.getTotal_pages());
-        Assertions.assertEquals(expected.getData().get(0).id, actual.getData().get(0).id);
+        Assertions.assertEquals(expected.getData().get(0).getId(), actual.getData().get(0).getId());
     }
 
-    @Test void registerUserSuccessful() {
+    @Test
+    void registerUserSuccessful() {
         UserManager userManager = UserManager.getInstance();
         Assertions.assertEquals("4", userManager.registerUser("eve.holt@reqres.in", "pistol").get("id"));
         Assertions.assertEquals("QpwL5tke4Pnpja7X4", userManager.registerUser("eve.holt@reqres.in", "pistol").get("token"));
     }
 
-    @Test void registerUserUnsuccessful() {
+    @Test
+    void registerUserUnsuccessful() {
         UserManager userManager = UserManager.getInstance();
         Assertions.assertEquals("Missing email or username", userManager.registerUser("", "pistol").get("error"));
         Assertions.assertEquals("Missing password", userManager.registerUser("eve.holt@reqres.in", "").get("error"));
     }
 
-    @Test void authUserSuccessful() {
+    @Test
+    void authUserSuccessful() {
         UserManager userManager = UserManager.getInstance();
         Assertions.assertEquals("QpwL5tke4Pnpja7X4", userManager.authUser("eve.holt@reqres.in", "pistol").get("token"));
     }
 
-    @Test void authUserUnsuccessful() {
+    @Test
+    void authUserUnsuccessful() {
         UserManager userManager = UserManager.getInstance();
         Assertions.assertEquals("Missing password", userManager.authUser("eve.holt@reqres.in", "").get("error"));
     }
@@ -80,11 +89,11 @@ class UserManagerTest {
     @Test
     void listResources() {
         UserManager userManager = UserManager.getInstance();
-        Assertions.assertEquals(1, userManager.listResources().data.get(0).id);
-        Assertions.assertEquals("cerulean", userManager.listResources().data.get(0).name);
-        Assertions.assertEquals(2000, userManager.listResources().data.get(0).year);
-        Assertions.assertEquals("#98B2D1", userManager.listResources().data.get(0).color);
-        Assertions.assertEquals("17-2031", userManager.listResources().data.get(1).pantone_value);
+        Assertions.assertEquals(1, userManager.listResources().getData().get(0).getId());
+        Assertions.assertEquals("cerulean", userManager.listResources().getData().get(0).getName());
+        Assertions.assertEquals(2000, userManager.listResources().getData().get(0).getYear());
+        Assertions.assertEquals("#98B2D1", userManager.listResources().getData().get(0).getColor());
+        Assertions.assertEquals("17-2031", userManager.listResources().getData().get(1).getPantone_value());
     }
 
     @Test
