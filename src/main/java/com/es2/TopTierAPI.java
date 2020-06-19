@@ -1,10 +1,13 @@
 package com.es2;
 
 import com.es2.Exceptions.InvalidArguments;
+import com.es2.Exceptions.UserNotFoundException;
 import com.es2.cache.UserManagerNotStatic;
+import com.es2.data.User;
 import com.es2.data.UserJob;
 import com.es2.network.APIManager;
 import com.es2.network.apiResponse.CreateUserAPIResponse;
+import com.es2.network.apiResponse.UserApiResponse;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -12,6 +15,7 @@ import java.io.IOException;
 
 import static com.es2.api.APIClient.getClient;
 import static com.es2.data.HttpCodes.CREATED;
+import static com.es2.data.HttpCodes.OK;
 
 /**
  * Manages reqres.in/cache access and requests
@@ -21,7 +25,7 @@ import static com.es2.data.HttpCodes.CREATED;
  * <p>
  * - Criar um utilizador ✔
  * <p>
- * - Consultar os dados de um utilizador
+ * - Consultar os dados de um utilizador ✔
  * <p>
  * - Listar utilizadores
  * <p>
@@ -51,6 +55,14 @@ public class TopTierAPI {
         return instance;
     }
 
+    /**
+     * Criar um utilizador
+     * Creates a new user and adds it to cache if successful
+     *
+     * @param name - New user name
+     * @param job  - New user job
+     * @return - response from reqres API
+     */
     Response<CreateUserAPIResponse> newUser(String name, String job) throws IOException, InvalidArguments {
         if (name == null || job == null) throw new InvalidArguments();
         if (name.isEmpty() || job.isEmpty()) throw new InvalidArguments();
@@ -71,16 +83,44 @@ public class TopTierAPI {
                         response.body().getCreatedAt()
                 );
             }
-            return response;
         }
         return response;
     }
 
+    /**
+     * Consultar os dados de um utilizador
+     * Check if users exists in cache and returns it,
+     * if it doesnt exists in cache checks in reqres API and adds it to cache
+     *
+     * @param id - User id
+     * @return - Response success whit user info or response whit fail code
+     */
+    Response<UserApiResponse> getUserById(Integer id) throws IOException, UserNotFoundException {
+        APIManager service = getClient().create(APIManager.class);
 
-    void getUserById() {
+        UserManagerNotStatic userManagerNotStatic = UserManagerNotStatic.getInstance();
+        User user = userManagerNotStatic.singleUser(id);
+        if (user != null) {
+            return Response.success(OK, new UserApiResponse(user));
+        }
 
+        Call<UserApiResponse> callUser = service.getUser(1);
+        Response<UserApiResponse> response = callUser.execute();
+        if (response.code() == OK) {
+            if (response.body() != null) {
+                User reqresUser = response.body().getUser();
+                userManagerNotStatic.createUser(
+                        reqresUser.getId(),
+                        reqresUser.getEmail(),
+                        reqresUser.getFirst_name(),
+                        reqresUser.getLast_name(),
+                        reqresUser.getAvatar()
+                );
+                return response;
+            }
+        }
+        throw new UserNotFoundException();
     }
-
 
     void listUsers() {
 

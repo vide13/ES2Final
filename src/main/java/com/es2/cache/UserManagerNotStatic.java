@@ -57,13 +57,13 @@ public class UserManagerNotStatic {
         }
     }
 
-    User singleUser(Integer id) {
+    public User singleUser(Integer id) {
         for (User arrayListUser : arrayListUsers) {
             if (arrayListUser.getId().equals(id)) {
                 return arrayListUser;
             }
         }
-        throw new NullPointerException("com.es2.data.User not found!");
+        return null;
     }
 
     JsonObject listResources() {
@@ -93,7 +93,7 @@ public class UserManagerNotStatic {
 
 
     public UserJob createUserJob(String name, String job, String id, String createdAt) {
-        UserJob userJob = new UserJob(name, job, id,createdAt);
+        UserJob userJob = new UserJob(name, job, id, createdAt);
         arrayListUsersJob.add(userJob);
         return userJob;
     }
@@ -111,8 +111,8 @@ public class UserManagerNotStatic {
     }
 
     void deleteUserJob(String id) {
-        for(int i = 0; i < arrayListUsersJob.size(); i++) {
-            if(arrayListUsersJob.get(i).getId().equals(id)){
+        for (int i = 0; i < arrayListUsersJob.size(); i++) {
+            if (arrayListUsersJob.get(i).getId().equals(id)) {
                 arrayListUsersJob.remove(i);
             }
         }
