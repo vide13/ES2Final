@@ -1,6 +1,9 @@
 package com.es2.data;
 
 import com.es2.data.User;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
 
@@ -37,5 +40,9 @@ public class UserPage {
 
     public ArrayList<User> getData() {
         return data;
+    }
+
+    public JsonObject toJsonObject() {
+        return new JsonParser().parse(new Gson().toJson(this)).getAsJsonObject();
     }
 }

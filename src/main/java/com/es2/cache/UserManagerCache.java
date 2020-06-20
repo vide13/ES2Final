@@ -1,31 +1,30 @@
 package com.es2.cache;
 
 import com.es2.data.*;
-import com.google.gson.JsonObject;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.HashMap;
 
-public class UserManagerNotStatic {
-    private static volatile UserManagerNotStatic userManager;
+public class UserManagerCache {
+    private static volatile UserManagerCache userManager;
     private final ArrayList<UserJob> arrayListUsersJob = new ArrayList<>();
     private final ArrayList<User> arrayListUsers = new ArrayList<>();
     private final ArrayList<Resource> arrayListResources = new ArrayList<>();
     private final ArrayList<UserCredentials> arrayListUsersCredentials = new ArrayList<>();
 
-    UserManagerNotStatic() {
+    UserManagerCache() {
         if (userManager != null) {
             throw new RuntimeException(
                     "Use getInstance() method to get the single instance of this class.");
         }
     }
 
-    public static UserManagerNotStatic getInstance() {
+    public static UserManagerCache getInstance() {
         if (userManager == null) {
-            synchronized (UserManagerNotStatic.class) {
+            synchronized (UserManagerCache.class) {
                 if (userManager == null)
-                    userManager = new UserManagerNotStatic();
+                    userManager = new UserManagerCache();
             }
         }
         return userManager;
@@ -42,19 +41,9 @@ public class UserManagerNotStatic {
     }
 
 
-    void listUsers() {
+    UserPage listUsers() {
         UserPage userPage = new UserPage(2, 6, 12, 2, arrayListUsers);
-        System.out.println("\tPage: " + userPage.getPage());
-        System.out.println("\tPer_page: " + userPage.getPer_page());
-        System.out.println("\tTotal: " + userPage.getTotal());
-        System.out.println("\tTotal_pages: " + userPage.getTotal_pages());
-        for (User arrayListUser : arrayListUsers) {
-            System.out.println("\tId: " + arrayListUser.getId());
-            System.out.println("\t\tEmail: " + arrayListUser.getEmail());
-            System.out.println("\t\tFirst_name: " + arrayListUser.getFirst_name());
-            System.out.println("\t\tLast_name: " + arrayListUser.getLast_name());
-            System.out.println("\t\tAvatar: " + arrayListUser.getAvatar());
-        }
+        return userPage;
     }
 
     public User singleUser(Integer id) {
@@ -66,20 +55,9 @@ public class UserManagerNotStatic {
         return null;
     }
 
-    JsonObject listResources() {
+    ResourcePage listResources() {
         ResourcePage resourcePage = new ResourcePage(1, 6, 12, 2, arrayListResources);
-        return resourcePage.toJsonObject();
-        /*System.out.println("\tPage: " + resourcePage.getPage());
-        System.out.println("\tPer_page: " + resourcePage.getPer_page());
-        System.out.println("\tTotal: " + resourcePage.getTotal());
-        System.out.println("\tTotal_pages: " + resourcePage.getTotal_pages());
-        for (com.es2.data.Resource arrayListResource : arrayListResources) {
-            System.out.println("\tId: " + arrayListResource.getId());
-            System.out.println("\t\tName: " + arrayListResource.getName());
-            System.out.println("\t\tYear: " + arrayListResource.getYear());
-            System.out.println("\t\tColor: " + arrayListResource.getColor());
-            System.out.println("\t\tPantoneValue: " + arrayListResource.getPantone_value());
-        }*/
+        return resourcePage;
     }
 
     public Resource singleResource(Integer id) {
@@ -92,8 +70,8 @@ public class UserManagerNotStatic {
     }
 
 
-    public UserJob createUserJob(String name, String job, String id, String createdAt) {
-        UserJob userJob = new UserJob(name, job, id, createdAt);
+    public UserJob createUserJob(String id, String createdAt, String name, String job) {
+        UserJob userJob = new UserJob(id, createdAt, name, job);
         arrayListUsersJob.add(userJob);
         return userJob;
     }
@@ -118,7 +96,7 @@ public class UserManagerNotStatic {
         }
     }
 
-    public UserCredentials registerUser(String email, String password) {
+    /*public UserCredentials registerUser(String email, String password) {
         //generate random id
         Random r = new Random();
         Integer id = r.nextInt(10);
@@ -136,13 +114,26 @@ public class UserManagerNotStatic {
         UserCredentials userCredentials = new UserCredentials(id, email, password, token);
         arrayListUsersCredentials.add(userCredentials);
         return userCredentials;
-    }
+    }*/
 
-    public UserCredentials registerUser(Integer id, String email, String password, String token) {
+    public HashMap<String, String> registerUser(Integer id, String email, String password, String token) {
+        HashMap<String, String> hashMap = new HashMap<>();
+        if (email.isEmpty()) {
+            hashMap.put("error", "Missing email or username");
+            return hashMap;
+        }
+        if (password.isEmpty()) {
+            hashMap.put("error", "Missing password");
+            return hashMap;
+        }
+        hashMap.put("id", "4");
+        hashMap.put("token", "QpwL5tke4Pnpja7X4");
+
         UserCredentials userCredentials = new UserCredentials(id, email, password, token);
+
         arrayListUsersCredentials.add(userCredentials);
-        return userCredentials;
-    }
+        return hashMap;
+     }
 
 
     public String loginUser(String email, String password) {
@@ -153,7 +144,7 @@ public class UserManagerNotStatic {
                 }
             }
         }
-        return null;
+        return "User not found";
     }
 
 }

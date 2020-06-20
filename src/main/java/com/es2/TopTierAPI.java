@@ -1,6 +1,6 @@
 package com.es2;
 
-import com.es2.cache.UserManagerNotStatic;
+import com.es2.cache.UserManagerCache;
 import com.es2.data.Resource;
 import com.es2.data.User;
 import com.es2.data.UserCredentialsRequest;
@@ -75,9 +75,9 @@ public class TopTierAPI {
         Response<CreateUserAPIResponse> response = callUser.execute();
 
         if (response.code() == CREATED) {
-            UserManagerNotStatic userManagerNotStatic = UserManagerNotStatic.getInstance();
+            UserManagerCache userManagerCache = UserManagerCache.getInstance();
             if (response.body() != null) {
-                userManagerNotStatic.createUserJob(
+                userManagerCache.createUserJob(
                         response.body().getId(),
                         userJob.getName(),
                         userJob.getJob(),
@@ -98,30 +98,29 @@ public class TopTierAPI {
      * @return - Response success whit user info or response whit fail code
      */
     Response<UserApiResponse> getUserById(Integer id) throws IOException, UserNotFoundException {
-        APIManager service = getClient().create(APIManager.class);
 
-        UserManagerNotStatic userManagerNotStatic = UserManagerNotStatic.getInstance();
-        User user = userManagerNotStatic.singleUser(id);
+        UserManagerCache userManagerCache = UserManagerCache.getInstance();
+        User user = userManagerCache.singleUser(id);
         if (user != null) {
             return Response.success(OK, new UserApiResponse(user));
         }
 
-        Call<UserApiResponse> callUser = service.getUser(1);
+        APIManager service = getClient().create(APIManager.class);
+        Call<UserApiResponse> callUser = service.getUser(id);
         Response<UserApiResponse> response = callUser.execute();
         if (response.code() == OK) {
             if (response.body() != null) {
                 User reqresUser = response.body().getUser();
-                userManagerNotStatic.createUser(
+                userManagerCache.createUser(
                         reqresUser.getId(),
                         reqresUser.getEmail(),
                         reqresUser.getFirst_name(),
                         reqresUser.getLast_name(),
                         reqresUser.getAvatar()
                 );
-                return response;
             }
         }
-        throw new UserNotFoundException();
+        return response;
     }
 
     /**
@@ -156,9 +155,9 @@ public class TopTierAPI {
         Response<RegisterUserAPIResponse> response = callUser.execute();
 
         if (response.code() == OK) {
-            UserManagerNotStatic userManagerNotStatic = UserManagerNotStatic.getInstance();
+            UserManagerCache userManagerCache = UserManagerCache.getInstance();
             if (response.body() != null) {
-                userManagerNotStatic.registerUser(
+                userManagerCache.registerUser(
                         response.body().getId(),
                         email,
                         password,
@@ -180,9 +179,9 @@ public class TopTierAPI {
      * @return token if successful
      */
     Response<LoginUserAPIResponse> authUser(String email, String password) throws InvalidArguments, IOException {
-        UserManagerNotStatic userManagerNotStatic = UserManagerNotStatic.getInstance();
+        UserManagerCache userManagerCache = UserManagerCache.getInstance();
 
-        String user = userManagerNotStatic.loginUser(email, password);
+        String user = userManagerCache.loginUser(email, password);
         if (user != null) {
             return Response.success(OK, new LoginUserAPIResponse(user));
         }
@@ -217,8 +216,8 @@ public class TopTierAPI {
      */
     Response<ResourceApiResponse> getResourceById(Integer id) throws IOException, InvalidArguments {
 
-        UserManagerNotStatic userManagerNotStatic = UserManagerNotStatic.getInstance();
-        Resource resource = userManagerNotStatic.singleResource(id);
+        UserManagerCache userManagerCache = UserManagerCache.getInstance();
+        Resource resource = userManagerCache.singleResource(id);
         if (resource != null) {
             return Response.success(OK, new ResourceApiResponse(resource));
         }
@@ -227,7 +226,7 @@ public class TopTierAPI {
         Call<ResourceApiResponse> callResource = service.getResource(id);
         Response<ResourceApiResponse> response = callResource.execute();
         if (response.body() != null) {
-            userManagerNotStatic.createResource(
+            userManagerCache.createResource(
                     response.body().getData().getId(),
                     response.body().getData().getName(),
                     response.body().getData().getYear(),

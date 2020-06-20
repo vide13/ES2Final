@@ -9,7 +9,7 @@ public class MainTestes {
 
     public static void main(String[] args) {
 
-        UserManagerNotStatic userManager = new UserManagerNotStatic();
+        UserManagerCache userManager = new UserManagerCache();
 
         createStaticUsers(userManager);
         createStaticResources(userManager);
@@ -71,9 +71,9 @@ public class MainTestes {
 
         //register user credentials
         System.out.println("\nCreate com.es2.data.User Credentials!");
-        UserCredentials register_userCredentials = userManager.registerUser("eve.holt@reqres.in", "pistol");
-        System.out.println("\tId: " + register_userCredentials.getId());
-        System.out.println("\tToken: " + register_userCredentials.getToken());
+        //UserCredentials register_userCredentials = userManager.registerUser("4","eve.holt@reqres.in", "pistol", "sds");
+       // System.out.println("\tId: " + register_userCredentials.getId());
+        //System.out.println("\tToken: " + register_userCredentials.getToken());
 
 
         //login user credentials
@@ -84,7 +84,7 @@ public class MainTestes {
     }
 
 
-    public static void createStaticUsers(UserManagerNotStatic userManager){
+    public static void createStaticUsers(UserManagerCache userManager){
         userManager.createUser(
                 2,
                 "janet.weaver@reqres.in",
@@ -111,7 +111,7 @@ public class MainTestes {
                 "https://s3.amazonaws.com/uifaces/faces/twitter/vivekprvr/128.jpg");
     }
 
-    public static void createStaticResources(UserManagerNotStatic userManager){
+    public static void createStaticResources(UserManagerCache userManager){
         userManager.createResource(
                 1,
                 "cerulean",

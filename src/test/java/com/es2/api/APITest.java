@@ -50,6 +50,7 @@ class APITest {
 
         Call<UsersApiResponse> callUser = service.listUsers();
         Response<UsersApiResponse> response = callUser.execute();
+        System.out.println(response.body().toJsonObject());
         Assertions.assertEquals(OK, response.code());
     }
 
