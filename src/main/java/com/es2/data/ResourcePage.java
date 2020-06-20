@@ -8,11 +8,11 @@ import com.google.gson.JsonParser;
 import java.util.ArrayList;
 
 public class ResourcePage {
-    private Integer page;
-    private Integer per_page;
-    private Integer total;
-    private Integer total_pages;
-    private ArrayList<Resource> data;
+    private final Integer page;
+    private final Integer per_page;
+    private final Integer total;
+    private final Integer total_pages;
+    private final ArrayList<Resource> data;
 
     public ResourcePage(Integer page, Integer per_page, Integer total, Integer total_pages, ArrayList<Resource> data) {
         this.page = page;
@@ -24,22 +24,6 @@ public class ResourcePage {
 
     public JsonObject toJsonObject() {
         return new JsonParser().parse(new Gson().toJson(this)).getAsJsonObject();
-    }
-
-    public Integer getPage() {
-        return page;
-    }
-
-    public Integer getPer_page() {
-        return per_page;
-    }
-
-    public Integer getTotal() {
-        return total;
-    }
-
-    public Integer getTotal_pages() {
-        return total_pages;
     }
 
     public ArrayList<Resource> getData() {

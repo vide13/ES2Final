@@ -61,7 +61,7 @@ public interface APIManager {
      * @return - RegisterUserAPIResponse
      */
     @POST("/api/register")
-    Call<RegisterAndLoginUserAPIResponse> registerUser(@Body JsonObject user);
+    Call<RegisterUserAPIResponse> registerUser(@Body JsonObject user);
 
     /**
      * Authenticate User
@@ -70,5 +70,5 @@ public interface APIManager {
      * @return token if success
      */
     @POST("/api/login")
-    Call<RegisterAndLoginUserAPIResponse> loginUser(@Body JsonObject user);
+    Call<LoginUserAPIResponse> loginUser(@Body JsonObject user);
 }

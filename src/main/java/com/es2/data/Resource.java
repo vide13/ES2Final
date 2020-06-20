@@ -1,11 +1,11 @@
 package com.es2.data;
 
 public class Resource {
-    private Integer id;
-    private String name;
-    private Integer year;
-    private String color;
-    private String pantone_value;
+    private final Integer id;
+    private final String name;
+    private final Integer year;
+    private final String color;
+    private final String pantone_value;
 
     public Resource(Integer id, String name, Integer year, String color, String pantone_value) {
         this.id = id;

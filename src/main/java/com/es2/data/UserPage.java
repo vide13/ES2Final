@@ -1,18 +1,15 @@
 package com.es2.data;
 
 import com.es2.data.User;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
 
 public class UserPage {
-    private Integer page;
-    private Integer per_page;
-    private Integer total;
-    private Integer total_pages;
-    private ArrayList<User> data;
+    private final Integer page;
+    private final Integer per_page;
+    private final Integer total;
+    private final Integer total_pages;
+    private final ArrayList<User> data;
 
     public UserPage(Integer page, Integer per_page, Integer total, Integer total_pages, ArrayList<User> data) {
         this.page = page;
@@ -20,10 +17,6 @@ public class UserPage {
         this.total = total;
         this.total_pages = total_pages;
         this.data = data;
-    }
-
-    public JsonObject toJsonObject() {
-        return new JsonParser().parse(new Gson().toJson(this)).getAsJsonObject();
     }
 
     public Integer getPage() {

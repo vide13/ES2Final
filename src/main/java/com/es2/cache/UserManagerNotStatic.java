@@ -36,7 +36,7 @@ public class UserManagerNotStatic {
         arrayListUsers.add(user);
     }
 
-    void createPage(Integer id, String name, Integer year, String color, String pantone_value) {
+    public void createResource(Integer id, String name, Integer year, String color, String pantone_value) {
         Resource resource = new Resource(id, name, year, color, pantone_value);
         arrayListResources.add(resource);
     }
@@ -82,13 +82,13 @@ public class UserManagerNotStatic {
         }*/
     }
 
-    Resource singleResource(Integer id) {
+    public Resource singleResource(Integer id) {
         for (Resource arrayListResource : arrayListResources) {
             if (arrayListResource.getId().equals(id)) {
                 return arrayListResource;
             }
         }
-        throw new NullPointerException("com.es2.data.Resource not found!");
+        return null;
     }
 
 
@@ -118,7 +118,7 @@ public class UserManagerNotStatic {
         }
     }
 
-    UserCredentials registerUser(String email, String password) {
+    public UserCredentials registerUser(String email, String password) {
         //generate random id
         Random r = new Random();
         Integer id = r.nextInt(10);
@@ -138,16 +138,22 @@ public class UserManagerNotStatic {
         return userCredentials;
     }
 
+    public UserCredentials registerUser(Integer id, String email, String password, String token) {
+        UserCredentials userCredentials = new UserCredentials(id, email, password, token);
+        arrayListUsersCredentials.add(userCredentials);
+        return userCredentials;
+    }
 
-    UserCredentials loginUser(String email, String password) {
+
+    public String loginUser(String email, String password) {
         for (UserCredentials arrayListUsersCredential : arrayListUsersCredentials) {
             if (arrayListUsersCredential.getEmail().equals(email)) {
                 if (arrayListUsersCredential.getPassword().equals(password)) {
-                    return arrayListUsersCredential;
+                    return arrayListUsersCredential.getToken();
                 }
             }
         }
-        throw new NullPointerException("com.es2.data.User not found!");
+        return null;
     }
 
 }

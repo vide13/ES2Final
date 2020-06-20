@@ -3,8 +3,8 @@ package com.es2.data;
 import java.util.ArrayList;
 
 public class User {
-    private Integer id;
-    private String email;
+    private final Integer id;
+    private final String email;
     private String first_name;
     private String last_name;
     private String avatar;
@@ -53,9 +53,5 @@ public class User {
 
     public String getAvatar() {
         return avatar;
-    }
-
-    public String returnLogin() {
-        return token;
     }
 }

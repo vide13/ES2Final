@@ -12,7 +12,7 @@ public class MainTestes {
         UserManagerNotStatic userManager = new UserManagerNotStatic();
 
         createStaticUsers(userManager);
-        createStaticPages(userManager);
+        createStaticResources(userManager);
 
         //criar user job
         System.out.println("Create com.es2.data.User Job!");
@@ -78,8 +78,8 @@ public class MainTestes {
 
         //login user credentials
         System.out.println("\nLogin com.es2.data.User Credentials!");
-        UserCredentials login_userCredentials = userManager.loginUser("eve.holt@reqres.in", "pistol");
-        System.out.println("\tToken: " + login_userCredentials.getToken());
+        String login_userCredentials = userManager.loginUser("eve.holt@reqres.in", "pistol");
+        System.out.println("\tToken: " + login_userCredentials);
 
     }
 
@@ -111,26 +111,26 @@ public class MainTestes {
                 "https://s3.amazonaws.com/uifaces/faces/twitter/vivekprvr/128.jpg");
     }
 
-    public static void createStaticPages(UserManagerNotStatic userManager){
-        userManager.createPage(
+    public static void createStaticResources(UserManagerNotStatic userManager){
+        userManager.createResource(
                 1,
                 "cerulean",
                 2000,
                 "#98B2D1",
                 "15-4020");
-        userManager.createPage(
+        userManager.createResource(
                 2,
                 "fuchsia rose",
                 2001,
                 "#C74375",
                 "17-2031");
-        userManager.createPage(
+        userManager.createResource(
                 3,
                 "true red",
                 2002,
                 "#BF1932",
                 "19-1664");
-        userManager.createPage(
+        userManager.createResource(
                 4,
                 "aqua sky",
                 2003,

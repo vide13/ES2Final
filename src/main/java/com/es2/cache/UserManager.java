@@ -32,7 +32,8 @@ public class UserManager {
 
 
     public UserJob newUser() {
-        return new UserJob("morpheus", "leader");
+        return new UserJob("49", "2020-06-01T21:00:08.929Z", "morpheus", "leader");
+
     }
 
 
