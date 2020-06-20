@@ -106,7 +106,7 @@ class UserManagerTest {
     @Test
     void authUserUnsuccessful() {
         UserManagerCache userManagerCache = UserManagerCache.getInstance();
-        Assertions.assertEquals("User not found", userManagerCache.loginUser("eve.holt@reqres.in", ""));
+        Assertions.assertNull(userManagerCache.loginUser("eve.holt@reqres.in", ""));
     }
 
 
@@ -128,6 +128,13 @@ class UserManagerTest {
         UserManagerCache userManagerCache = UserManagerCache.getInstance();
 
         Assertions.assertNull(userManagerCache.singleUser(null));
+    }
+
+    @Test
+    void getResourceByIdUnsuccessful() {
+        UserManagerCache userManagerCache = UserManagerCache.getInstance();
+
+        Assertions.assertNull(userManagerCache.singleResource(null));
     }
 
 

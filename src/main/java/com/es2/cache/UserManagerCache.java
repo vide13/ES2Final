@@ -76,7 +76,7 @@ public class UserManagerCache {
         return userJob;
     }
 
-    UserJob updateUserJob(String id, String name, String job) {
+    /*UserJob updateUserJob(String id, String name, String job) {
         for (UserJob userJob : arrayListUsersJob) {
             if (userJob.getId().equals(id)) {
                 userJob.setName(name);
@@ -86,15 +86,15 @@ public class UserManagerCache {
             }
         }
         throw new NullPointerException("com.es2.data.User not found!");
-    }
+    }*/
 
-    void deleteUserJob(String id) {
+    /*void deleteUserJob(String id) {
         for (int i = 0; i < arrayListUsersJob.size(); i++) {
             if (arrayListUsersJob.get(i).getId().equals(id)) {
                 arrayListUsersJob.remove(i);
             }
         }
-    }
+    }*/
 
     /*public UserCredentials registerUser(String email, String password) {
         //generate random id
@@ -144,7 +144,7 @@ public class UserManagerCache {
                 }
             }
         }
-        return "User not found";
+        return null;
     }
 
 }

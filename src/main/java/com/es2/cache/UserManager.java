@@ -5,13 +5,8 @@ import com.es2.data.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static java.lang.Thread.sleep;
-
 public class UserManager {
     private static volatile UserManager userManager;
-    ArrayList<User> myUsers = new ArrayList<>();
-    HashMap<String, String> registeredUsers = new HashMap<>();
-    ArrayList<Resource> myResources = new ArrayList<>();
 
     private UserManager() {
         if (userManager != null) {
@@ -30,12 +25,10 @@ public class UserManager {
         return userManager;
     }
 
-
     public UserJob newUser() {
         return new UserJob("49", "2020-06-01T21:00:08.929Z", "morpheus", "leader");
 
     }
-
 
     public User getUserById(Integer id) {
         if (id == null)
@@ -48,7 +41,6 @@ public class UserManager {
                 "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"
         );
     }
-
 
     public UserPage listUsers() {
         ArrayList<User> data_user = new ArrayList<>();
@@ -67,7 +59,6 @@ public class UserManager {
         return new UserPage(2, 6, 12, 2, data_user);
     }
 
-
     public HashMap<String, String> registerUser(String email, String password) {
         HashMap<String, String> hashMap = new HashMap<>();
         if (email.isEmpty()) {
@@ -83,7 +74,6 @@ public class UserManager {
         return hashMap;
     }
 
-
     public HashMap<String, String> authUser(String email, String password) {
         HashMap<String, String> hashMap = new HashMap<>();
         if (email.isEmpty()) {
@@ -98,7 +88,6 @@ public class UserManager {
         hashMap.put("token", "QpwL5tke4Pnpja7X4");
         return hashMap;
     }
-
 
     public ResourcePage listResources() {
         ArrayList<Resource> data_page = new ArrayList<>();
@@ -119,7 +108,6 @@ public class UserManager {
 
         return new ResourcePage(2, 6, 12, 2, data_page);
     }
-
 
     public Resource getResourceById() {
         return new Resource(
@@ -143,14 +131,4 @@ public class UserManager {
         return hashMap;
     }
 
-    public ResourcePage delayedResponse() throws InterruptedException {
-        sleep(3000);
-        return listResources();
-    }
-
-
-    //Make singleton from serialize and deserialize operation.
-    protected UserManager readResolve() {
-        return getInstance();
-    }
 }
