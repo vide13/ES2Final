@@ -1,20 +1,21 @@
 package com.es2.cache;
 
-import com.es2.data.*;
+import com.es2.data.Resource;
+import com.es2.data.User;
+import com.es2.data.UserJob;
+import com.es2.data.UserPage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
-class StubUserManagerTest {
-    //TODO - Check this
+class UserManagerTest {
     @Test
     void newUser() {
         UserManager userManager = UserManager.getInstance();
-        UserJob actual = userManager.newUser("49",  "2020-06-01T21:00:08.929Z", "André", "Student");
+        UserJob actual = userManager.newUser("49", "2020-06-01T21:00:08.929Z", "André", "Student");
 
         Assertions.assertEquals("49", actual.getId());
         Assertions.assertEquals("2020-06-01T21:00:08.929Z", actual.getCreatedAt());
