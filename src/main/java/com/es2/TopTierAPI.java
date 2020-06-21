@@ -5,7 +5,6 @@ import com.es2.data.Resource;
 import com.es2.data.User;
 import com.es2.data.UserCredentialsRequest;
 import com.es2.data.UserJob;
-import com.es2.exceptions.InvalidArguments;
 import com.es2.network.APIManager;
 import com.es2.network.apiResponse.*;
 import okhttp3.MediaType;
@@ -195,17 +194,25 @@ public class TopTierAPI {
      * @return token if successful
      */
     Response<LoginUserAPIResponse> authUser(String email, String password) throws IOException {
+        if (email == null || password == null) return Response.error(SEMANTIC_ERROR, ResponseBody.create(
+                MediaType.parse("application/json"),
+                "Invalid Argument")
+        );
+        if (email.isEmpty() || password.isEmpty()) return Response.error(SEMANTIC_ERROR, ResponseBody.create(
+                MediaType.parse("application/json"),
+                "Invalid Argument")
+        );
+
         UserManagerCache userManagerCache = UserManagerCache.getInstance();
-
-        String user = userManagerCache.loginUser(email, password);
-        if (user != null) {
-            return Response.success(OK, new LoginUserAPIResponse(user));
+        String token = userManagerCache.loginUser(email, password);
+        if (token != null) {
+            return Response.success(OK, new LoginUserAPIResponse(token));
         }
-        APIManager service = getClient().create(APIManager.class);
 
+        APIManager service = getClient().create(APIManager.class);
         UserCredentialsRequest userCredentials = new UserCredentialsRequest(email, password);
         Call<LoginUserAPIResponse> callUser = service.loginUser(userCredentials.toJsonObject());
-        //Cant add user to cache because we are
+        //Cant add user to cache because we are missing user ID
         return callUser.execute();
     }
 
@@ -231,7 +238,11 @@ public class TopTierAPI {
      * @param id - resource id
      * @return ResourceApiResponse
      */
-    Response<ResourceApiResponse> getResourceById(Integer id) throws IOException, InvalidArguments {
+    Response<ResourceApiResponse> getResourceById(Integer id) throws IOException {
+        if (id == null) return Response.error(SEMANTIC_ERROR, ResponseBody.create(
+                MediaType.parse("application/json"),
+                "Invalid Argument")
+        );
 
         UserManagerCache userManagerCache = UserManagerCache.getInstance();
         Resource resource = userManagerCache.singleResource(id);
@@ -250,8 +261,7 @@ public class TopTierAPI {
                     response.body().getData().getColor(),
                     response.body().getData().getPantone_value()
             );
-            return response;
         }
-        throw new InvalidArguments();
+        return response;
     }
 }
