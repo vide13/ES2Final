@@ -6,17 +6,17 @@ import com.es2.data.User;
 import com.es2.data.UserCredentialsRequest;
 import com.es2.data.UserJob;
 import com.es2.exceptions.InvalidArguments;
-import com.es2.exceptions.UserNotFoundException;
 import com.es2.network.APIManager;
 import com.es2.network.apiResponse.*;
+import okhttp3.MediaType;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
 import java.io.IOException;
 
 import static com.es2.api.APIClient.getClient;
-import static com.es2.data.HttpCodes.CREATED;
-import static com.es2.data.HttpCodes.OK;
+import static com.es2.data.HttpCodes.*;
 
 /**
  * Manages reqres.in/cache access and requests
@@ -64,12 +64,19 @@ public class TopTierAPI {
      * @param job  - New user job
      * @return - response from reqres API
      */
-    Response<CreateUserAPIResponse> newUser(String name, String job) throws IOException, InvalidArguments {
-        if (name == null || job == null) throw new InvalidArguments();
-        if (name.isEmpty() || job.isEmpty()) throw new InvalidArguments();
+    Response<CreateUserAPIResponse> newUser(String name, String job) throws IOException {
+        if (name == null || job == null)
+            return Response.error(SEMANTIC_ERROR, ResponseBody.create(
+                    MediaType.parse("application/json"),
+                    "Invalid Arguments")
+            );
+        if (name.isBlank() || job.isBlank())
+            return Response.error(SEMANTIC_ERROR, ResponseBody.create(
+                    MediaType.parse("application/json"),
+                    "Empty Arguments")
+            );
 
         APIManager service = getClient().create(APIManager.class);
-
         UserJob userJob = new UserJob(name, job);
         Call<CreateUserAPIResponse> callUser = service.createUser(userJob.toJsonObject());
         Response<CreateUserAPIResponse> response = callUser.execute();
@@ -83,10 +90,9 @@ public class TopTierAPI {
                         userJob.getJob(),
                         response.body().getCreatedAt()
                 );
-                return response;
             }
         }
-        throw new InvalidArguments();
+        return response;
     }
 
     /**
@@ -97,7 +103,11 @@ public class TopTierAPI {
      * @param id - User id
      * @return - Response success whit user info or response whit fail code
      */
-    Response<UserApiResponse> getUserById(Integer id) throws IOException, UserNotFoundException {
+    Response<UserApiResponse> getUserById(Integer id) throws IOException {
+        if (id == null) return Response.error(SEMANTIC_ERROR, ResponseBody.create(
+                MediaType.parse("application/json"),
+                "Invalid Argument")
+        );
 
         UserManagerCache userManagerCache = UserManagerCache.getInstance();
         User user = userManagerCache.singleUser(id);
@@ -106,6 +116,7 @@ public class TopTierAPI {
         }
 
         APIManager service = getClient().create(APIManager.class);
+
         Call<UserApiResponse> callUser = service.getUser(id);
         Response<UserApiResponse> response = callUser.execute();
         if (response.code() == OK) {
@@ -144,9 +155,15 @@ public class TopTierAPI {
      * @param password - New user password
      * @return response whit id and token if successful
      */
-    Response<RegisterUserAPIResponse> registerUser(String email, String password) throws InvalidArguments, IOException {
-        if (email == null || password == null) throw new InvalidArguments();
-        if (email.isEmpty() || password.isEmpty()) throw new InvalidArguments();
+    Response<RegisterUserAPIResponse> registerUser(String email, String password) throws IOException {
+        if (email == null || password == null) return Response.error(SEMANTIC_ERROR, ResponseBody.create(
+                MediaType.parse("application/json"),
+                "Invalid Argument")
+        );
+        if (email.isEmpty() || password.isEmpty()) return Response.error(SEMANTIC_ERROR, ResponseBody.create(
+                MediaType.parse("application/json"),
+                "Invalid Argument")
+        );
 
         APIManager service = getClient().create(APIManager.class);
 
@@ -162,10 +179,9 @@ public class TopTierAPI {
                         email,
                         password,
                         response.body().getToken());
-                return response;
             }
         }
-        throw new InvalidArguments();
+        return response;
     }
 
     /**
@@ -178,7 +194,7 @@ public class TopTierAPI {
      * @param password - user login password
      * @return token if successful
      */
-    Response<LoginUserAPIResponse> authUser(String email, String password) throws InvalidArguments, IOException {
+    Response<LoginUserAPIResponse> authUser(String email, String password) throws IOException {
         UserManagerCache userManagerCache = UserManagerCache.getInstance();
 
         String user = userManagerCache.loginUser(email, password);
@@ -189,6 +205,7 @@ public class TopTierAPI {
 
         UserCredentialsRequest userCredentials = new UserCredentialsRequest(email, password);
         Call<LoginUserAPIResponse> callUser = service.loginUser(userCredentials.toJsonObject());
+        //Cant add user to cache because we are
         return callUser.execute();
     }
 
