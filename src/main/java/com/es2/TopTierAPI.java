@@ -1,6 +1,6 @@
 package com.es2;
 
-import com.es2.cache.UserManagerCache;
+import com.es2.cache.UserManager;
 import com.es2.data.Resource;
 import com.es2.data.User;
 import com.es2.data.UserCredentialsRequest;
@@ -81,9 +81,9 @@ public class TopTierAPI {
         Response<CreateUserAPIResponse> response = callUser.execute();
 
         if (response.code() == CREATED) {
-            UserManagerCache userManagerCache = UserManagerCache.getInstance();
+            UserManager userManager = UserManager.getInstance();
             if (response.body() != null) {
-                userManagerCache.createUserJob(
+                userManager.newUser(
                         response.body().getId(),
                         userJob.getName(),
                         userJob.getJob(),
@@ -108,8 +108,8 @@ public class TopTierAPI {
                 "Invalid Argument")
         );
 
-        UserManagerCache userManagerCache = UserManagerCache.getInstance();
-        User user = userManagerCache.singleUser(id);
+        UserManager userManager = UserManager.getInstance();
+        User user = userManager.getUserById(id);
         if (user != null) {
             return Response.success(OK, new UserApiResponse(user));
         }
@@ -121,7 +121,7 @@ public class TopTierAPI {
         if (response.code() == OK) {
             if (response.body() != null) {
                 User reqresUser = response.body().getUser();
-                userManagerCache.createUser(
+                userManager.createUserArray(
                         reqresUser.getId(),
                         reqresUser.getEmail(),
                         reqresUser.getFirst_name(),
@@ -171,9 +171,9 @@ public class TopTierAPI {
         Response<RegisterUserAPIResponse> response = callUser.execute();
 
         if (response.code() == OK) {
-            UserManagerCache userManagerCache = UserManagerCache.getInstance();
+            UserManager userManager = UserManager.getInstance();
             if (response.body() != null) {
-                userManagerCache.registerUser(
+                userManager.registerUser(
                         response.body().getId(),
                         email,
                         password,
@@ -203,8 +203,8 @@ public class TopTierAPI {
                 "Invalid Argument")
         );
 
-        UserManagerCache userManagerCache = UserManagerCache.getInstance();
-        String token = userManagerCache.loginUser(email, password);
+        UserManager userManager = UserManager.getInstance();
+        String token = userManager.authUser(email, password);
         if (token != null) {
             return Response.success(OK, new LoginUserAPIResponse(token));
         }
@@ -244,8 +244,8 @@ public class TopTierAPI {
                 "Invalid Argument")
         );
 
-        UserManagerCache userManagerCache = UserManagerCache.getInstance();
-        Resource resource = userManagerCache.singleResource(id);
+        UserManager userManager = UserManager.getInstance();
+        Resource resource = userManager.getResourceById(id);
         if (resource != null) {
             return Response.success(OK, new ResourceApiResponse(resource));
         }
@@ -254,7 +254,7 @@ public class TopTierAPI {
         Call<ResourceApiResponse> callResource = service.getResource(id);
         Response<ResourceApiResponse> response = callResource.execute();
         if (response.body() != null) {
-            userManagerCache.createResource(
+            userManager.createResourceArray(
                     response.body().getData().getId(),
                     response.body().getData().getName(),
                     response.body().getData().getYear(),

@@ -7,8 +7,12 @@ import java.util.HashMap;
 
 public class UserManager {
     private static volatile UserManager userManager;
+    private final ArrayList<UserJob> arrayListUsersJob = new ArrayList<>();
+    private final ArrayList<User> arrayListUsers = new ArrayList<>();
+    private final ArrayList<Resource> arrayListResources = new ArrayList<>();
+    private final ArrayList<UserCredentials> arrayListUsersCredentials = new ArrayList<>();
 
-    private UserManager() {
+    UserManager() {
         if (userManager != null) {
             throw new RuntimeException(
                     "Use getInstance() method to get the single instance of this class.");
@@ -25,41 +29,27 @@ public class UserManager {
         return userManager;
     }
 
-    public UserJob newUser() {
-        return new UserJob("49", "2020-06-01T21:00:08.929Z", "morpheus", "leader");
-
+    public UserJob newUser(String id, String createdAt, String name, String job) {
+        UserJob userJob = new UserJob(id, createdAt, name, job);
+        arrayListUsersJob.add(userJob);
+        return userJob;
     }
 
     public User getUserById(Integer id) {
-        if (id == null)
-            return null;
-        return new User(
-                2,
-                "janet.weaver@reqres.in",
-                "Janet",
-                "Weaver",
-                "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"
-        );
+        for (User arrayListUser : arrayListUsers) {
+            if (arrayListUser.getId().equals(id)) {
+                return arrayListUser;
+            }
+        }
+        return null;
     }
 
-    public UserPage listUsers() {
-        ArrayList<User> data_user = new ArrayList<>();
-        data_user.add(new User(
-                7,
-                "michael.lawson@reqres.in",
-                "Michael",
-                "Lawson",
-                "https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg"));
-        data_user.add(new User(
-                8,
-                "lindsay.ferguson@reqres.in",
-                "Lindsay",
-                "Ferguson",
-                "https://s3.amazonaws.com/uifaces/faces/twitter/araa3185/128.jpg"));
-        return new UserPage(2, 6, 12, 2, data_user);
+    UserPage listUsers() {
+        UserPage userPage = new UserPage(2, 6, 12, 2, arrayListUsers);
+        return userPage;
     }
 
-    public HashMap<String, String> registerUser(String email, String password) {
+    public HashMap<String, String> registerUser(Integer id, String email, String password, String token) {
         HashMap<String, String> hashMap = new HashMap<>();
         if (email.isEmpty()) {
             hashMap.put("error", "Missing email or username");
@@ -71,64 +61,89 @@ public class UserManager {
         }
         hashMap.put("id", "4");
         hashMap.put("token", "QpwL5tke4Pnpja7X4");
+
+        UserCredentials userCredentials = new UserCredentials(id, email, password, token);
+
+        arrayListUsersCredentials.add(userCredentials);
         return hashMap;
     }
 
-    public HashMap<String, String> authUser(String email, String password) {
-        HashMap<String, String> hashMap = new HashMap<>();
-        if (email.isEmpty()) {
-            hashMap.put("error", "Missing email or username");
-            return hashMap;
+    public String authUser(String email, String password) {
+        for (UserCredentials arrayListUsersCredential : arrayListUsersCredentials) {
+            if (arrayListUsersCredential.getEmail().equals(email)) {
+                if (arrayListUsersCredential.getPassword().equals(password)) {
+                    return arrayListUsersCredential.getToken();
+                }
+            }
         }
-        if (password.isEmpty()) {
-            hashMap.put("error", "Missing password");
-            return hashMap;
-        }
-
-        hashMap.put("token", "QpwL5tke4Pnpja7X4");
-        return hashMap;
-    }
-
-    public ResourcePage listResources() {
-        ArrayList<Resource> data_page = new ArrayList<>();
-        data_page.add(new Resource(
-                1,
-                "cerulean",
-                2000,
-                "#98B2D1",
-                "15-4020"
-        ));
-        data_page.add(new Resource(
-                2,
-                "fuchsia rose",
-                2001,
-                "#C74375",
-                "17-2031"
-        ));
-
-        return new ResourcePage(2, 6, 12, 2, data_page);
-    }
-
-    public Resource getResourceById() {
-        return new Resource(
-                2,
-                "fuchsia rose",
-                2001,
-                "#C74375",
-                "17-2031"
-        );
-    }
-
-    public String deleteUser() {
         return null;
     }
 
-    public HashMap<String, String> updateUser() {
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("name", "morpheus");
-        hashMap.put("job", "zion resident");
-        hashMap.put("updatedAt", "2020-06-01T21:29:54.801Z");
-        return hashMap;
+    UserJob updateUser(String id, String name, String job) {
+        for (UserJob userJob : arrayListUsersJob) {
+            if (userJob.getId().equals(id)) {
+                userJob.setName(name);
+                userJob.setJob(job);
+                userJob.setUpdatedAt("2020-06-21T19:17:23.727Z");
+                return userJob;
+            }
+        }
+        throw new NullPointerException("com.es2.data.User not found!");
+    }
+
+    String deleteUser(String id) {
+        for (int i = 0; i < arrayListUsersJob.size(); i++) {
+            if (arrayListUsersJob.get(i).getId().equals(id)) {
+                arrayListUsersJob.remove(i);
+                return "User deleted!";
+            }
+        }
+        return  null;
+    }
+
+
+    ResourcePage listResources() {
+        ResourcePage resourcePage = new ResourcePage(1, 6, 12, 2, arrayListResources);
+        return resourcePage;
+    }
+
+    public Resource getResourceById(Integer id) {
+        for (Resource arrayListResource : arrayListResources) {
+            if (arrayListResource.getId().equals(id)) {
+                return arrayListResource;
+            }
+        }
+        return null;
+    }
+
+    /*public UserCredentials registerUser(String email, String password) {
+        //generate random id
+        Random r = new Random();
+        Integer id = r.nextInt(10);
+
+        //generate random token
+        String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 18) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * abc.length());
+            salt.append(abc.charAt(index));
+        }
+        String token = salt.toString();
+
+        UserCredentials userCredentials = new UserCredentials(id, email, password, token);
+        arrayListUsersCredentials.add(userCredentials);
+        return userCredentials;
+    }*/
+
+    public void createUserArray(Integer id, String email, String first_name, String last_name, String avatar) {
+        User user = new User(id, email, first_name, last_name, avatar);
+        arrayListUsers.add(user);
+    }
+
+    public void createResourceArray(Integer id, String name, Integer year, String color, String pantone_value) {
+        Resource resource = new Resource(id, name, year, color, pantone_value);
+        arrayListResources.add(resource);
     }
 
 }
