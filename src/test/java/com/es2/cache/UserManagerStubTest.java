@@ -101,8 +101,11 @@ class UserManagerStubTest {
     void authUserUnsuccessful() {
         UserManagerStub userManagerStub = UserManagerStub.getInstance();
 
-        String actual = userManagerStub.authUser("eve.holt@reqres.in", "").get("error");
-        Assertions.assertEquals("Missing password", actual);
+        String actual_email = userManagerStub.authUser("eve.holt@reqres.in", "").get("error");
+        Assertions.assertEquals("Missing password", actual_email);
+
+        String actual_password = userManagerStub.authUser("", "pistol").get("error");
+        Assertions.assertEquals("Missing email or username", actual_password);
     }
 
     @Test
