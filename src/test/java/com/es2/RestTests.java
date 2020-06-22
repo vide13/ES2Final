@@ -32,6 +32,8 @@ public class RestTests {
 
     @Test
     void getUserById() throws IOException {
+        UserManager.getInstance().deleteUser(1);
+
         //Cache doesnt have user whit id 1 -> request made do reqres and user added to cache
         TopTierAPI topTierAPI = TopTierAPI.getInstance();
         Response<UserApiResponse> userCall1 = topTierAPI.getUserById(1);
@@ -130,7 +132,7 @@ public class RestTests {
     @Test
     void getResourceByIdUnsuccessful() throws IOException {
         TopTierAPI topTierAPI = TopTierAPI.getInstance();
-        Assertions.assertEquals(NOT_FOUND, topTierAPI.getResourceById(-7).code());
+        Assertions.assertEquals(SEMANTIC_ERROR, topTierAPI.getResourceById(-7).code());
     }
 
     @Test

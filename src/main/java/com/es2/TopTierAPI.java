@@ -13,6 +13,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 import java.io.IOException;
+import java.time.temporal.ValueRange;
 
 import static com.es2.api.APIClient.getClient;
 import static com.es2.data.HttpCodes.*;
@@ -107,6 +108,12 @@ public class TopTierAPI {
                 MediaType.parse("application/json"),
                 "Invalid Argument")
         );
+
+        if (!ValueRange.of(0, Integer.MAX_VALUE).isValidIntValue(id)) {
+            return Response.error(SEMANTIC_ERROR, ResponseBody.create(
+                    MediaType.parse("application/json"),
+                    "Invalid Argument"));
+        }
 
         UserManager userManager = UserManager.getInstance();
         User user = userManager.getUserById(id);
@@ -243,6 +250,12 @@ public class TopTierAPI {
                 MediaType.parse("application/json"),
                 "Invalid Argument")
         );
+
+        if (!ValueRange.of(0, Integer.MAX_VALUE).isValidIntValue(id)) {
+            return Response.error(SEMANTIC_ERROR, ResponseBody.create(
+                    MediaType.parse("application/json"),
+                    "Invalid Argument"));
+        }
 
         UserManager userManager = UserManager.getInstance();
         Resource resource = userManager.getResourceById(id);

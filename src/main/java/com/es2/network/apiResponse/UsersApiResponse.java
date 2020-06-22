@@ -14,10 +14,6 @@ public class UsersApiResponse {
     private Integer total;
     private Integer total_pages;
 
-    public List<User> getData() {
-        return data;
-    }
-
     public JsonObject toJsonObject() {
         return new JsonParser().parse(new Gson().toJson(this)).getAsJsonObject();
     }

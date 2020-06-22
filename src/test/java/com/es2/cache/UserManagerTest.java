@@ -49,7 +49,6 @@ class UserManagerTest {
         Assertions.assertNull(userManager.getUserById(123));
     }
 
-    //TODO - Test prints
     @Test
     void listUsers() {
         UserManager userManager = UserManager.getInstance();
@@ -102,7 +101,7 @@ class UserManagerTest {
     void authUserSuccessful() {
         UserManager userManager = UserManager.getInstance();
 
-        userManager.registerUser(4, "eve.holt@reqres.in", "pistol","QpwL5tke4Pnpja7X4");
+        userManager.registerUser(4, "eve.holt@reqres.in", "pistol", "QpwL5tke4Pnpja7X4");
         Assertions.assertEquals("QpwL5tke4Pnpja7X4", userManager.authUser("eve.holt@reqres.in", "pistol"));
     }
 
@@ -113,36 +112,6 @@ class UserManagerTest {
         Assertions.assertNull(userManager.authUser("eve.holt@reqres.in", ""));
     }
 
-    @Test
-    void updateUser() {
-        UserManager userManager = UserManager.getInstance();
-
-        userManager.newUser(
-                "3",
-                "2020-06-21T19:31:26.016Z",
-                "morpheus",
-                "leader");
-        UserJob actual = userManager.updateUser("3","morpheus", "zion resident");
-        Assertions.assertEquals("morpheus", actual.getName());
-        Assertions.assertEquals("zion resident", actual.getJob());
-        Assertions.assertEquals("2020-06-21T19:17:23.727Z", actual.getUpdatedAt());
-    }
-
-    @Test
-    void deleteUser() {
-        UserManager userManager = UserManager.getInstance();
-
-        userManager.newUser(
-                "4",
-                "2020-06-21T19:31:26.016Z",
-                "morpheus",
-                "leader");
-        Assertions.assertEquals("User deleted!", userManager.deleteUser("4"));
-    }
-
-
-
-    //TODO - Test resources
     @Test
     void listResources() {
         UserManager userManager = UserManager.getInstance();
@@ -170,8 +139,6 @@ class UserManagerTest {
 
         Assertions.assertNull(userManager.getResourceById(null));
     }
-
-
 
 
 }

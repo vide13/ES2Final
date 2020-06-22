@@ -45,8 +45,7 @@ public class UserManager {
     }
 
     UserPage listUsers() {
-        UserPage userPage = new UserPage(2, 6, 12, 2, arrayListUsers);
-        return userPage;
+        return new UserPage(2, 6, 12, 2, arrayListUsers);
     }
 
     public HashMap<String, String> registerUser(Integer id, String email, String password, String token) {
@@ -79,32 +78,13 @@ public class UserManager {
         return null;
     }
 
-    UserJob updateUser(String id, String name, String job) {
-        for (UserJob userJob : arrayListUsersJob) {
-            if (userJob.getId().equals(id)) {
-                userJob.setName(name);
-                userJob.setJob(job);
-                userJob.setUpdatedAt("2020-06-21T19:17:23.727Z");
-                return userJob;
-            }
-        }
-        throw new NullPointerException("com.es2.data.User not found!");
-    }
-
-    String deleteUser(String id) {
-        for (int i = 0; i < arrayListUsersJob.size(); i++) {
-            if (arrayListUsersJob.get(i).getId().equals(id)) {
-                arrayListUsersJob.remove(i);
-                return "User deleted!";
-            }
-        }
-        return  null;
+    public void deleteUser(Integer id) {
+        arrayListUsers.removeIf(users -> users.getId().equals(id));
     }
 
 
     ResourcePage listResources() {
-        ResourcePage resourcePage = new ResourcePage(1, 6, 12, 2, arrayListResources);
-        return resourcePage;
+        return new ResourcePage(1, 6, 12, 2, arrayListResources);
     }
 
     public Resource getResourceById(Integer id) {

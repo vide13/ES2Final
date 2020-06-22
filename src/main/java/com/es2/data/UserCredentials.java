@@ -13,10 +13,6 @@ public class UserCredentials {
         this.token = token;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public String getEmail() {
         return email;
     }

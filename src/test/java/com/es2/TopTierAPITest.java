@@ -1,5 +1,6 @@
 package com.es2;
 
+import com.es2.cache.UserManager;
 import com.es2.network.apiResponse.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -39,6 +40,8 @@ class TopTierAPITest {
     @Test
     void getUserByIdSuccessful() throws IOException {
         TopTierAPI topTierAPI = TopTierAPI.getInstance();
+        UserManager.getInstance().deleteUser(1);
+
         //Cache doesnt have user with id 1 -> request made do reqres and user added to cache
         Response<UserApiResponse> firstCall = topTierAPI.getUserById(1);
         Assertions.assertEquals(1, firstCall.body().getUser().getId());
@@ -50,6 +53,12 @@ class TopTierAPITest {
         Assertions.assertEquals(1, secondCall.body().getUser().getId());
         Assertions.assertEquals("http://localhost/", secondCall.raw().request().url().toString());
         Assertions.assertEquals(UserApiResponse.class, secondCall.body().getClass());
+    }
+
+    @Test
+    void getUserByIdNotInRange() throws IOException {
+        TopTierAPI topTierAPI = TopTierAPI.getInstance();
+        Assertions.assertEquals("Invalid Argument", topTierAPI.getUserById(Integer.MAX_VALUE + 1).errorBody().string());
     }
 
     @Test
@@ -144,6 +153,12 @@ class TopTierAPITest {
         Response<ResourceApiResponse> secondCall = topTierAPI.getResourceById(1);
         Assertions.assertEquals(1, secondCall.body().getData().getId());
         Assertions.assertEquals(ResourceApiResponse.class, secondCall.body().getClass());
+    }
+
+    @Test
+    void getResourceByIdNotInRange() throws IOException {
+        TopTierAPI topTierAPI = TopTierAPI.getInstance();
+        Assertions.assertEquals("Invalid Argument", topTierAPI.getResourceById(Integer.MAX_VALUE + 1).errorBody().string());
     }
 
     @Test

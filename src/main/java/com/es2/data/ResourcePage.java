@@ -1,10 +1,5 @@
 package com.es2.data;
 
-import com.es2.data.Resource;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
 import java.util.ArrayList;
 
 public class ResourcePage {
@@ -20,10 +15,6 @@ public class ResourcePage {
         this.total = total;
         this.total_pages = total_pages;
         this.data = data;
-    }
-
-    public JsonObject toJsonObject() {
-        return new JsonParser().parse(new Gson().toJson(this)).getAsJsonObject();
     }
 
     public ArrayList<Resource> getData() {
