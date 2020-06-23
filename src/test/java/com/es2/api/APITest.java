@@ -11,7 +11,7 @@ import retrofit2.Response;
 
 import java.io.IOException;
 
-import static com.es2.api.APIClient.getClient;
+import static com.es2.api.RetrofitBuilder.getClient;
 import static com.es2.data.HttpCodes.*;
 
 class APITest {

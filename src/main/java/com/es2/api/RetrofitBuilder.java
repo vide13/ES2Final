@@ -3,7 +3,7 @@ package com.es2.api;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class APIClient {
+public class RetrofitBuilder {
 
     private static final String BASE_URL = "https://reqres.in";
 

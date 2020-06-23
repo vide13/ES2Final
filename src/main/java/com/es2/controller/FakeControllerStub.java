@@ -1,28 +1,28 @@
-package com.es2.cache;
+package com.es2.controller;
 
 import com.es2.data.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class UserManagerStub {
-    private static volatile UserManagerStub userManagerStub;
+public class FakeControllerStub {
+    private static volatile FakeControllerStub fakeControllerStub;
 
-    private UserManagerStub() {
-        if (userManagerStub != null) {
+    private FakeControllerStub() {
+        if (fakeControllerStub != null) {
             throw new RuntimeException(
                     "Use getInstance() method to get the single instance of this class.");
         }
     }
 
-    public static UserManagerStub getInstance() {
-        if (userManagerStub == null) {
-            synchronized (UserManagerStub.class) {
-                if (userManagerStub == null)
-                    userManagerStub = new UserManagerStub();
+    public static FakeControllerStub getInstance() {
+        if (fakeControllerStub == null) {
+            synchronized (FakeControllerStub.class) {
+                if (fakeControllerStub == null)
+                    fakeControllerStub = new FakeControllerStub();
             }
         }
-        return userManagerStub;
+        return fakeControllerStub;
     }
 
     public UserJob newUser() {

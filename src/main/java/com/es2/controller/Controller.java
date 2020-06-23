@@ -1,4 +1,4 @@
-package com.es2;
+package com.es2.controller;
 
 import com.es2.cache.UserManager;
 import com.es2.data.Resource;
@@ -15,7 +15,7 @@ import retrofit2.Response;
 import java.io.IOException;
 import java.time.temporal.ValueRange;
 
-import static com.es2.api.APIClient.getClient;
+import static com.es2.api.RetrofitBuilder.getClient;
 import static com.es2.data.HttpCodes.*;
 
 /**
@@ -38,18 +38,18 @@ import static com.es2.data.HttpCodes.*;
  * <p>
  * - Consultar um recurso ✔
  */
-public class TopTierAPI {
+public class Controller {
 
-    private static TopTierAPI instance;
+    private static Controller instance;
 
-    private TopTierAPI() {
+    private Controller() {
     }
 
-    public static TopTierAPI getInstance() {
+    public static Controller getInstance() {
         if (instance == null) {
-            synchronized (TopTierAPI.class) {
+            synchronized (Controller.class) {
                 if (instance == null) {
-                    instance = new TopTierAPI();
+                    instance = new Controller();
                 }
             }
         }

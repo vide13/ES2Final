@@ -1,5 +1,6 @@
-package com.es2.cache;
+package com.es2.controller;
 
+import com.es2.controller.FakeControllerStub;
 import com.es2.data.Resource;
 import com.es2.data.User;
 import com.es2.data.UserJob;
@@ -11,12 +12,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-class UserManagerStubTest {
+class FakeControllerStubTest {
     //TODO - Check this
     @Test
     void newUser() {
-        UserManagerStub userManagerStub = UserManagerStub.getInstance();
-        UserJob actual = userManagerStub.newUser();
+        FakeControllerStub fakeControllerStub = FakeControllerStub.getInstance();
+        UserJob actual = fakeControllerStub.newUser();
 
         Assertions.assertEquals("49", actual.getId());
         Assertions.assertEquals("2020-06-01T21:00:08.929Z", actual.getCreatedAt());
@@ -24,8 +25,8 @@ class UserManagerStubTest {
 
     @Test
     void getUserById() {
-        UserManagerStub userManagerStub = UserManagerStub.getInstance();
-        User actual = userManagerStub.getUserById(1);
+        FakeControllerStub fakeControllerStub = FakeControllerStub.getInstance();
+        User actual = fakeControllerStub.getUserById(1);
 
         Assertions.assertEquals(1, actual.getId());
         Assertions.assertEquals("janet.weaver@reqres.in", actual.getEmail());
@@ -36,8 +37,8 @@ class UserManagerStubTest {
 
     @Test
     void getUserByIdUnsuccessful() {
-        UserManagerStub userManagerStub = UserManagerStub.getInstance();
-        User actual = userManagerStub.getUserById(123);
+        FakeControllerStub fakeControllerStub = FakeControllerStub.getInstance();
+        User actual = fakeControllerStub.getUserById(123);
 
         Assertions.assertNull(actual);
     }
@@ -45,7 +46,7 @@ class UserManagerStubTest {
     //TODO - Test prints
     @Test
     void listUsers() {
-        UserManagerStub userManagerStub = UserManagerStub.getInstance();
+        FakeControllerStub fakeControllerStub = FakeControllerStub.getInstance();
 
         ArrayList<User> data_user = new ArrayList<>();
         data_user.add(new User(
@@ -61,7 +62,7 @@ class UserManagerStubTest {
                 "Ferguson",
                 "https://s3.amazonaws.com/uifaces/faces/twitter/araa3185/128.jpg"));
         UserPage expected = new UserPage(2, 6, 12, 2, data_user);
-        UserPage actual = userManagerStub.listUsers();
+        UserPage actual = fakeControllerStub.listUsers();
         Assertions.assertEquals(expected.getPage(), actual.getPage());
         Assertions.assertEquals(expected.getPer_page(), actual.getPer_page());
         Assertions.assertEquals(expected.getTotal(), actual.getTotal());
@@ -71,77 +72,77 @@ class UserManagerStubTest {
 
     @Test
     void registerUserSuccessful() {
-        UserManagerStub userManagerStub = UserManagerStub.getInstance();
+        FakeControllerStub fakeControllerStub = FakeControllerStub.getInstance();
 
-        HashMap<String, String> actual = userManagerStub.registerUser("eve.holt@reqres.in", "pistol");
+        HashMap<String, String> actual = fakeControllerStub.registerUser("eve.holt@reqres.in", "pistol");
         Assertions.assertEquals("4", actual.get("id"));
         Assertions.assertEquals("QpwL5tke4Pnpja7X4", actual.get("token"));
     }
 
     @Test
     void registerUserUnsuccessful() {
-        UserManagerStub userManagerStub = UserManagerStub.getInstance();
+        FakeControllerStub fakeControllerStub = FakeControllerStub.getInstance();
 
-        HashMap<String, String> actual_email = userManagerStub.registerUser("", "pistol");
+        HashMap<String, String> actual_email = fakeControllerStub.registerUser("", "pistol");
         Assertions.assertEquals("Missing email or username", actual_email.get("error"));
 
-        HashMap<String, String> actual_password = userManagerStub.registerUser("eve.holt@reqres.in", "");
+        HashMap<String, String> actual_password = fakeControllerStub.registerUser("eve.holt@reqres.in", "");
         Assertions.assertEquals("Missing password", actual_password.get("error"));
     }
 
     @Test
     void authUserSuccessful() {
-        UserManagerStub userManagerStub = UserManagerStub.getInstance();
+        FakeControllerStub fakeControllerStub = FakeControllerStub.getInstance();
 
-        String actual = userManagerStub.authUser("eve.holt@reqres.in", "pistol").get("token");
+        String actual = fakeControllerStub.authUser("eve.holt@reqres.in", "pistol").get("token");
         Assertions.assertEquals("QpwL5tke4Pnpja7X4", actual);
     }
 
     @Test
     void authUserUnsuccessful() {
-        UserManagerStub userManagerStub = UserManagerStub.getInstance();
+        FakeControllerStub fakeControllerStub = FakeControllerStub.getInstance();
 
-        String actual_email = userManagerStub.authUser("eve.holt@reqres.in", "").get("error");
+        String actual_email = fakeControllerStub.authUser("eve.holt@reqres.in", "").get("error");
         Assertions.assertEquals("Missing password", actual_email);
 
-        String actual_password = userManagerStub.authUser("", "pistol").get("error");
+        String actual_password = fakeControllerStub.authUser("", "pistol").get("error");
         Assertions.assertEquals("Missing email or username", actual_password);
     }
 
     @Test
     void updateUser() {
-        UserManagerStub userManagerStub = UserManagerStub.getInstance();
+        FakeControllerStub fakeControllerStub = FakeControllerStub.getInstance();
 
-        Assertions.assertEquals("morpheus", userManagerStub.updateUser().get("name"));
-        Assertions.assertEquals("zion resident", userManagerStub.updateUser().get("job"));
-        Assertions.assertEquals("2020-06-01T21:29:54.801Z", userManagerStub.updateUser().get("updatedAt"));
+        Assertions.assertEquals("morpheus", fakeControllerStub.updateUser().get("name"));
+        Assertions.assertEquals("zion resident", fakeControllerStub.updateUser().get("job"));
+        Assertions.assertEquals("2020-06-01T21:29:54.801Z", fakeControllerStub.updateUser().get("updatedAt"));
     }
 
     @Test
     void deleteUser() {
-        UserManagerStub userManagerStub = UserManagerStub.getInstance();
+        FakeControllerStub fakeControllerStub = FakeControllerStub.getInstance();
 
-        Assertions.assertEquals("User deleted!", userManagerStub.deleteUser("4"));
+        Assertions.assertEquals("User deleted!", fakeControllerStub.deleteUser("4"));
     }
 
 
     //TODO - Test resources
     @Test
     void listResources() {
-        UserManagerStub userManagerStub = UserManagerStub.getInstance();
+        FakeControllerStub fakeControllerStub = FakeControllerStub.getInstance();
 
-        Resource actual = userManagerStub.listResources().getData().get(0);
+        Resource actual = fakeControllerStub.listResources().getData().get(0);
         Assertions.assertEquals(1, actual.getId());
         Assertions.assertEquals("cerulean", actual.getName());
         Assertions.assertEquals(2000, actual.getYear());
         Assertions.assertEquals("#98B2D1", actual.getColor());
-        Assertions.assertEquals("17-2031", userManagerStub.listResources().getData().get(1).getPantone_value());
+        Assertions.assertEquals("17-2031", fakeControllerStub.listResources().getData().get(1).getPantone_value());
     }
 
     @Test
     void getResourceById() {
-        UserManagerStub userManagerStub = UserManagerStub.getInstance();
-        Resource actual = userManagerStub.getResourceById();
+        FakeControllerStub fakeControllerStub = FakeControllerStub.getInstance();
+        Resource actual = fakeControllerStub.getResourceById();
 
         Assertions.assertEquals(2, actual.getId());
         Assertions.assertEquals("fuchsia rose", actual.getName());
