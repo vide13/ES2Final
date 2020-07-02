@@ -1,4 +1,4 @@
-package com.es2.data;
+package com.es3.objects;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
