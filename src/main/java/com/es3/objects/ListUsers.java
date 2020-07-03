@@ -6,14 +6,14 @@ import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
 
-public class UserPage {
+public class ListUsers {
     private final Integer page;
     private final Integer per_page;
     private final Integer total;
     private final Integer total_pages;
-    private final ArrayList<User> data;
+    private final ArrayList<Data> data;
 
-    public UserPage(Integer page, Integer per_page, Integer total, Integer total_pages, ArrayList<User> data) {
+    public ListUsers(Integer page, Integer per_page, Integer total, Integer total_pages, ArrayList<Data> data) {
         this.page = page;
         this.per_page = per_page;
         this.total = total;
@@ -37,7 +37,7 @@ public class UserPage {
         return total_pages;
     }
 
-    public ArrayList<User> getData() {
+    public ArrayList<Data> getData() {
         return data;
     }
 

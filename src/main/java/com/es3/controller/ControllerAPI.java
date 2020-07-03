@@ -1,9 +1,9 @@
 package com.es3.controller;
 
 import com.es3.HTTPClient.Retrofit;
-import com.es3.objects.User;
+import com.es3.objects.ListUsers;
+import com.es3.objects.SingleUser;
 import com.es3.objects.UserJob;
-import com.es3.objects.UserPage;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -28,17 +28,17 @@ public class ControllerAPI implements ControllerInterface {
     }
 
     @Override
-    public User singleUser(Integer id) throws IOException {
-        Call<User> request = endpoint.singleUser(id);
-        Response<User> response = request.execute();
+    public SingleUser singleUser(Integer id) throws IOException {
+        Call<SingleUser> request = endpoint.singleUser(id);
+        Response<SingleUser> response = request.execute();
         checkResponse(response);
         return response.body();
     }
 
     @Override
-    public UserPage listUsers() throws IOException {
-        Call<UserPage> request = endpoint.listUsers();
-        Response<UserPage> response = request.execute();
+    public ListUsers listUsers() throws IOException {
+        Call<ListUsers> request = endpoint.listUsers();
+        Response<ListUsers> response = request.execute();
         checkResponse(response);
         return response.body();
     }

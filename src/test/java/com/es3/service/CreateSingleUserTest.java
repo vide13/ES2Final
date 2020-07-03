@@ -10,7 +10,7 @@ import retrofit2.Response;
 
 import java.io.IOException;
 
-public class CreateUserTest {
+public class CreateSingleUserTest {
 
     @Test
     void createUser() throws IOException {

@@ -2,9 +2,9 @@ package com.es3.client;
 
 import com.es3.controller.ControllerInterface;
 import com.es3.controller.ControllerSTUB;
-import com.es3.objects.User;
+import com.es3.objects.ListUsers;
+import com.es3.objects.SingleUser;
 import com.es3.objects.UserJob;
-import com.es3.objects.UserPage;
 
 import java.io.IOException;
 
@@ -36,13 +36,13 @@ public class Client {
         if (!isValidIntegerArgument(id)) {
             throw new Error("Invalid id");
         }
-        User user = controller.singleUser(id);
-        System.out.println("\nBody: " + user.toJsonObject());
+        SingleUser singleUser = controller.singleUser(id);
+        System.out.println("\nBody: " + singleUser.toJsonObject());
     }
 
     static void listUsers() throws IOException {
-        UserPage userPage = controller.listUsers();
-        System.out.println("\nBody: " + userPage.toJsonObject());
+        ListUsers listUsers = controller.listUsers();
+        System.out.println("\nBody: " + listUsers.toJsonObject());
     }
 
     static void register() {

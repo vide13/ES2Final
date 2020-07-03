@@ -1,8 +1,9 @@
 package com.es3.controller;
 
-import com.es3.objects.User;
+import com.es3.objects.Data;
+import com.es3.objects.ListUsers;
+import com.es3.objects.SingleUser;
 import com.es3.objects.UserJob;
-import com.es3.objects.UserPage;
 import retrofit2.Response;
 
 import java.util.ArrayList;
@@ -19,24 +20,24 @@ public class ControllerSTUB implements ControllerInterface {
     }
 
     @Override
-    public User singleUser(Integer id) {
+    public SingleUser singleUser(Integer id) {
         return Response.success(200,
-                new User(2,
+                new SingleUser(new Data(2,
                         "janet.weaver@reqres.in",
                         "Janet",
                         "Weaver",
-                        "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg")
+                        "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"))
         ).body();
     }
 
     @Override
-    public UserPage listUsers() {
-        ArrayList<User> users = new ArrayList<>();
-        users.add(new User(7,
+    public ListUsers listUsers() {
+        ArrayList<Data> data = new ArrayList<>();
+        data.add(new Data(7,
                 "michael.lawson@reqres.in",
                 "Michael", "Lawson",
                 "https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg")
         );
-        return Response.success(200, new UserPage(2, 6, 12, 2, users)).body();
+        return Response.success(200, new ListUsers(2, 6, 12, 2, data)).body();
     }
 }
