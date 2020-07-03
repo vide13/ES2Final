@@ -17,7 +17,7 @@ public class CreateUserTest {
     void createUser() throws IOException {
         Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob("morpheus", "leader");
-        Call<JsonObject> request = endpoint.create(user.toJsonObject());
+        Call<JsonObject> request = endpoint.createUser(user.toJsonObject());
         Response<JsonObject> response = request.execute();
         Assertions.assertEquals(201, response.code());
         assert response.body() != null;

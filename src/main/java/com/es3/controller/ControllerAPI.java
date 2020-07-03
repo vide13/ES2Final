@@ -9,14 +9,28 @@ import retrofit2.Response;
 import java.io.IOException;
 
 public class ControllerAPI implements ControllerInterface {
-    @Override
-    public Response createUser(UserJob user) throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
-        Call<JsonObject> request = endpoint.create(user.toJsonObject());
-        Response response = request.execute();
+    private final Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
+
+
+    void checkResponse(Response response) {
         if (response.code() > 299) {
             throw new Error();
         }
+    }
+
+    @Override
+    public Response createUser(UserJob user) throws IOException {
+        Call<JsonObject> request = endpoint.createUser(user.toJsonObject());
+        Response response = request.execute();
+        checkResponse(response);
+        return response;
+    }
+
+    @Override
+    public Response listUsers() throws IOException {
+        Call<JsonObject> request = endpoint.listUsers();
+        Response response = request.execute();
+        checkResponse(response);
         return response;
     }
 }
