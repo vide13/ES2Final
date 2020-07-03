@@ -1,5 +1,9 @@
 package com.es3.objects;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 public class User {
     private final Integer id;
     private final String email;
@@ -35,4 +39,9 @@ public class User {
     public String getAvatar() {
         return avatar;
     }
+
+    public JsonObject toJsonObject() {
+        return new JsonParser().parse(new Gson().toJson(this)).getAsJsonObject();
+    }
+
 }

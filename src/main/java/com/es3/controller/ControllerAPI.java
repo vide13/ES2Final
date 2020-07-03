@@ -1,6 +1,7 @@
 package com.es3.controller;
 
 import com.es3.HTTPClient.Retrofit;
+import com.es3.objects.User;
 import com.es3.objects.UserJob;
 import com.es3.objects.UserPage;
 import retrofit2.Call;
@@ -22,6 +23,14 @@ public class ControllerAPI implements ControllerInterface {
     public UserJob createUser(UserJob user) throws IOException {
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
+        checkResponse(response);
+        return response.body();
+    }
+
+    @Override
+    public User singleUser(Integer id) throws IOException {
+        Call<User> request = endpoint.singleUser(id);
+        Response<User> response = request.execute();
         checkResponse(response);
         return response.body();
     }

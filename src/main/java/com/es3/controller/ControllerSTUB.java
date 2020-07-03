@@ -19,6 +19,17 @@ public class ControllerSTUB implements ControllerInterface {
     }
 
     @Override
+    public User singleUser(Integer id) {
+        return Response.success(200,
+                new User(2,
+                        "janet.weaver@reqres.in",
+                        "Janet",
+                        "Weaver",
+                        "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg")
+        ).body();
+    }
+
+    @Override
     public UserPage listUsers() {
         ArrayList<User> users = new ArrayList<>();
         users.add(new User(7,

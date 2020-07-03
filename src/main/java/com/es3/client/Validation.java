@@ -8,7 +8,7 @@ public class Validation {
         else return !arg.isBlank();
     }
 
-    public static boolean isInvalidIntegerArgument(Integer arg) {
+    public static boolean isValidIntegerArgument(Integer arg) {
         if (arg == null) return false;
         else if (arg > 9999) return false;
         else return arg >= 1;
