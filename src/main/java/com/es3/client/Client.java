@@ -1,36 +1,36 @@
 package com.es3.client;
 
-import com.es3.controller.ControllerAPI;
 import com.es3.controller.ControllerInterface;
+import com.es3.controller.ControllerSTUB;
 import com.es3.objects.UserJob;
-import retrofit2.Response;
+import com.es3.objects.UserPage;
 
 import java.io.IOException;
 
 import static com.es3.client.Validation.isValidStringArgument;
 
 public class Client {
-    public static ControllerInterface controller = new ControllerAPI();
+    public static ControllerInterface controller = new ControllerSTUB();
 
     public static void main(String[] args) throws IOException {
         // Create User
-        Response createUserResponse = createUser("Jorge", "Engenheiro");
-        System.out.println("\nCreate User\nCode: " + createUserResponse.code() + "\nBody: " + createUserResponse.body().toString());
+        createUser("Jorge", "Engenheiro");
 
         // List Users
-        Response listUsersResponse = listUsers();
-        System.out.println("\nList Users\nCode: " + listUsersResponse.code() + "\nBody: " + listUsersResponse.body().toString());
+        listUsers();
     }
 
-    static Response createUser(String name, String job) throws IOException {
+    static void createUser(String name, String job) throws IOException {
         if (!isValidStringArgument(name) || !isValidStringArgument(job)) {
             throw new Error("Invalid name or job.");
         }
-        return controller.createUser(new UserJob(name, job));
+        UserJob userJob = controller.createUser(new UserJob(name, job));
+        System.out.println("\nBody: " + userJob.toJsonObject());
     }
 
-    static Response listUsers() throws IOException {
-        return controller.listUsers();
+    static void listUsers() throws IOException {
+        UserPage userPage = controller.listUsers();
+        System.out.println("\nBody: " + userPage.toJsonObject());
     }
 
     void register() {

@@ -9,7 +9,6 @@ public class UserJob {
     private String createdAt;
     private String name;
     private String job;
-    private String updatedAt;
 
     public UserJob(String name, String job) {
         this.name = name;
@@ -45,14 +44,6 @@ public class UserJob {
 
     public String getCreatedAt() {
         return createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     public JsonObject toJsonObject() {

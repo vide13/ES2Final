@@ -2,7 +2,7 @@ package com.es3.controller;
 
 import com.es3.HTTPClient.Retrofit;
 import com.es3.objects.UserJob;
-import com.google.gson.JsonObject;
+import com.es3.objects.UserPage;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -19,18 +19,18 @@ public class ControllerAPI implements ControllerInterface {
     }
 
     @Override
-    public Response createUser(UserJob user) throws IOException {
-        Call<JsonObject> request = endpoint.createUser(user.toJsonObject());
-        Response response = request.execute();
+    public UserJob createUser(UserJob user) throws IOException {
+        Call<UserJob> request = endpoint.createUser(user.toJsonObject());
+        Response<UserJob> response = request.execute();
         checkResponse(response);
-        return response;
+        return response.body();
     }
 
     @Override
-    public Response listUsers() throws IOException {
-        Call<JsonObject> request = endpoint.listUsers();
-        Response response = request.execute();
+    public UserPage listUsers() throws IOException {
+        Call<UserPage> request = endpoint.listUsers();
+        Response<UserPage> response = request.execute();
         checkResponse(response);
-        return response;
+        return response.body();
     }
 }

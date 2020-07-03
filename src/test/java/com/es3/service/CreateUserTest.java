@@ -3,7 +3,6 @@ package com.es3.service;
 import com.es3.HTTPClient.Retrofit;
 import com.es3.controller.Endpoint;
 import com.es3.objects.UserJob;
-import com.google.gson.JsonObject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import retrofit2.Call;
@@ -17,13 +16,13 @@ public class CreateUserTest {
     void createUser() throws IOException {
         Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob("morpheus", "leader");
-        Call<JsonObject> request = endpoint.createUser(user.toJsonObject());
-        Response<JsonObject> response = request.execute();
+        Call<UserJob> request = endpoint.createUser(user.toJsonObject());
+        Response<UserJob> response = request.execute();
         Assertions.assertEquals(201, response.code());
         assert response.body() != null;
-        Assertions.assertEquals("morpheus", response.body().get("name").getAsString());
-        Assertions.assertEquals("leader", response.body().get("job").getAsString());
-        Assertions.assertNotNull(response.body().get("id"));
-        Assertions.assertNotNull(response.body().get("createdAt"));
+        Assertions.assertEquals("morpheus", response.body().getName());
+        Assertions.assertEquals("leader", response.body().getJob());
+        Assertions.assertNotNull(response.body().getId());
+        Assertions.assertNotNull(response.body().getCreatedAt());
     }
 }

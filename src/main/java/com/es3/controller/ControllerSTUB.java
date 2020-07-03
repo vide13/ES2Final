@@ -10,14 +10,22 @@ import java.util.ArrayList;
 
 public class ControllerSTUB implements ControllerInterface {
     @Override
-    public Response createUser(UserJob user) {
-        return Response.success(201, new UserJob("49", "morpheus", "leader", "2020-06-01T21:00:08.929Z").toJsonObject());
+    public UserJob createUser(UserJob user) {
+        return Response.success(201, new UserJob("49",
+                "morpheus",
+                "leader",
+                "2020-06-01T21:00:08.929Z")
+        ).body();
     }
 
     @Override
-    public Response listUsers() {
+    public UserPage listUsers() {
         ArrayList<User> users = new ArrayList<>();
-        users.add(new User(7, "michael.lawson@reqres.in", "Michael", "Lawson", "https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg"));
-        return Response.success(200, new UserPage(2, 6, 12, 2, users).toJsonObject());
+        users.add(new User(7,
+                "michael.lawson@reqres.in",
+                "Michael", "Lawson",
+                "https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg")
+        );
+        return Response.success(200, new UserPage(2, 6, 12, 2, users)).body();
     }
 }
