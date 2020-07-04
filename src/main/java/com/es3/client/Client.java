@@ -1,7 +1,7 @@
 package com.es3.client;
 
-import com.es3.controller.ControllerAPI;
 import com.es3.controller.ControllerInterface;
+import com.es3.controller.ControllerSTUB;
 import com.es3.objects.*;
 
 import java.io.IOException;
@@ -10,7 +10,7 @@ import static com.es3.client.Validation.isValidIntegerArgument;
 import static com.es3.client.Validation.isValidStringArgument;
 
 public class Client {
-    public static ControllerInterface controller = new ControllerAPI();
+    public static ControllerInterface controller = new ControllerSTUB();
 
     public static void main(String[] args) throws IOException {
         try {
@@ -43,9 +43,17 @@ public class Client {
             System.out.println("\nLogin failed: " + error.getMessage());
         }
 
+        try {
+            listResources();
+        } catch (Error error) {
+            System.out.println("\nList Resources failed: " + error.getMessage());
+        }
 
-        listResources();
-        singleResource();
+        try {
+            singleResource(2);
+        } catch (Error error) {
+            System.out.println("\nList Resources failed: " + error.getMessage());
+        }
     }
 
     static void createUser(String name, String job) throws IOException {
@@ -85,9 +93,16 @@ public class Client {
         System.out.println("\nBody: " + login.toJsonObject());
     }
 
-    static void listResources() {
+    static void listResources() throws IOException {
+        ListResources listResources = controller.listResources();
+        System.out.println("\nBody: " + listResources.toJsonObject());
     }
 
-    static void singleResource() {
+    static void singleResource(Integer id) throws IOException {
+        if (!isValidIntegerArgument(id)) {
+            throw new Error();
+        }
+        SingleResource singleResource = controller.singleResource(id);
+        System.out.println("\nBody: " + singleResource.toJsonObject());
     }
 }

@@ -23,4 +23,10 @@ public interface Endpoint {
 
     @POST("/api/login")
     Call<Login> login(@Body JsonObject jsonObject);
+
+    @GET("/api/unknown")
+    Call<ListResources> listResources();
+
+    @GET("/api/unknown/{id}")
+    Call<SingleResource> singleResource(@Path("id") long id);
 }

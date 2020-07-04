@@ -19,7 +19,7 @@ public class ControllerSTUB implements ControllerInterface {
     @Override
     public SingleUser singleUser(Integer id) {
         return Response.success(200,
-                new SingleUser(new Data(2,
+                new SingleUser(new UserData(2,
                         "janet.weaver@reqres.in",
                         "Janet",
                         "Weaver",
@@ -29,8 +29,8 @@ public class ControllerSTUB implements ControllerInterface {
 
     @Override
     public ListUsers listUsers() {
-        ArrayList<Data> data = new ArrayList<>();
-        data.add(new Data(7,
+        ArrayList<UserData> data = new ArrayList<>();
+        data.add(new UserData(7,
                 "michael.lawson@reqres.in",
                 "Michael", "Lawson",
                 "https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg")
@@ -46,5 +46,17 @@ public class ControllerSTUB implements ControllerInterface {
     @Override
     public Login login(Credentials credentials) {
         return Response.success(200, new Login("QpwL5tke4Pnpja7X4")).body();
+    }
+
+    @Override
+    public ListResources listResources() {
+        ArrayList<ResourceData> data = new ArrayList<>();
+        data.add(new ResourceData(1, "cerulean", 2000, "#98B2D1", "15-4020"));
+        return Response.success(200, new ListResources(1, 6, 12, 2, data)).body();
+    }
+
+    @Override
+    public SingleResource singleResource(Integer id) {
+        return Response.success(200, new SingleResource(new ResourceData(2, "fuchsia rose", 2001, "#C74375", "17-2031"))).body();
     }
 }

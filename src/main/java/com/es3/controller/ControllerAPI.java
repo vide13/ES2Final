@@ -58,4 +58,20 @@ public class ControllerAPI implements ControllerInterface {
         checkResponse(response);
         return response.body();
     }
+
+    @Override
+    public ListResources listResources() throws IOException {
+        Call<ListResources> request = endpoint.listResources();
+        Response<ListResources> response = request.execute();
+        checkResponse(response);
+        return response.body();
+    }
+
+    @Override
+    public SingleResource singleResource(Integer id) throws IOException {
+        Call<SingleResource> request = endpoint.singleResource(id);
+        Response<SingleResource> response = request.execute();
+        checkResponse(response);
+        return response.body();
+    }
 }

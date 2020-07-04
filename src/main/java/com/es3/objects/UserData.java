@@ -1,13 +1,13 @@
 package com.es3.objects;
 
-public class Data {
+public class UserData {
     private final Integer id;
     private final String email;
     private final String first_name;
     private final String last_name;
     private final String avatar;
 
-    public Data(Integer id, String email, String first_name, String last_name, String avatar) {
+    public UserData(Integer id, String email, String first_name, String last_name, String avatar) {
         this.id = id;
         this.email = email;
         this.first_name = first_name;

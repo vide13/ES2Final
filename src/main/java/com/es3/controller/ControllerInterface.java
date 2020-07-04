@@ -14,4 +14,8 @@ public interface ControllerInterface {
     Register register(Credentials credentials) throws IOException;
 
     Login login(Credentials credentials) throws IOException;
+
+    ListResources listResources() throws IOException;
+
+    SingleResource singleResource(Integer id) throws IOException;
 }
