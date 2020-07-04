@@ -1,9 +1,6 @@
 package com.es3.controller;
 
-import com.es3.objects.ListUsers;
-import com.es3.objects.Register;
-import com.es3.objects.SingleUser;
-import com.es3.objects.UserJob;
+import com.es3.objects.*;
 import com.google.gson.JsonObject;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -13,7 +10,7 @@ import retrofit2.http.Path;
 
 public interface Endpoint {
     @POST("api/users")
-    Call<UserJob> createUser(@Body JsonObject user);
+    Call<UserJob> createUser(@Body JsonObject jsonObject);
 
     @GET("/api/users/{id}")
     Call<SingleUser> singleUser(@Path("id") long id);
@@ -22,5 +19,8 @@ public interface Endpoint {
     Call<ListUsers> listUsers();
 
     @POST("/api/register")
-    Call<Register> register(@Body JsonObject user);
+    Call<Register> register(@Body JsonObject jsonObject);
+
+    @POST("/api/login")
+    Call<Login> login(@Body JsonObject jsonObject);
 }

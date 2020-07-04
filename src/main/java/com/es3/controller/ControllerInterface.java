@@ -12,4 +12,6 @@ public interface ControllerInterface {
     ListUsers listUsers() throws IOException;
 
     Register register(Credentials credentials) throws IOException;
+
+    Login login(Credentials credentials) throws IOException;
 }

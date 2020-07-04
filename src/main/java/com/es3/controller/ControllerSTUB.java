@@ -42,4 +42,9 @@ public class ControllerSTUB implements ControllerInterface {
     public Register register(Credentials credentials) {
         return Response.success(200, new Register(4, "QpwL5tke4Pnpja7X4")).body();
     }
+
+    @Override
+    public Login login(Credentials credentials) {
+        return Response.success(200, new Login("QpwL5tke4Pnpja7X4")).body();
+    }
 }

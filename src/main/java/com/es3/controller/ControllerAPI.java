@@ -50,4 +50,12 @@ public class ControllerAPI implements ControllerInterface {
         checkResponse(response);
         return response.body();
     }
+
+    @Override
+    public Login login(Credentials credentials) throws IOException {
+        Call<Login> request = endpoint.login(credentials.toJsonObject());
+        Response<Login> response = request.execute();
+        checkResponse(response);
+        return response.body();
+    }
 }

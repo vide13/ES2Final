@@ -16,7 +16,7 @@ public class Client {
         try {
             createUser("Jorge", "Engenheiro");
         } catch (Error error) {
-            System.out.println("\nCreate User failed");
+            System.out.println("\nCreate User failed: " + error.getMessage());
         }
 
         try {
@@ -28,7 +28,7 @@ public class Client {
         try {
             listUsers();
         } catch (Error error) {
-            System.out.println("\nList Users failed");
+            System.out.println("\nList Users failed: " + error.getMessage());
         }
 
         try {
@@ -37,7 +37,13 @@ public class Client {
             System.out.println("\nRegister failed: " + error.getMessage());
         }
 
-        login();
+        try {
+            login("eve.holt@reqres.in", "cityslicka");
+        } catch (Error error) {
+            System.out.println("\nLogin failed: " + error.getMessage());
+        }
+
+
         listResources();
         singleResource();
     }
@@ -71,7 +77,12 @@ public class Client {
         System.out.println("\nBody: " + register.toJsonObject());
     }
 
-    static void login() {
+    static void login(String email, String password) throws IOException {
+        if (!isValidStringArgument(email) || !isValidStringArgument(password)) {
+            throw new Error("Invalid email or password");
+        }
+        Login login = controller.login(new Credentials(email, password));
+        System.out.println("\nBody: " + login.toJsonObject());
     }
 
     static void listResources() {
