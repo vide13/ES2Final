@@ -11,7 +11,7 @@ public class ListResources {
     private final Integer per_page;
     private final Integer total;
     private final Integer total_pages;
-    ArrayList<ResourceData> data;
+    final ArrayList<ResourceData> data;
 
     public ListResources(Integer page, Integer per_page, Integer total, Integer total_pages, ArrayList<ResourceData> data) {
         this.page = page;
