@@ -1,21 +1,21 @@
 package com.es3.controller;
 
 import com.es3.HTTPClient.Retrofit;
-import com.es3.objects.ListUsers;
-import com.es3.objects.SingleUser;
-import com.es3.objects.UserJob;
+import com.es3.objects.*;
 import retrofit2.Call;
 import retrofit2.Response;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class ControllerAPI implements ControllerInterface {
     private final Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
 
 
-    void checkResponse(Response response) {
+    @SuppressWarnings("rawtypes")
+    void checkResponse(Response response) throws IOException {
         if (response.code() > 299) {
-            throw new Error();
+            throw new Error(Objects.requireNonNull(response.errorBody()).string());
         }
     }
 
@@ -39,6 +39,14 @@ public class ControllerAPI implements ControllerInterface {
     public ListUsers listUsers() throws IOException {
         Call<ListUsers> request = endpoint.listUsers();
         Response<ListUsers> response = request.execute();
+        checkResponse(response);
+        return response.body();
+    }
+
+    @Override
+    public Register register(Credentials credentials) throws IOException {
+        Call<Register> request = endpoint.register(credentials.toJsonObject());
+        Response<Register> response = request.execute();
         checkResponse(response);
         return response.body();
     }

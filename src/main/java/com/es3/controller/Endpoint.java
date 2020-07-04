@@ -1,6 +1,7 @@
 package com.es3.controller;
 
 import com.es3.objects.ListUsers;
+import com.es3.objects.Register;
 import com.es3.objects.SingleUser;
 import com.es3.objects.UserJob;
 import com.google.gson.JsonObject;
@@ -19,4 +20,7 @@ public interface Endpoint {
 
     @GET("/api/users")
     Call<ListUsers> listUsers();
+
+    @POST("/api/register")
+    Call<Register> register(@Body JsonObject user);
 }

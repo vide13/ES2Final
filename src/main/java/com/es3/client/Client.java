@@ -1,10 +1,8 @@
 package com.es3.client;
 
+import com.es3.controller.ControllerAPI;
 import com.es3.controller.ControllerInterface;
-import com.es3.controller.ControllerSTUB;
-import com.es3.objects.ListUsers;
-import com.es3.objects.SingleUser;
-import com.es3.objects.UserJob;
+import com.es3.objects.*;
 
 import java.io.IOException;
 
@@ -12,13 +10,33 @@ import static com.es3.client.Validation.isValidIntegerArgument;
 import static com.es3.client.Validation.isValidStringArgument;
 
 public class Client {
-    public static ControllerInterface controller = new ControllerSTUB();
+    public static ControllerInterface controller = new ControllerAPI();
 
     public static void main(String[] args) throws IOException {
-        createUser("Jorge", "Engenheiro");
-        singleUser(2);
-        listUsers();
-        register();
+        try {
+            createUser("Jorge", "Engenheiro");
+        } catch (Error error) {
+            System.out.println("\nCreate User failed");
+        }
+
+        try {
+            singleUser(2);
+        } catch (Error error) {
+            System.out.println("\nSingle User failed: " + error.getMessage());
+        }
+
+        try {
+            listUsers();
+        } catch (Error error) {
+            System.out.println("\nList Users failed");
+        }
+
+        try {
+            register("eve.holt@reqres.in", "pistol");
+        } catch (Error error) {
+            System.out.println("\nRegister failed: " + error.getMessage());
+        }
+
         login();
         listResources();
         singleResource();
@@ -45,7 +63,12 @@ public class Client {
         System.out.println("\nBody: " + listUsers.toJsonObject());
     }
 
-    static void register() {
+    static void register(String email, String password) throws IOException {
+        if (!isValidStringArgument(email) || !isValidStringArgument(password)) {
+            throw new Error("Invalid email or password");
+        }
+        Register register = controller.register(new Credentials(email, password));
+        System.out.println("\nBody: " + register.toJsonObject());
     }
 
     static void login() {

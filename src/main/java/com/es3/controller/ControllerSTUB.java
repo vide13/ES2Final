@@ -1,9 +1,6 @@
 package com.es3.controller;
 
-import com.es3.objects.Data;
-import com.es3.objects.ListUsers;
-import com.es3.objects.SingleUser;
-import com.es3.objects.UserJob;
+import com.es3.objects.*;
 import retrofit2.Response;
 
 import java.util.ArrayList;
@@ -39,5 +36,10 @@ public class ControllerSTUB implements ControllerInterface {
                 "https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg")
         );
         return Response.success(200, new ListUsers(2, 6, 12, 2, data)).body();
+    }
+
+    @Override
+    public Register register(Credentials credentials) {
+        return Response.success(200, new Register(4, "QpwL5tke4Pnpja7X4")).body();
     }
 }
