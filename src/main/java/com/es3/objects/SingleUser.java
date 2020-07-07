@@ -11,6 +11,10 @@ public class SingleUser {
         this.data = data;
     }
 
+    public UserData getData() {
+        return data;
+    }
+
     public JsonObject toJsonObject() {
         return new JsonParser().parse(new Gson().toJson(this)).getAsJsonObject();
     }
