@@ -51,4 +51,14 @@ public class SingleUserTest {
         Assertions.assertEquals("Weaver", response.body().getData().getLast_name());
         Assertions.assertEquals("https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg", response.body().getData().getAvatar());
     }
+
+    @Test
+    void singleUserNotFound() throws IOException {
+        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
+        Call<SingleUser> request = endpoint.singleUser(23);
+        Response<SingleUser> response = request.execute();
+        Assertions.assertEquals(404, response.code());
+        Assertions.assertNull(response.body());
+    }
+
 }
