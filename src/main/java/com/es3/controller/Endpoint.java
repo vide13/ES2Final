@@ -29,4 +29,7 @@ public interface Endpoint {
 
     @GET("/api/unknown/{id}")
     Call<SingleResource> singleResource(@Path("id") long id);
+
+    @GET("/api/random")
+    Call<ListUsers> randomRequest();
 }

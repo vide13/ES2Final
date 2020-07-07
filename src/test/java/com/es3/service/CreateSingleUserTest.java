@@ -13,7 +13,7 @@ import java.io.IOException;
 public class CreateSingleUserTest {
 
     @Test
-    void createUser() throws IOException {
+    void createUserSuccessful() throws IOException {
         Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob("morpheus", "leader");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
@@ -25,4 +25,27 @@ public class CreateSingleUserTest {
         Assertions.assertNotNull(response.body().getId());
         Assertions.assertNotNull(response.body().getCreatedAt());
     }
+
+    void createUserBigNameBigJob() {
+    }
+
+    void crateUserBigNameBlankJob() {
+    }
+
+    void createUserBigNameEmptyJob() {
+    }
+
+    void createUserBigNameGoodJob() {
+    }
+
+    void createUserBigNameNullJob() {
+    }
+
+    void createUserBlankNameBlankJob() {
+    }
+
+    void createUserBlankNameEmptyJob() {
+    }
+
+
 }

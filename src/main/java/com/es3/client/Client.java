@@ -32,7 +32,7 @@ public class Client {
         }
 
         try {
-            register("eve.holt@reqres.in", "pistol");
+            register("eve.holt@reqres.sin", "pistol");
         } catch (Error error) {
             System.out.println("\nRegister failed: " + error.getMessage());
         }
