@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ListUsersTest {
 
     @Test
-    void singleUserSuccessful() {
+    void listUsersSuccessful() {
         assertDoesNotThrow(() -> Client.listUsers());
     }
 
