@@ -10,7 +10,7 @@ import retrofit2.Response;
 
 import java.io.IOException;
 
-public class CreateSingleUserTest {
+public class CreateUserTest {
     private final String BIG_STRING = "estaStringTemMaisDeCinquentaCaracteresAoTodoSaoMais";
 
     @Test
