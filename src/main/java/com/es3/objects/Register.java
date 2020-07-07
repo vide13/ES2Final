@@ -13,6 +13,14 @@ public class Register {
         this.token = token;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
     public JsonObject toJsonObject() {
         return new JsonParser().parse(new Gson().toJson(this)).getAsJsonObject();
     }
