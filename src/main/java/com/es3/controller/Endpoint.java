@@ -13,7 +13,7 @@ public interface Endpoint {
     Call<UserJob> createUser(@Body JsonObject jsonObject);
 
     @GET("/api/users/{id}")
-    Call<SingleUser> singleUser(@Path("id") long id);
+    Call<SingleUser> singleUser(@Path("id") Integer id);
 
     @GET("/api/users")
     Call<ListUsers> listUsers();

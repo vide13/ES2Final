@@ -12,10 +12,10 @@ import java.io.IOException;
 
 public class CreateUserTest {
     private final String BIG_STRING = "estaStringTemMaisDeCinquentaCaracteresAoTodoSaoMais";
+    private final Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
 
     @Test
     void createUserSuccessful() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob("morpheus", "leader");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -29,7 +29,6 @@ public class CreateUserTest {
 
     @Test
     void createUserBigNameBigJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob(BIG_STRING, BIG_STRING);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -39,7 +38,6 @@ public class CreateUserTest {
 
     @Test
     void crateUserBigNameBlankJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob(BIG_STRING, " ");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -49,7 +47,6 @@ public class CreateUserTest {
 
     @Test
     void createUserBigNameEmptyJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob(BIG_STRING, "");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -60,7 +57,6 @@ public class CreateUserTest {
 
     @Test
     void createUserBigNameGoodJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob(BIG_STRING, "leader");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -70,7 +66,6 @@ public class CreateUserTest {
 
     @Test
     void createUserBigNameNullJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob(BIG_STRING, null);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -80,7 +75,6 @@ public class CreateUserTest {
 
     @Test
     void createUserBlankNameBlankJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob(" ", " ");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -90,7 +84,6 @@ public class CreateUserTest {
 
     @Test
     void createUserBlankNameEmptyJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob(" ", "");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -100,7 +93,6 @@ public class CreateUserTest {
 
     @Test
     void createUserBlankNameGoodJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob(" ", "leader");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -110,7 +102,6 @@ public class CreateUserTest {
 
     @Test
     void createUserBlankNameNullJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob(" ", null);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -120,7 +111,6 @@ public class CreateUserTest {
 
     @Test
     void createUserEmptyNameBigJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob("", BIG_STRING);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -130,7 +120,6 @@ public class CreateUserTest {
 
     @Test
     void createUserEmptyNameBlankJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob("", " ");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -140,7 +129,6 @@ public class CreateUserTest {
 
     @Test
     void createUserEmptyNameEmptyJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob("", "");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -150,7 +138,6 @@ public class CreateUserTest {
 
     @Test
     void createUserEmptyNameGoodJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob("", "leader");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -160,7 +147,6 @@ public class CreateUserTest {
 
     @Test
     void createUserEmptyNameNullJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob("", null);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -170,7 +156,6 @@ public class CreateUserTest {
 
     @Test
     void createUserGoodNameBigJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob("morpheus", BIG_STRING);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -180,7 +165,6 @@ public class CreateUserTest {
 
     @Test
     void createUserGoodNameBlankJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob("morpheus", " ");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -190,7 +174,6 @@ public class CreateUserTest {
 
     @Test
     void createUserGoodNameEmptyJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob("morpheus", "");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -200,7 +183,6 @@ public class CreateUserTest {
 
     @Test
     void createUserGoodNameNullJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob("morpheus", null);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -210,7 +192,6 @@ public class CreateUserTest {
 
     @Test
     void createUserNullNameBigJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob(null, BIG_STRING);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -220,7 +201,6 @@ public class CreateUserTest {
 
     @Test
     void createUserNullNameBlankJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob(null, " ");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -230,7 +210,6 @@ public class CreateUserTest {
 
     @Test
     void createUserNullNameEmptyJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob(" ", " ");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -240,7 +219,6 @@ public class CreateUserTest {
 
     @Test
     void createUserNullNameGoodJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob(null, "leader");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -250,7 +228,6 @@ public class CreateUserTest {
 
     @Test
     void createUserNullNameNullJob() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         UserJob user = new UserJob(null, null);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
