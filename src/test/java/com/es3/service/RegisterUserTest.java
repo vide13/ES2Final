@@ -3,7 +3,7 @@ package com.es3.service;
 import com.es3.HTTPClient.Retrofit;
 import com.es3.controller.Endpoint;
 import com.es3.objects.Credentials;
-import com.es3.objects.Register; 
+import com.es3.objects.Register;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import retrofit2.Call;

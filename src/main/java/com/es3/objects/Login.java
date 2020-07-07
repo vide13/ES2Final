@@ -11,6 +11,10 @@ public class Login {
         this.token = token;
     }
 
+    public String getToken() {
+        return token;
+    }
+
     public JsonObject toJsonObject() {
         return new JsonParser().parse(new Gson().toJson(this)).getAsJsonObject();
     }
