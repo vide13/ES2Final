@@ -32,7 +32,7 @@ public class CreateUserTest {
         UserJob user = new UserJob(BIG_STRING, BIG_STRING);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -41,7 +41,7 @@ public class CreateUserTest {
         UserJob user = new UserJob(BIG_STRING, " ");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -50,7 +50,7 @@ public class CreateUserTest {
         UserJob user = new UserJob(BIG_STRING, "");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -60,7 +60,7 @@ public class CreateUserTest {
         UserJob user = new UserJob(BIG_STRING, "leader");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -69,7 +69,7 @@ public class CreateUserTest {
         UserJob user = new UserJob(BIG_STRING, null);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -78,7 +78,7 @@ public class CreateUserTest {
         UserJob user = new UserJob(" ", " ");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -87,7 +87,7 @@ public class CreateUserTest {
         UserJob user = new UserJob(" ", "");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -96,7 +96,7 @@ public class CreateUserTest {
         UserJob user = new UserJob(" ", "leader");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -105,7 +105,7 @@ public class CreateUserTest {
         UserJob user = new UserJob(" ", null);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -114,7 +114,7 @@ public class CreateUserTest {
         UserJob user = new UserJob("", BIG_STRING);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -123,7 +123,7 @@ public class CreateUserTest {
         UserJob user = new UserJob("", " ");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -132,7 +132,7 @@ public class CreateUserTest {
         UserJob user = new UserJob("", "");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -141,7 +141,7 @@ public class CreateUserTest {
         UserJob user = new UserJob("", "leader");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -150,7 +150,7 @@ public class CreateUserTest {
         UserJob user = new UserJob("", null);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -159,7 +159,7 @@ public class CreateUserTest {
         UserJob user = new UserJob("morpheus", BIG_STRING);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -168,7 +168,7 @@ public class CreateUserTest {
         UserJob user = new UserJob("morpheus", " ");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -177,7 +177,7 @@ public class CreateUserTest {
         UserJob user = new UserJob("morpheus", "");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -186,7 +186,7 @@ public class CreateUserTest {
         UserJob user = new UserJob("morpheus", null);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -195,7 +195,7 @@ public class CreateUserTest {
         UserJob user = new UserJob(null, BIG_STRING);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -204,7 +204,7 @@ public class CreateUserTest {
         UserJob user = new UserJob(null, " ");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -213,7 +213,7 @@ public class CreateUserTest {
         UserJob user = new UserJob(" ", " ");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -222,7 +222,7 @@ public class CreateUserTest {
         UserJob user = new UserJob(null, "leader");
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -231,7 +231,7 @@ public class CreateUserTest {
         UserJob user = new UserJob(null, null);
         Call<UserJob> request = endpoint.createUser(user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 

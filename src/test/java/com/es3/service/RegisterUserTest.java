@@ -32,7 +32,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials(BIG_STRING, BIG_STRING);
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -42,7 +42,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials(BIG_STRING, " ");
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -52,7 +52,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials(BIG_STRING, "");
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -63,7 +63,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials(BIG_STRING, "leader");
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -73,7 +73,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials(BIG_STRING, null);
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -83,7 +83,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials(" ", " ");
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -93,7 +93,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials(" ", "");
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -103,7 +103,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials(" ", "leader");
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -113,7 +113,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials(" ", null);
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -123,7 +123,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials("", BIG_STRING);
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -133,7 +133,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials("", " ");
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -143,7 +143,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials("", "");
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -153,7 +153,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials("", "leader");
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -163,7 +163,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials("", null);
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -173,7 +173,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials("morpheus", BIG_STRING);
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -183,7 +183,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials("morpheus", " ");
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -193,7 +193,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials("morpheus", "");
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -203,7 +203,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials("morpheus", null);
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -213,7 +213,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials(null, BIG_STRING);
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -223,7 +223,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials(null, " ");
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -233,7 +233,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials(" ", " ");
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -243,7 +243,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials(null, "leader");
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -253,7 +253,7 @@ public class RegisterUserTest {
         Credentials user = new Credentials(null, null);
         Call<Register> request = endpoint.register(user.toJsonObject());
         Response<Register> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 

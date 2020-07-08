@@ -31,7 +31,7 @@ public class LoginUserTest {
         Credentials user = new Credentials(BIG_STRING, BIG_STRING);
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -41,7 +41,7 @@ public class LoginUserTest {
         Credentials user = new Credentials(BIG_STRING, " ");
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -51,7 +51,7 @@ public class LoginUserTest {
         Credentials user = new Credentials(BIG_STRING, "");
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -62,7 +62,7 @@ public class LoginUserTest {
         Credentials user = new Credentials(BIG_STRING, "leader");
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -72,7 +72,7 @@ public class LoginUserTest {
         Credentials user = new Credentials(BIG_STRING, null);
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -82,7 +82,7 @@ public class LoginUserTest {
         Credentials user = new Credentials(" ", " ");
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -92,7 +92,7 @@ public class LoginUserTest {
         Credentials user = new Credentials(" ", "");
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -102,7 +102,7 @@ public class LoginUserTest {
         Credentials user = new Credentials(" ", "leader");
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -112,7 +112,7 @@ public class LoginUserTest {
         Credentials user = new Credentials(" ", null);
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -122,7 +122,7 @@ public class LoginUserTest {
         Credentials user = new Credentials("", BIG_STRING);
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -132,7 +132,7 @@ public class LoginUserTest {
         Credentials user = new Credentials("", " ");
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -142,7 +142,7 @@ public class LoginUserTest {
         Credentials user = new Credentials("", "");
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -152,7 +152,7 @@ public class LoginUserTest {
         Credentials user = new Credentials("", "leader");
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -162,7 +162,7 @@ public class LoginUserTest {
         Credentials user = new Credentials("", null);
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -172,7 +172,7 @@ public class LoginUserTest {
         Credentials user = new Credentials("morpheus", BIG_STRING);
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -182,7 +182,7 @@ public class LoginUserTest {
         Credentials user = new Credentials("morpheus", " ");
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -192,7 +192,7 @@ public class LoginUserTest {
         Credentials user = new Credentials("morpheus", "");
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -202,7 +202,7 @@ public class LoginUserTest {
         Credentials user = new Credentials("morpheus", null);
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -212,7 +212,7 @@ public class LoginUserTest {
         Credentials user = new Credentials(null, BIG_STRING);
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -222,7 +222,7 @@ public class LoginUserTest {
         Credentials user = new Credentials(null, " ");
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -232,7 +232,7 @@ public class LoginUserTest {
         Credentials user = new Credentials(" ", " ");
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -242,7 +242,7 @@ public class LoginUserTest {
         Credentials user = new Credentials(null, "leader");
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -252,7 +252,7 @@ public class LoginUserTest {
         Credentials user = new Credentials(null, null);
         Call<Login> request = endpoint.login(user.toJsonObject());
         Response<Login> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 }

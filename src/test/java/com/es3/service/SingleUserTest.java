@@ -12,20 +12,11 @@ import java.io.IOException;
 
 public class SingleUserTest {
     @Test
-    void singleUserIdNull() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
-        Call<SingleUser> request = endpoint.singleUser(null);
-        Response<SingleUser> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
     void singleUserBigId() throws IOException {
         Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         Call<SingleUser> request = endpoint.singleUser(1000000);
         Response<SingleUser> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
@@ -34,7 +25,7 @@ public class SingleUserTest {
         Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         Call<SingleUser> request = endpoint.singleUser(-5);
         Response<SingleUser> response = request.execute();
-        Assertions.assertTrue(299 < response.code());
+        Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
 
