@@ -27,5 +27,15 @@ class SingleUserTest {
         assertDoesNotThrow(() -> Client.singleUser(2));
     }
 
+    @Test
+    void singleUserSuccessfulMinimumId() {
+        assertDoesNotThrow(() -> Client.singleUser(1));
+    }
+
+    @Test
+    void singleUserSuccessfulMaximumId() {
+        assertDoesNotThrow(() -> Client.singleUser(9999));
+    }
+
 
 }

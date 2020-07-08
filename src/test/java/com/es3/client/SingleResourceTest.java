@@ -27,5 +27,15 @@ class SingleResourceTest {
         assertDoesNotThrow(() -> Client.singleResource(2));
     }
 
+    @Test
+    void singleResourceSuccessfulMinimumId() {
+        assertDoesNotThrow(() -> Client.singleResource(1));
+    }
+
+    @Test
+    void singleResourceSuccessfulMaximumId() {
+        assertDoesNotThrow(() -> Client.singleResource(9999));
+    }
+
 
 }

@@ -50,6 +50,6 @@ public class SingleUserTest {
         Response<SingleUser> response = request.execute();
         Assertions.assertEquals(404, response.code());
         Assertions.assertNull(response.body());
-    }
+    } 
 
 }
