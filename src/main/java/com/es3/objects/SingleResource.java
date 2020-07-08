@@ -11,6 +11,10 @@ public class SingleResource {
         this.data = data;
     }
 
+    public ResourceData getData() {
+        return data;
+    }
+
     public JsonObject toJsonObject() {
         return new JsonParser().parse(new Gson().toJson(this)).getAsJsonObject();
     }
