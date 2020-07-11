@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class LoginUserTest {
 
     String bigWord = "estastringtemmaisdecinquentacarcatereseserautilizadaparanomesejobs";
+    String maximumWord = "esta_string_tem_exatamente_cinquenta_caracteres_ab";
 
     @Test
     void loginUserBigEmailBigPassword() {
@@ -122,6 +123,16 @@ class LoginUserTest {
     @Test
     void loginUserGoodEmailNullPassword() {
         assertThrows(Error.class, () -> Client.login("eve.holt@reqres.in", null));
+    }
+
+    @Test
+    void loginUserMaximumNameGoodJob() {
+        assertDoesNotThrow(() -> Client.login(maximumWord, "pistol"));
+    }
+
+    @Test
+    void loginUserMinimumNameGoodJob() {
+        assertDoesNotThrow(() -> Client.login("a", "pistol"));
     }
 
     @Test

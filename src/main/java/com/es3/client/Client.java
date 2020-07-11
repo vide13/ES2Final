@@ -1,5 +1,6 @@
 package com.es3.client;
 
+import com.es3.controller.ControllerAPI;
 import com.es3.controller.ControllerInterface;
 import com.es3.controller.ControllerSTUB;
 import com.es3.objects.*;
@@ -10,7 +11,7 @@ import static com.es3.client.Validation.isValidIntegerArgument;
 import static com.es3.client.Validation.isValidStringArgument;
 
 public class Client {
-    public static final ControllerInterface controller = new ControllerSTUB();
+    public static final ControllerInterface controller = new ControllerAPI();
 
     public static void main(String[] args) throws IOException {
         try {

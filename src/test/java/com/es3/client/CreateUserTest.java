@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class CreateUserTest {
 
     String bigWord = "estastringtemmaisdecinquentacarcatereseserautilizadaparanomesejobs";
+    String maximumWord = "esta_string_tem_exatamente_cinquenta_caracteres_ab";
 
     @Test
     void createUserBigNameBigJob() {
@@ -122,6 +123,16 @@ class CreateUserTest {
     @Test
     void createUserGoodNameNullJob() {
         assertThrows(Error.class, () -> Client.createUser("morpheus", null));
+    }
+
+    @Test
+    void createUserMaximumNameGoodJob() {
+        assertDoesNotThrow(() -> Client.createUser(maximumWord, "leader"));
+    }
+
+    @Test
+    void createUserMinimumNameGoodJob() {
+        assertDoesNotThrow(() -> Client.createUser("a", "leader"));
     }
 
     @Test
