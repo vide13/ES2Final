@@ -11,7 +11,7 @@ import static com.es3.client.Validation.isValidIntegerArgument;
 import static com.es3.client.Validation.isValidStringArgument;
 
 public class Client {
-    public static final ControllerInterface controller = new ControllerAPI();
+    public static final ControllerInterface controller = new ControllerSTUB();
 
     public static void main(String[] args) throws IOException {
         try {

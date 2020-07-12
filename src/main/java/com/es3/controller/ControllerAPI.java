@@ -21,7 +21,7 @@ public class ControllerAPI implements ControllerInterface {
 
     @Override
     public UserJob createUser(UserJob user) throws IOException {
-        Call<UserJob> request = endpoint.createUser(user.toJsonObject());
+        Call<UserJob> request = endpoint.createUser(null,user.toJsonObject());
         Response<UserJob> response = request.execute();
         checkResponse(response);
         return response.body();
