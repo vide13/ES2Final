@@ -15,27 +15,27 @@ public class NoTokenTest {
     }
 
     @Test
-    void createUserUnsuccessful() {
+    void createUserNoTokenUnsuccessful() {
         assertThrows(Error.class, () -> client.createUser("morpheus", "leader"));
     }
 
     @Test
-    void listResourcesUnsuccessful() {
+    void listResourcesNoTokenUnsuccessful() {
         assertThrows(Error.class, () -> client.listResources());
     }
 
     @Test
-    void listUsersUnsuccessful() {
+    void listUsersNoTokenUnsuccessful() {
         assertThrows(Error.class, () -> client.listUsers());
     }
 
     @Test
-    void singleResourceUnsuccessful() {
+    void singleResourceNoTokenUnsuccessful() {
         assertThrows(Error.class, () -> client.singleResource(2));
     }
 
     @Test
-    void singleUserUnsuccessful() {
+    void singleUserNoTokenUnsuccessful() {
         assertThrows(Error.class, () -> client.singleUser(2));
     }
 
