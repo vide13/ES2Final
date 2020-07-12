@@ -15,18 +15,6 @@ public class RegisterUserTest {
     private final String BIG_STRING = "estaStringTemMaisDeCinquentaCaracteresAoTodoSaoMais";
 
     @Test
-    void registerUserSuccessful() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
-        Credentials user = new Credentials("eve.holt@reqres.in", "pistol");
-        Call<Register> request = endpoint.register(user.toJsonObject());
-        Response<Register> response = request.execute();
-        Assertions.assertEquals(200, response.code());
-        assert response.body() != null;
-        Assertions.assertNotNull(response.body().getId());
-        Assertions.assertNotNull(response.body().getToken());
-    }
-
-    @Test
     void registerUserBigNameBigJob() throws IOException {
         Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         Credentials user = new Credentials(BIG_STRING, BIG_STRING);
@@ -55,7 +43,6 @@ public class RegisterUserTest {
         Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
     }
-
 
     @Test
     void registerUserBigNameGoodJob() throws IOException {
@@ -255,6 +242,18 @@ public class RegisterUserTest {
         Response<Register> response = request.execute();
         Assertions.assertEquals(400, response.code());
         Assertions.assertNull(response.body());
+    }
+
+    @Test
+    void registerUserSuccessful() throws IOException {
+        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
+        Credentials user = new Credentials("eve.holt@reqres.in", "pistol");
+        Call<Register> request = endpoint.register(user.toJsonObject());
+        Response<Register> response = request.execute();
+        Assertions.assertEquals(200, response.code());
+        assert response.body() != null;
+        Assertions.assertNotNull(response.body().getId());
+        Assertions.assertNotNull(response.body().getToken());
     }
 
 }

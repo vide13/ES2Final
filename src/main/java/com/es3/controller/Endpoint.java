@@ -10,10 +10,10 @@ public interface Endpoint {
     Call<UserJob> createUser(@Header("Token") String token, @Body JsonObject jsonObject);
 
     @GET("/api/users/{id}")
-    Call<SingleUser> singleUser(@Path("id") Integer id);
+    Call<SingleUser> singleUser(@Header("Token") String token, @Path("id") Integer id);
 
     @GET("/api/users")
-    Call<ListUsers> listUsers();
+    Call<ListUsers> listUsers(@Header("Token") String token);
 
     @POST("/api/register")
     Call<Register> register(@Body JsonObject jsonObject);
@@ -22,10 +22,10 @@ public interface Endpoint {
     Call<Login> login(@Body JsonObject jsonObject);
 
     @GET("/api/unknown")
-    Call<ListResources> listResources();
+    Call<ListResources> listResources(@Header("Token") String token);
 
     @GET("/api/unknown/{id}")
-    Call<SingleResource> singleResource(@Path("id") long id);
+    Call<SingleResource> singleResource(@Header("Token") String token, @Path("id") long id);
 
     @GET("/api/random")
     Call<ListUsers> randomRequest();

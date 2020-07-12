@@ -1,41 +1,55 @@
 package com.es3.client;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class SingleUserTest {
 
-    @Test
-    void singleUserIdNull() {
-        assertThrows(Error.class, () -> Client.singleUser(null));
+    private static Client client;
+
+    @BeforeAll
+    static void setup() throws IOException {
+        client = Client.getClient();
+        client.login("eve.holt@reqres.in", "cityslicka");
     }
 
     @Test
     void singleUserBigId() {
-        assertThrows(Error.class, () -> Client.singleUser(1000000));
+        assertThrows(Error.class, () -> client.singleUser(10000));
     }
 
     @Test
-    void singleUserIdLesserThanZero() {
-        assertThrows(Error.class, () -> Client.singleUser(-5));
+    void singleUserIdNull() {
+        assertThrows(Error.class, () -> client.singleUser(null));
+    }
+
+    @Test
+    void singleUserIdZero() {
+        assertThrows(Error.class, () -> client.singleUser(0));
     }
 
     @Test
     void singleUserSuccessful() {
-        assertDoesNotThrow(() -> Client.singleUser(2));
-    }
-
-    @Test
-    void singleUserSuccessfulMinimumId() {
-        assertDoesNotThrow(() -> Client.singleUser(1));
+        assertDoesNotThrow(() -> client.singleUser(2));
     }
 
     @Test
     void singleUserSuccessfulMaximumId() {
-        assertDoesNotThrow(() -> Client.singleUser(9999));
+        assertDoesNotThrow(() -> client.singleUser(9999));
     }
 
+    @Test
+    void singleUserSuccessfulMaximumIdMinus1() {
+        assertDoesNotThrow(() -> client.singleUser(9998));
+    }
 
+    @Test
+    void singleUserSuccessfulMinimumId() {
+        assertDoesNotThrow(() -> client.singleUser(1));
+    }
 }

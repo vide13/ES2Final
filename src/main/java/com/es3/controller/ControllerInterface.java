@@ -5,17 +5,17 @@ import com.es3.objects.*;
 import java.io.IOException;
 
 public interface ControllerInterface {
-    UserJob createUser(UserJob user) throws IOException;
+    UserJob createUser(String token, UserJob user) throws IOException;
 
-    SingleUser singleUser(Integer id) throws IOException;
+    ListResources listResources(String token) throws IOException;
 
-    ListUsers listUsers() throws IOException;
-
-    Register register(Credentials credentials) throws IOException;
+    ListUsers listUsers(String token) throws IOException;
 
     Login login(Credentials credentials) throws IOException;
 
-    ListResources listResources() throws IOException;
+    Register register(Credentials credentials) throws IOException;
 
-    SingleResource singleResource(Integer id) throws IOException;
+    SingleResource singleResource(String token, Integer id) throws IOException;
+
+    SingleUser singleUser(String token, Integer id) throws IOException;
 }

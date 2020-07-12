@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class ControllerSTUB implements ControllerInterface {
     @Override
-    public UserJob createUser(UserJob user) {
+    public UserJob createUser(String token,UserJob user) {
         return Response.success(201, new UserJob("49",
                 "morpheus",
                 "leader",
@@ -17,7 +17,7 @@ public class ControllerSTUB implements ControllerInterface {
     }
 
     @Override
-    public SingleUser singleUser(Integer id) {
+    public SingleUser singleUser(String token, Integer id) {
         return Response.success(200,
                 new SingleUser(new UserData(2,
                         "janet.weaver@reqres.in",
@@ -28,7 +28,7 @@ public class ControllerSTUB implements ControllerInterface {
     }
 
     @Override
-    public ListUsers listUsers() {
+    public ListUsers listUsers(String token) {
         ArrayList<UserData> data = new ArrayList<>();
         data.add(new UserData(7,
                 "michael.lawson@reqres.in",
@@ -49,14 +49,14 @@ public class ControllerSTUB implements ControllerInterface {
     }
 
     @Override
-    public ListResources listResources() {
+    public ListResources listResources(String token) {
         ArrayList<ResourceData> data = new ArrayList<>();
         data.add(new ResourceData(1, "cerulean", 2000, "#98B2D1", "15-4020"));
         return Response.success(200, new ListResources(1, 6, 12, 2, data)).body();
     }
 
     @Override
-    public SingleResource singleResource(Integer id) {
+    public SingleResource singleResource(String token, Integer id) {
         return Response.success(200, new SingleResource(new ResourceData(2, "fuchsia rose", 2001, "#C74375", "17-2031"))).body();
     }
 }

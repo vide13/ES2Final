@@ -10,7 +10,10 @@ public class Validation {
 
     public static boolean isValidIntegerArgument(Integer arg) {
         if (arg == null) return false;
-        else if (arg > 9999) return false;
+        else if (arg > 10000) return false;
         else return arg >= 1;
+    }
+    public static boolean isValidToken(String arg) {
+        return arg != null;
     }
 }
