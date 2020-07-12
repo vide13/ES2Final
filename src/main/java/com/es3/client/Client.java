@@ -1,7 +1,7 @@
 package com.es3.client;
 
+import com.es3.controller.ControllerAPI;
 import com.es3.controller.ControllerInterface;
-import com.es3.controller.ControllerSTUB;
 import com.es3.objects.*;
 
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import static com.es3.client.Validation.*;
 
 public class Client {
-    public static final ControllerInterface controller = new ControllerSTUB();
+    public static final ControllerInterface controller = new ControllerAPI();
     private static String token;
 
     private static Client client;
@@ -29,17 +29,17 @@ public class Client {
         if (!isValidStringArgument(name) || !isValidStringArgument(job)) {
             throw new Error("Invalid name or job");
         }
-        if (isValidToken(token)) throw new Error("Invalid Token");
+        if (!isValidToken(token)) throw new Error("Invalid Token");
         UserJob userJob = controller.createUser(token, new UserJob(name, job));
     }
 
     public void listResources() throws IOException {
-        if (isValidToken(token)) throw new Error("Invalid Token");
+        if (!isValidToken(token)) throw new Error("Invalid Token");
         ListResources listResources = controller.listResources(token);
     }
 
     public void listUsers() throws IOException {
-        if (isValidToken(token)) throw new Error("Invalid Token");
+        if (!isValidToken(token)) throw new Error("Invalid Token");
         ListUsers listUsers = controller.listUsers(token);
     }
 
@@ -61,7 +61,7 @@ public class Client {
         if (!isValidIntegerArgument(id)) {
             throw new Error("Invalid Id");
         }
-        if (isValidToken(token)) throw new Error("Invalid Token");
+        if (!isValidToken(token)) throw new Error("Invalid Token");
         SingleResource singleResource = controller.singleResource(token, id);
     }
 
@@ -69,7 +69,7 @@ public class Client {
         if (!isValidIntegerArgument(id)) {
             throw new Error("Invalid Id");
         }
-        if (isValidToken(token)) throw new Error("Invalid Token");
+        if (!isValidToken(token)) throw new Error("Invalid Token");
         SingleUser singleUser = controller.singleUser(token, id);
     }
 }
