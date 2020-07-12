@@ -149,4 +149,6 @@ class CreateUserTest {
     void createUserSuccessful() {
         assertDoesNotThrow(() -> client.createUser("morpheus", "leader"));
     }
+
+
 }

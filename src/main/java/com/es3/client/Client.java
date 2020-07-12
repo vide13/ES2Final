@@ -1,7 +1,7 @@
 package com.es3.client;
 
-import com.es3.controller.ControllerAPI;
 import com.es3.controller.ControllerInterface;
+import com.es3.controller.ControllerSTUB;
 import com.es3.objects.*;
 
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import static com.es3.client.Validation.*;
 
 public class Client {
-    public static final ControllerInterface controller = new ControllerAPI();
+    public static final ControllerInterface controller = new ControllerSTUB();
     private static String token;
 
     private static Client client;
