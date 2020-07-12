@@ -33,6 +33,7 @@ class SingleResourceTest {
         assertThrows(Error.class, () -> client.singleResource(0));
     }
 
+    
     @Test
     void singleResourceSuccessful() {
         assertDoesNotThrow(() -> client.singleResource(2));
