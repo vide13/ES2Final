@@ -24,6 +24,8 @@ public class ControllerAPI implements ControllerInterface {
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
         checkResponse(response);
+        assert response.body() != null;
+        if (!response.body().getClass().equals(UserJob.class)) throw new Error("Invalid schema");
         return response.body();
     }
 
@@ -32,6 +34,8 @@ public class ControllerAPI implements ControllerInterface {
         Call<ListResources> request = endpoint.listResources(token);
         Response<ListResources> response = request.execute();
         checkResponse(response);
+        assert response.body() != null;
+        if (!response.body().getClass().equals(ListResources.class)) throw new Error("Invalid schema");
         return response.body();
     }
 
@@ -40,6 +44,8 @@ public class ControllerAPI implements ControllerInterface {
         Call<ListUsers> request = endpoint.listUsers(token);
         Response<ListUsers> response = request.execute();
         checkResponse(response);
+        assert response.body() != null;
+        if (!response.body().getClass().equals(ListUsers.class)) throw new Error("Invalid schema");
         return response.body();
     }
 
@@ -48,6 +54,8 @@ public class ControllerAPI implements ControllerInterface {
         Call<Login> request = endpoint.login(credentials.toJsonObject());
         Response<Login> response = request.execute();
         checkResponse(response);
+        assert response.body() != null;
+        if (!response.body().getClass().equals(Login.class)) throw new Error("Invalid schema");
         return response.body();
     }
 
@@ -56,6 +64,8 @@ public class ControllerAPI implements ControllerInterface {
         Call<Register> request = endpoint.register(credentials.toJsonObject());
         Response<Register> response = request.execute();
         checkResponse(response);
+        assert response.body() != null;
+        if (!response.body().getClass().equals(Register.class)) throw new Error("Invalid schema");
         return response.body();
     }
 
@@ -64,6 +74,8 @@ public class ControllerAPI implements ControllerInterface {
         Call<SingleResource> request = endpoint.singleResource(token, id);
         Response<SingleResource> response = request.execute();
         checkResponse(response);
+        assert response.body() != null;
+        if (!response.body().getClass().equals(SingleResource.class)) throw new Error("Invalid schema");
         return response.body();
     }
 
@@ -72,8 +84,9 @@ public class ControllerAPI implements ControllerInterface {
         Call<SingleUser> request = endpoint.singleUser(token, id);
         Response<SingleUser> response = request.execute();
         checkResponse(response);
+
         assert response.body() != null;
-        if (!response.body().getClass().equals(SingleUser.class)) throw new Error("ligma");
+        if (!response.body().getClass().equals(SingleUser.class)) throw new Error("Invalid schema");
         return response.body();
     }
 }
