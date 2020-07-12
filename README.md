@@ -83,9 +83,5 @@ A defesa do trabalho será feita em grupo, mas as questões serão colocadas pel
 ## Links
 
 * [reqres.in](https://reqres.in/)
-* [Relatório/Drive](https://estgv-my.sharepoint.com/:f:/g/personal/estgv17192_alunos_estgv_ipv_pt/EoCQycJ-dkRJmXUmPVd620QBkaKjBFH9Ml3vlyVSJ4aFoQ?e=3JOhQu) 
-* [Trello](https://trello.com/b/ElFgpmOJ)
 
-## Submissão
 
-* http://193.137.7.54/static/login.html
