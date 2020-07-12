@@ -19,18 +19,18 @@ class SingleResourceTest {
     }
 
     @Test
+    void singleResourceBigId() {
+        assertThrows(Error.class, () -> client.singleResource(10000));
+    }
+
+    @Test
     void singleResourceIdNull() {
         assertThrows(Error.class, () -> client.singleResource(null));
     }
 
     @Test
-    void singleResourceBigId() {
-        assertThrows(Error.class, () -> client.singleResource(1000000));
-    }
-
-    @Test
-    void singleResourceIdLesserThanZero() {
-        assertThrows(Error.class, () -> client.singleResource(-5));
+    void singleResourceIdZero() {
+        assertThrows(Error.class, () -> client.singleResource(0));
     }
 
     @Test
@@ -39,14 +39,17 @@ class SingleResourceTest {
     }
 
     @Test
-    void singleResourceSuccessfulMinimumId() {
-        assertDoesNotThrow(() -> client.singleResource(1));
-    }
-
-    @Test
     void singleResourceSuccessfulMaximumId() {
         assertDoesNotThrow(() -> client.singleResource(9999));
     }
 
+    @Test
+    void singleResourceSuccessfulMaximumIdMinus1() {
+        assertDoesNotThrow(() -> client.singleResource(9998));
+    }
 
+    @Test
+    void singleResourceSuccessfulMinimumId() {
+        assertDoesNotThrow(() -> client.singleResource(1));
+    }
 }
