@@ -1,5 +1,5 @@
 # Engenharia de Software II - Trabalho Final
-
+![Java CI with Maven](https://github.com/vide13/ES2Final/workflows/Java%20CI%20with%20Maven/badge.svg)
 ## Problema
 Pretende-se criar uma aplicação para fazer a gestão de utilizadores numa empresa. Os requisitos da aplicação são:
 
