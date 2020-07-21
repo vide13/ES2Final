@@ -74,7 +74,7 @@ Ficheiro RAR/ZIP com os seguintes elementos:
 
 ## Prazos
 
-O trabalho deverá ser submetido até 15/06/2020 para ser avaliado em época normal e 8/07/2020 para ser avaliado em época de recurso.
+Avaliação prevista para a época especial em setembro 2020.
 
 ## Defesa
 
