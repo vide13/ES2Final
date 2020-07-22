@@ -26,6 +26,18 @@ public class CreateUserTest {
                 "cityslicka"
         ).toJsonObject()).execute().body().getToken();
     }
+
+    @Test
+    void createUserResponseValid() throws IOException {
+
+    }
+
+    @Test
+    void createUserResponseInValid() throws IOException {
+
+    }
+
+
     @Test
     void crateUserBigNameBlankJob() throws IOException {
         UserJob user = new UserJob(BIG_STRING, " ");
