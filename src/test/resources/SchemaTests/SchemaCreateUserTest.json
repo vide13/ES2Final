@@ -1,22 +1,26 @@
 {
-    "scenarioName": "GIVEN- the GitHub REST end point, WHEN- I invoke GET, THEN- I will receive the 200 status with body",
+    "scenarioName": "SchemaCreateUserTest",
     "ignoreStepFailures": true,
     "steps": [
         {
-            "name": "get_user_details",
+            "name": "SchemaCreateUserTest",
             "url": "/api/users",
             "method": "POST",
             "request": {
                 "Authorization": "Basic Y2hhcmFhbnVzZXI6cGFzc3R3aXR0ZXI=",
-                "name": "morpheus",
-                "job": "leader"
+                "body": {
+                    "name": "morpheus",
+                    "job": "leader"
+                }
             },
             "verify": {
                 "status": 201,
                 "headers": {
-                    "Authenticathion": "Quero um auth"
+
                 },
                 "body": {
+                    "id": "$IS.NOTNULL",
+                    "createdAt": "$IS.NOTNULL"
                 }
             }
         }

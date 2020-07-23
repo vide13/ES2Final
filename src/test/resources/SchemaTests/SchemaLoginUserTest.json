@@ -1,0 +1,24 @@
+{
+  "scenarioName": "SchemaLoginUserTest",
+  "ignoreStepFailures": true,
+  "steps": [
+    {
+      "name": "SchemaLoginUserTest",
+      "url": "/api/login",
+      "method": "POST",
+      "request": {
+        "body": {
+          "email": "eve.holt@reqres.in",
+          "password": "pistol"
+        }
+      },
+      "verify": {
+        "status": 200,
+        "headers": {},
+        "body": {
+          "token": "QpwL5tke4Pnpja7X4"
+        }
+      }
+    }
+  ]
+}
