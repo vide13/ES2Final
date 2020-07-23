@@ -1,0 +1,14 @@
+os:
+  - linux
+language: java
+jdk:
+  - oraclejdk11
+env:
+  - WORKDIR=singletonpattern
+before_script:
+  - cd $WORKDIR
+  - mvn install -DskipTests=false -Dmaven.javadoc.skip=true -B -V
+script:
+  - mvn test
+after_success:
+  - bash <(curl -Ls https://coverage.codacy.com/get.sh)

@@ -1,6 +1,8 @@
 package com.es2.controller;
 
 import com.es2.HTTPClient.Retrofit;
+import com.es2.cache.Cache;
+import com.es2.cache.CacheTest;
 import com.es2.objects.*;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -9,7 +11,19 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class ControllerAPI implements ControllerInterface {
+
     private final Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
+
+
+    public static void main(String[] args) throws InterruptedException {
+        CacheTest Cache = new CacheTest();
+        System.out.println("\n\n==========Test1: TestAddRemoveObjects ==========");
+        Cache.TestAddRemoveObjects();
+        System.out.println("\n\n==========Test2: TestExpiredCacheObjects ==========");
+        Cache.TestExpiredCacheObjects();
+        System.out.println("\n\n==========Test3: TestObjectsCleanupTime ==========");
+        Cache.TestObjectsCleanupTime();
+    }
 
 
     @SuppressWarnings("rawtypes")
@@ -17,6 +31,17 @@ public class ControllerAPI implements ControllerInterface {
         if (response.code() > 299) {
             throw new Error(Objects.requireNonNull(response.errorBody()).string());
         }
+    }
+
+
+    public ListResources listResourcesCacheTest(String token) throws IOException {
+        Call<ListResources> request = endpoint.listResources(token);
+        Response<ListResources> response = request.execute();
+        checkResponse(response);
+        assert response.body() != null;
+        if (!response.body().getClass().equals(ListResources.class)) throw new Error("Invalid schema");
+        Cache.put(token, response.body().toString());
+        return response.body();
     }
 
     @Override
