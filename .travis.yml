@@ -2,9 +2,9 @@ os:
   - linux
 language: java
 jdk:
-  - oraclejdk11
+  - openjdk14
 env:
-  - WORKDIR=singletonpattern
+  - WORKDIR=ES2Final
 before_script:
   - cd $WORKDIR
   - mvn install -DskipTests=false -Dmaven.javadoc.skip=true -B -V

@@ -2,6 +2,7 @@
 ![Java CI with Maven](https://github.com/vide13/ES2Final/workflows/Java%20CI%20with%20Maven/badge.svg)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/f034c76051b548acbd10455092fa577b)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=vide13/ES2Final&amp;utm_campaign=Badge_Grade)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.com/vide13/ES2Final.svg?token=TdKbkE4GsRUaGKPb7pBK&branch=master)](https://travis-ci.com/vide13/ES2Final)
 
 ## Problema
 Pretende-se criar uma aplicação para fazer a gestão de utilizadores numa empresa. Os requisitos da aplicação são:
