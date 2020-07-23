@@ -20,74 +20,38 @@ class CreateUserTest {
         client.login("eve.holt@reqres.in", "cityslicka");
     }
 
+    /**
+     * White-Box Tests
+     */
+
     @Test
-    void crateUserBigNameBlankJob() {
-        assertThrows(Error.class, () -> client.createUser(bigWord, "  "));
+    void Successful() {
+        assertDoesNotThrow(() -> client.createUser("morpheus", "leader"));
     }
 
     @Test
-    void createUserBigNameBigJob() {
-        assertThrows(Error.class, () -> client.createUser(bigWord, bigWord));
+    void NullJob() {
+        assertThrows(Error.class, () -> client.createUser("morpheus", null));
     }
 
     @Test
-    void createUserBigNameEmptyJob() {
-        assertThrows(Error.class, () -> client.createUser(bigWord, ""));
+    void InvalidJob() {
+        assertThrows(Error.class, () -> client.createUser("morpheus", ""));
     }
 
     @Test
-    void createUserBigNameGoodJob() {
-        assertThrows(Error.class, () -> client.createUser(bigWord, "leader"));
+    void NullName() {
+        assertThrows(Error.class, () -> client.createUser(null, "leader"));
     }
 
     @Test
-    void createUserBigNameNullJob() {
-        assertThrows(Error.class, () -> client.createUser(bigWord, null));
-    }
-
-    @Test
-    void createUserBlankNameBlankJob() {
-        assertThrows(Error.class, () -> client.createUser("  ", "  "));
-    }
-
-    @Test
-    void createUserBlankNameEmptyJob() {
-        assertThrows(Error.class, () -> client.createUser("  ", ""));
+    void InvalidName() {
+        assertThrows(Error.class, () -> client.createUser("", "leader"));
     }
 
     @Test
     void createUserBlankNameGoodJob() {
         assertThrows(Error.class, () -> client.createUser("  ", "leader"));
-    }
-
-    @Test
-    void createUserBlankNameNullJob() {
-        assertThrows(Error.class, () -> client.createUser("  ", null));
-    }
-
-    @Test
-    void createUserEmptyNameBigJob() {
-        assertThrows(Error.class, () -> client.createUser("", bigWord));
-    }
-
-    @Test
-    void createUserEmptyNameBlankJob() {
-        assertThrows(Error.class, () -> client.createUser("", "  "));
-    }
-
-    @Test
-    void createUserEmptyNameEmptyJob() {
-        assertThrows(Error.class, () -> client.createUser("", ""));
-    }
-
-    @Test
-    void createUserEmptyNameGoodJob() {
-        assertThrows(Error.class, () -> client.createUser("", "leader"));
-    }
-
-    @Test
-    void createUserEmptyNameNullJob() {
-        assertThrows(Error.class, () -> client.createUser("", null));
     }
 
     @Test
@@ -101,16 +65,6 @@ class CreateUserTest {
     }
 
     @Test
-    void createUserGoodNameEmptyJob() {
-        assertThrows(Error.class, () -> client.createUser("morpheus", ""));
-    }
-
-    @Test
-    void createUserGoodNameNullJob() {
-        assertThrows(Error.class, () -> client.createUser("morpheus", null));
-    }
-
-    @Test
     void createUserMaximumNameGoodJob() {
         assertDoesNotThrow(() -> client.createUser(maximumWord, "leader"));
     }
@@ -121,34 +75,7 @@ class CreateUserTest {
     }
 
     @Test
-    void createUserNullNameBigJob() {
-        assertThrows(Error.class, () -> client.createUser(null, bigWord));
-    }
-
-    @Test
-    void createUserNullNameBlankJob() {
-        assertThrows(Error.class, () -> client.createUser(null, "  "));
-    }
-
-    @Test
-    void createUserNullNameEmptyJob() {
-        assertThrows(Error.class, () -> client.createUser(null, ""));
-    }
-
-    @Test
     void createUserNullNameGoodJob() {
         assertThrows(Error.class, () -> client.createUser(null, "leader"));
     }
-
-    @Test
-    void createUserNullNameNullJob() {
-        assertThrows(Error.class, () -> client.createUser(null, null));
-    }
-
-    @Test
-    void createUserSuccessful() {
-        assertDoesNotThrow(() -> client.createUser("morpheus", "leader"));
-    }
-
-
 }
