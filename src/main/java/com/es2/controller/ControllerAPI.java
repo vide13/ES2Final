@@ -1,7 +1,6 @@
 package com.es2.controller;
 
 import com.es2.HTTPClient.Retrofit;
-import com.es2.cache.Cache;
 import com.es2.cache.CacheTest;
 import com.es2.objects.*;
 import retrofit2.Call;
@@ -40,7 +39,6 @@ public class ControllerAPI implements ControllerInterface {
         checkResponse(response);
         assert response.body() != null;
         if (!response.body().getClass().equals(ListResources.class)) throw new Error("Invalid schema");
-        Cache.put(token, response.body().toString());
         return response.body();
     }
 
