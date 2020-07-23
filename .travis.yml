@@ -6,7 +6,6 @@ jdk:
 env:
   - WORKDIR=ES2Final
 before_script:
-  - cd $WORKDIR
   - mvn install -DskipTests=false -Dmaven.javadoc.skip=true -B -V
 script:
   - mvn test
