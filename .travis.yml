@@ -5,9 +5,5 @@ jdk:
   - openjdk14
 env:
   - WORKDIR=ES2Final
-before_script:
-  - mvn install -DskipTests=false -Dmaven.javadoc.skip=true -B -V
-script:
-  - mvn test
 after_success:
   - bash <(curl -Ls https://coverage.codacy.com/get.sh)
