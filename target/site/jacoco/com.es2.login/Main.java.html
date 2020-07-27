@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Main.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ES2Final</a> &gt; <a href="index.source.html" class="el_package">com.es2.login</a> &gt; <span class="el_source">Main.java</span></div><h1>Main.java</h1><pre class="source lang-java linenums">package com.es2.login;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+
+<span class="nc" id="L7">public class Main {</span>
+
+
+
+
+
+    public static void main(String[] args){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="nc" id="L28">        String targetURL = &quot;https://reqres.in/api/users?page=2&quot;;</span>
+<span class="nc" id="L29">        String urlParameters= &quot;&quot;;</span>
+<span class="nc" id="L30">        String response = executePost(targetURL,urlParameters);</span>
+<span class="nc" id="L31">        System.out.println(response);</span>
+<span class="nc" id="L32">    }</span>
+
+    public static String executePost(String targetURL, String urlParameters) {
+<span class="nc" id="L35">        HttpURLConnection connection = null;</span>
+        try {
+            //Create connection
+<span class="nc" id="L38">            URL url = new URL(targetURL);</span>
+<span class="nc" id="L39">            connection = (HttpURLConnection) url.openConnection();</span>
+<span class="nc" id="L40">            connection.setRequestMethod(&quot;POST&quot;);</span>
+<span class="nc" id="L41">            connection.setRequestProperty(&quot;Content-Type&quot;,</span>
+                    &quot;application/x-www-form-urlencoded&quot;);
+
+<span class="nc" id="L44">            connection.setRequestProperty(&quot;Content-Length&quot;,</span>
+<span class="nc" id="L45">                    Integer.toString(urlParameters.getBytes().length));</span>
+<span class="nc" id="L46">            connection.setRequestProperty(&quot;Content-Language&quot;, &quot;en-US&quot;);</span>
+
+<span class="nc" id="L48">            connection.setUseCaches(false);</span>
+<span class="nc" id="L49">            connection.setDoOutput(true);</span>
+
+            //Send request
+<span class="nc" id="L52">            DataOutputStream wr = new DataOutputStream (</span>
+<span class="nc" id="L53">                    connection.getOutputStream());</span>
+<span class="nc" id="L54">            wr.writeBytes(urlParameters);</span>
+<span class="nc" id="L55">            wr.close();</span>
+
+            //Get Response
+<span class="nc" id="L58">            InputStream is = connection.getInputStream();</span>
+<span class="nc" id="L59">            BufferedReader rd = new BufferedReader(new InputStreamReader(is));</span>
+<span class="nc" id="L60">            StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+</span>
+            String line;
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            while ((line = rd.readLine()) != null) {</span>
+<span class="nc" id="L63">                response.append(line);</span>
+<span class="nc" id="L64">                response.append('\r');</span>
+            }
+<span class="nc" id="L66">            rd.close();</span>
+<span class="nc" id="L67">            return response.toString();</span>
+<span class="nc" id="L68">        } catch (Exception e) {</span>
+<span class="nc" id="L69">            e.printStackTrace();</span>
+<span class="nc" id="L70">            return null;</span>
+        } finally {
+<span class="nc bnc" id="L72" title="All 2 branches missed.">            if (connection != null) {</span>
+<span class="nc" id="L73">                connection.disconnect();</span>
+            }
+        }
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

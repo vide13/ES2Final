@@ -1,0 +1,32 @@
+{
+    "scenarioName": "SchemaCreateUserTest",
+    "ignoreStepFailures": true,
+    "steps": [
+        {
+            "name": "SchemaCreateUserTest",
+            "url": "/api/users",
+            "method": "POST",
+            "request": {
+                "Authorization": "Basic Y2hhcmFhbnVzZXI6cGFzc3R3aXR0ZXI=",
+                "body": {
+                    "name": "morpheus",
+                    "job": "leader"
+                }
+            },
+            "verify": {
+                "status": 201,
+                "headers": {
+
+                },
+                "body": {
+                    "id": "$IS.NOTNULL",
+                    "createdAt": "$IS.NOTNULL"
+                }
+            }
+        }
+    ]
+}
+
+
+
+

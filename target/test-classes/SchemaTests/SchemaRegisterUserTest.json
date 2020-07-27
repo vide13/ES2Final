@@ -1,0 +1,26 @@
+{
+  "scenarioName": "SchemaRegisterUserTest",
+  "ignoreStepFailures": true,
+  "steps": [
+    {
+      "name": "SchemaRegisterUserTest",
+      "url": "/api/register",
+      "method": "POST",
+      "request": {
+        "body": {
+          "email": "eve.holt@reqres.in",
+          "password": "pistol"
+        }
+      },
+      "verify": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "id": 4,
+          "token": "QpwL5tke4Pnpja7X4"
+        }
+      }
+    }
+  ]
+}
