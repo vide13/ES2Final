@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class CreateUserTest {
 
     private static Client client;
-    String bigWord = "estastringtemmaisdecinquentacarcatereseserautilizadaparanomesejobs";
-    String maximumWord = "esta_string_tem_exatamente_cinquenta_caracteres_ab";
+    String FIFTY_ONE_CHARACTER_WORD = "esta_string_tem_exatamente_cinquenta_e_um_caractere";
+    String FIFTY_CHARACTER_WORD = "esta_string_tem_exatamente_cinquenta_caracteres_ab";
 
     @BeforeAll
     static void setup() throws IOException {
@@ -35,8 +35,8 @@ class CreateUserTest {
     }
 
     @Test
-    void InvalidJob() {
-        assertThrows(Error.class, () -> client.createUser("morpheus", ""));
+    void createUserGoodNameBlankJob() {
+        assertThrows(Error.class, () -> client.createUser("morpheus", " "));
     }
 
     @Test
@@ -45,37 +45,58 @@ class CreateUserTest {
     }
 
     @Test
-    void InvalidName() {
+    void createUserBlankNameGoodJob() {
+        assertThrows(Error.class, () -> client.createUser(" ", "leader"));
+    }
+
+    /**
+     * Boundary-value analysis
+     *
+     * Job Always Valid
+     */
+
+    @Test
+    void ZeroCharactersName() {
         assertThrows(Error.class, () -> client.createUser("", "leader"));
     }
 
     @Test
-    void createUserBlankNameGoodJob() {
-        assertThrows(Error.class, () -> client.createUser("  ", "leader"));
+    void OneCharacterName() {
+        assertThrows(Error.class, () -> client.createUser("a", "leader"));
     }
 
     @Test
-    void createUserGoodNameBigJob() {
-        assertThrows(Error.class, () -> client.createUser("morpheus", bigWord));
+    void FiftyCharactersName() {
+        assertThrows(Error.class, () -> client.createUser(FIFTY_CHARACTER_WORD, "leader"));
     }
 
     @Test
-    void createUserGoodNameBlankJob() {
-        assertThrows(Error.class, () -> client.createUser("morpheus", "  "));
+    void FiftyOneCharactersName() {
+        assertThrows(Error.class, () -> client.createUser(FIFTY_ONE_CHARACTER_WORD, "leader"));
+    }
+
+    /**
+     * Name Always Valid
+     */
+
+    @Test
+    void InvalidJob() {
+        assertThrows(Error.class, () -> client.createUser("morpheus", ""));
     }
 
     @Test
-    void createUserMaximumNameGoodJob() {
-        assertDoesNotThrow(() -> client.createUser(maximumWord, "leader"));
+    void OneCharacterJob() {
+        assertThrows(Error.class, () -> client.createUser("morpheus", "a"));
     }
 
     @Test
-    void createUserMinimumNameGoodJob() {
-        assertDoesNotThrow(() -> client.createUser("a", "leader"));
+    void FiftyCharactersJob() {
+        assertThrows(Error.class, () -> client.createUser("morpheus", FIFTY_CHARACTER_WORD));
     }
 
     @Test
-    void createUserNullNameGoodJob() {
-        assertThrows(Error.class, () -> client.createUser(null, "leader"));
+    void FiftyOneCharactersJob() {
+        assertThrows(Error.class, () -> client.createUser("morpheus", FIFTY_ONE_CHARACTER_WORD));
     }
+    
 }
