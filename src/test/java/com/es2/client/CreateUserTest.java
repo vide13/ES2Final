@@ -56,13 +56,13 @@ class CreateUserTest {
      */
 
     @Test
-    void ZeroCharactersName() {
-        assertThrows(Error.class, () -> client.createUser("", "leader"));
+    void OneCharactersName() {
+        assertThrows(Error.class, () -> client.createUser("a", "leader"));
     }
 
     @Test
-    void OneCharacterName() {
-        assertThrows(Error.class, () -> client.createUser("a", "leader"));
+    void TwoCharacterName() {
+        assertThrows(Error.class, () -> client.createUser("bb", "leader"));
     }
 
     @Test
@@ -80,13 +80,13 @@ class CreateUserTest {
      */
 
     @Test
-    void InvalidJob() {
-        assertThrows(Error.class, () -> client.createUser("morpheus", ""));
+    void OneCharacterJob() {
+        assertThrows(Error.class, () -> client.createUser("morpheus", "a"));
     }
 
     @Test
-    void OneCharacterJob() {
-        assertThrows(Error.class, () -> client.createUser("morpheus", "a"));
+    void TwoCharacterJob() {
+        assertThrows(Error.class, () -> client.createUser("morpheus", "bb"));
     }
 
     @Test
