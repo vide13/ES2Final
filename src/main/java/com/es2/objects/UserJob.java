@@ -34,10 +34,6 @@ public class UserJob {
         return job;
     }
 
-    public void setJob(String job) {
-        this.job = job;
-    }
-
     public String getId() {
         return id;
     }

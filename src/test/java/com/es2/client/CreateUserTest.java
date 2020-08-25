@@ -35,7 +35,7 @@ class CreateUserTest {
     }
 
     @Test
-    void createUserGoodNameBlankJob() {
+    void BlankJob() {
         assertThrows(Error.class, () -> client.createUser("morpheus", " "));
     }
 
@@ -45,7 +45,7 @@ class CreateUserTest {
     }
 
     @Test
-    void createUserBlankNameGoodJob() {
+    void BlankName() {
         assertThrows(Error.class, () -> client.createUser(" ", "leader"));
     }
 
@@ -56,7 +56,7 @@ class CreateUserTest {
      */
 
     @Test
-    void OneCharactersName() {
+    void OneCharacterName() {
         assertThrows(Error.class, () -> client.createUser("a", "leader"));
     }
 
@@ -85,7 +85,7 @@ class CreateUserTest {
     }
 
     @Test
-    void TwoCharacterJob() {
+    void TwoCharactersJob() {
         assertThrows(Error.class, () -> client.createUser("morpheus", "bb"));
     }
 

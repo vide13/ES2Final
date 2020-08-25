@@ -21,26 +21,6 @@ public class ListUsers {
         this.data = data;
     }
 
-    public Integer getPage() {
-        return page;
-    }
-
-    public Integer getPer_page() {
-        return per_page;
-    }
-
-    public Integer getTotal() {
-        return total;
-    }
-
-    public Integer getTotal_pages() {
-        return total_pages;
-    }
-
-    public ArrayList<UserData> getData() {
-        return data;
-    }
-
     public JsonObject toJsonObject() {
         return new JsonParser().parse(new Gson().toJson(this)).getAsJsonObject();
     }
