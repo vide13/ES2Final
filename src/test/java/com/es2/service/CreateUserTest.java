@@ -13,10 +13,14 @@ import retrofit2.Response;
 import java.io.IOException;
 
 public class CreateUserTest {
-    private final String BIG_STRING = "estaStringTemMaisDeCinquentaCaracteresAoTodoSaoMais";
     private static Endpoint endpoint;
     private static String token;
+    private final String FIFTY_ONE_CHARACTER_WORD = "esta_string_tem_exatamente_cinquenta_e_um_caractere";
+    private final String FIFTY_CHARACTER_WORD = "esta_string_tem_exatamente_cinquenta_caracteres_ab";
 
+    /**
+     * Setup token required to call certain functionalities
+     */
     @BeforeAll
     static void setup() throws IOException {
         endpoint = Retrofit.getClient().create(Endpoint.class);
@@ -27,243 +31,121 @@ public class CreateUserTest {
         ).toJsonObject()).execute().body().getToken();
     }
 
-    @Test
-    void createUserResponseValid() throws IOException {
-
-    }
-
-    @Test
-    void createUserResponseInValid() throws IOException {
-
-    }
-
+    /**
+     * Black-Box Tests
+     */
 
     @Test
-    void crateUserBigNameBlankJob() throws IOException {
-        UserJob user = new UserJob(BIG_STRING, " ");
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserBigNameBigJob() throws IOException {
-        UserJob user = new UserJob(BIG_STRING, BIG_STRING);
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserBigNameEmptyJob() throws IOException {
-        UserJob user = new UserJob(BIG_STRING, "");
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserBigNameGoodJob() throws IOException {
-        UserJob user = new UserJob(BIG_STRING, "leader");
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserBigNameNullJob() throws IOException {
-        UserJob user = new UserJob(BIG_STRING, null);
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserBlankNameBlankJob() throws IOException {
-        UserJob user = new UserJob(" ", " ");
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserBlankNameEmptyJob() throws IOException {
-        UserJob user = new UserJob(" ", "");
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserBlankNameGoodJob() throws IOException {
-        UserJob user = new UserJob(" ", "leader");
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserBlankNameNullJob() throws IOException {
-        UserJob user = new UserJob(" ", null);
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserEmptyNameBigJob() throws IOException {
-        UserJob user = new UserJob("", BIG_STRING);
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserEmptyNameBlankJob() throws IOException {
-        UserJob user = new UserJob("", " ");
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserEmptyNameEmptyJob() throws IOException {
-        UserJob user = new UserJob("", "");
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserEmptyNameGoodJob() throws IOException {
-        UserJob user = new UserJob("", "leader");
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserEmptyNameNullJob() throws IOException {
-        UserJob user = new UserJob("", null);
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserGoodNameBigJob() throws IOException {
-        UserJob user = new UserJob("morpheus", BIG_STRING);
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserGoodNameBlankJob() throws IOException {
-        UserJob user = new UserJob("morpheus", " ");
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserGoodNameEmptyJob() throws IOException {
-        UserJob user = new UserJob("morpheus", "");
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserGoodNameNullJob() throws IOException {
-        UserJob user = new UserJob("morpheus", null);
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserNullNameBigJob() throws IOException {
-        UserJob user = new UserJob(null, BIG_STRING);
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserNullNameBlankJob() throws IOException {
-        UserJob user = new UserJob(null, " ");
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserNullNameEmptyJob() throws IOException {
-        UserJob user = new UserJob(" ", " ");
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserNullNameGoodJob() throws IOException {
-        UserJob user = new UserJob(null, "leader");
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserNullNameNullJob() throws IOException {
-        UserJob user = new UserJob(null, null);
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void createUserSuccessful() throws IOException {
+    void Successful() throws IOException {
         UserJob user = new UserJob("morpheus", "leader");
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
         Assertions.assertEquals(201, response.code());
-        assert response.body() != null;
-        Assertions.assertEquals("morpheus", response.body().getName());
-        Assertions.assertEquals("leader", response.body().getJob());
-        Assertions.assertNotNull(response.body().getId());
-        Assertions.assertNotNull(response.body().getCreatedAt());
     }
 
     @Test
-    void createUserUnsuccessfulNoToken() throws IOException {
-        UserJob user = new UserJob("morpheus", "leader");
-        Call<UserJob> request = endpoint.createUser(null, user.toJsonObject());
+    void NullJob() throws IOException {
+        UserJob user = new UserJob("morpheus", null);
+        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
-        Assertions.assertTrue(response.code() > 299);
-        Assertions.assertNull(response.body());
+        Assertions.assertTrue(response.code() > 399);
+    }
+
+    @Test
+    void BlankJob() throws IOException {
+        UserJob user = new UserJob("morpheus", null);
+        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
+        Response<UserJob> response = request.execute();
+        Assertions.assertTrue(response.code() > 399);
+    }
+
+    @Test
+    void NullName() throws IOException {
+        UserJob user = new UserJob(null, "leader");
+        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
+        Response<UserJob> response = request.execute();
+        Assertions.assertTrue(response.code() > 399);
+    }
+
+    @Test
+    void BlankName() throws IOException {
+        UserJob user = new UserJob(" ", "leader");
+        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
+        Response<UserJob> response = request.execute();
+        Assertions.assertTrue(response.code() > 399);
+    }
+
+    /**
+     * Boundary-value analysis
+     * <p>
+     * Name Always Valid
+     */
+    @Test
+    void LowerInvalidBoundaryJob() throws IOException {
+        UserJob user = new UserJob("morpheus", "l");
+        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
+        Response<UserJob> response = request.execute();
+        Assertions.assertTrue(response.code() > 399);
+    }
+
+    @Test
+    void LowerValidBoundaryJob() throws IOException {
+        UserJob user = new UserJob("morpheus", "le");
+        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
+        Response<UserJob> response = request.execute();
+        Assertions.assertEquals(201, response.code());
+    }
+
+    @Test
+    void UpperValidBoundaryJob() throws IOException {
+        UserJob user = new UserJob("morpheus", FIFTY_CHARACTER_WORD);
+        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
+        Response<UserJob> response = request.execute();
+        Assertions.assertEquals(201, response.code());
+    }
+
+    @Test
+    void UpperInvalidBoundaryJob() throws IOException {
+        UserJob user = new UserJob("morpheus", FIFTY_ONE_CHARACTER_WORD);
+        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
+        Response<UserJob> response = request.execute();
+        Assertions.assertTrue(response.code() > 399);
+    }
+
+
+    /**
+     * Job Always Valid
+     */
+
+    @Test
+    void LowerInvalidBoundaryName() throws IOException {
+        UserJob user = new UserJob("m", "leader");
+        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
+        Response<UserJob> response = request.execute();
+        Assertions.assertTrue(response.code() > 399);
+    }
+
+    @Test
+    void LowerValidBoundaryName() throws IOException {
+        UserJob user = new UserJob("mo", "leader");
+        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
+        Response<UserJob> response = request.execute();
+        Assertions.assertEquals(201, response.code());
+    }
+
+    @Test
+    void UpperValidBoundaryName() throws IOException {
+        UserJob user = new UserJob(FIFTY_CHARACTER_WORD, "leader");
+        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
+        Response<UserJob> response = request.execute();
+        Assertions.assertEquals(201, response.code());
+    }
+
+    @Test
+    void UpperInvalidBoundaryName() throws IOException {
+        UserJob user = new UserJob(FIFTY_ONE_CHARACTER_WORD, "leader");
+        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
+        Response<UserJob> response = request.execute();
+        Assertions.assertTrue(response.code() > 399);
     }
 }
