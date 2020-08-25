@@ -187,3 +187,4 @@ hs_err_pid*
 
 # End of https://www.gitignore.io/api/java,eclipse,intellij
 target/classes/META-INF/ES2Final.kotlin_module
+target/
