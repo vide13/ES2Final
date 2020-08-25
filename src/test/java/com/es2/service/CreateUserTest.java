@@ -53,7 +53,7 @@ public class CreateUserTest {
 
     @Test
     void BlankJob() throws IOException {
-        UserJob user = new UserJob("morpheus", null);
+        UserJob user = new UserJob("morpheus", " ");
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
         Assertions.assertTrue(response.code() > 399);
@@ -147,5 +147,21 @@ public class CreateUserTest {
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
         Assertions.assertTrue(response.code() > 399);
+    }
+
+    @Test
+    void InvalidToken() throws IOException {
+        UserJob user = new UserJob("morpheus", "leader");
+        Call<UserJob> request = endpoint.createUser("token_invalido", user.toJsonObject());
+        Response<UserJob> response = request.execute();
+        Assertions.assertEquals(400, response.code());
+    }
+
+    @Test
+    void NullToken() throws IOException {
+        UserJob user = new UserJob("morpheus", "leader");
+        Call<UserJob> request = endpoint.createUser(null, user.toJsonObject());
+        Response<UserJob> response = request.execute();
+        Assertions.assertEquals(400, response.code());
     }
 }

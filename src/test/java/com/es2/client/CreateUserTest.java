@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class CreateUserTest {
 
     private static Client client;
-    String FIFTY_ONE_CHARACTER_WORD = "esta_string_tem_exatamente_cinquenta_e_um_caractere";
-    String FIFTY_CHARACTER_WORD = "esta_string_tem_exatamente_cinquenta_caracteres_ab";
+    private final String FIFTY_ONE_CHARACTER_WORD = "esta_string_tem_exatamente_cinquenta_e_um_caractere";
+    private final String FIFTY_CHARACTER_WORD = "esta_string_tem_exatamente_cinquenta_caracteres_ab";
 
     @BeforeAll
     static void setup() throws IOException {
@@ -52,50 +52,50 @@ class CreateUserTest {
     /**
      * Boundary-value analysis
      *
-     * Job Always Valid
-     */
-
-    @Test
-    void OneCharacterName() {
-        assertThrows(Error.class, () -> client.createUser("a", "leader"));
-    }
-
-    @Test
-    void TwoCharacterName() {
-        assertThrows(Error.class, () -> client.createUser("bb", "leader"));
-    }
-
-    @Test
-    void FiftyCharactersName() {
-        assertThrows(Error.class, () -> client.createUser(FIFTY_CHARACTER_WORD, "leader"));
-    }
-
-    @Test
-    void FiftyOneCharactersName() {
-        assertThrows(Error.class, () -> client.createUser(FIFTY_ONE_CHARACTER_WORD, "leader"));
-    }
-
-    /**
      * Name Always Valid
      */
 
     @Test
-    void OneCharacterJob() {
+    void LowerInvalidBoundaryName() {
+        assertThrows(Error.class, () -> client.createUser("a", "leader"));
+    }
+
+    @Test
+    void LowerValidBoundaryName() {
+        assertThrows(Error.class, () -> client.createUser("bb", "leader"));
+    }
+
+    @Test
+    void UpperValidBoundaryName() {
+        assertThrows(Error.class, () -> client.createUser(FIFTY_CHARACTER_WORD, "leader"));
+    }
+
+    @Test
+    void UpperInvalidBoundaryName() {
+        assertThrows(Error.class, () -> client.createUser(FIFTY_ONE_CHARACTER_WORD, "leader"));
+    }
+
+    /**
+     * Job Always Valid
+     */
+
+    @Test
+    void LowerInvalidBoundaryJob() {
         assertThrows(Error.class, () -> client.createUser("morpheus", "a"));
     }
 
     @Test
-    void TwoCharactersJob() {
+    void LowerValidBoundaryJob() {
         assertThrows(Error.class, () -> client.createUser("morpheus", "bb"));
     }
 
     @Test
-    void FiftyCharactersJob() {
+    void UpperValidBoundaryJob() {
         assertThrows(Error.class, () -> client.createUser("morpheus", FIFTY_CHARACTER_WORD));
     }
 
     @Test
-    void FiftyOneCharactersJob() {
+    void UpperInvalidBoundaryJob() {
         assertThrows(Error.class, () -> client.createUser("morpheus", FIFTY_ONE_CHARACTER_WORD));
     }
     
