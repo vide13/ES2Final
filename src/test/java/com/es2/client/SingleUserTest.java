@@ -16,8 +16,10 @@ class SingleUserTest {
     @BeforeAll
     static void setup() {
         client = Client.getClient();
-        //Need token?
-        //client.login("eve.holt@reqres.in", "cityslicka");
+        /*
+        Need token?
+        client.login("eve.holt@reqres.in", "cityslicka");
+        */
     }
 
     @Test

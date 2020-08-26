@@ -14,7 +14,10 @@ class ListUsersTest {
     @BeforeAll
     static void setup() throws IOException {
         client = Client.getClient();
+        /*
+        Need token?
         client.login("eve.holt@reqres.in", "cityslicka");
+        */
     }
 
     @Test
