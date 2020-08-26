@@ -1,7 +1,7 @@
 package com.es2.exceptions;
 
-public class InvalidJobException extends Exception {
-    public InvalidJobException(String message) {
+public class InvalidNameException extends Exception {
+    public InvalidNameException(String message) {
         super(message);
     }
 }

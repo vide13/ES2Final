@@ -1,7 +1,7 @@
 package com.es2.exceptions;
 
-public class NullJobException extends Exception {
-    public NullJobException(String message) {
+public class InvalidJobException extends Exception {
+    public InvalidJobException(String message) {
         super(message);
     }
 }

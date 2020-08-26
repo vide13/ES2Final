@@ -1,7 +1,7 @@
 package com.es2.exceptions;
 
-public class InvalidNameException extends Exception {
-    public InvalidNameException(String message) {
+public class NullNameException extends Exception {
+    public NullNameException(String message) {
         super(message);
     }
 }
