@@ -1,8 +1,12 @@
 package com.es2.client;
 
+import com.es2.exceptions.InvalidJobException;
+import com.es2.exceptions.NullJobException;
+import com.es2.exceptions.NullNameException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import javax.naming.InvalidNameException;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -31,72 +35,71 @@ class CreateUserTest {
 
     @Test
     void NullJob() {
-        assertThrows(Error.class, () -> client.createUser("morpheus", null));
+        assertThrows(NullJobException.class, () -> client.createUser("morpheus", null));
     }
 
     @Test
     void BlankJob() {
-        assertThrows(Error.class, () -> client.createUser("morpheus", " "));
+        assertThrows(InvalidJobException.class, () -> client.createUser("morpheus", " "));
     }
 
     @Test
     void NullName() {
-        assertThrows(Error.class, () -> client.createUser(null, "leader"));
+        assertThrows(NullNameException.class, () -> client.createUser(null, "leader"));
     }
 
     @Test
     void BlankName() {
-        assertThrows(Error.class, () -> client.createUser(" ", "leader"));
+        assertThrows(InvalidNameException.class, () -> client.createUser(" ", "leader"));
     }
 
     /**
      * Boundary-value analysis
-     *
-     * Name Always Valid
-     */
-
-    @Test
-    void LowerInvalidBoundaryName() {
-        assertThrows(Error.class, () -> client.createUser("a", "leader"));
-    }
-
-    @Test
-    void LowerValidBoundaryName() {
-        assertThrows(Error.class, () -> client.createUser("bb", "leader"));
-    }
-
-    @Test
-    void UpperValidBoundaryName() {
-        assertThrows(Error.class, () -> client.createUser(FIFTY_CHARACTER_WORD, "leader"));
-    }
-
-    @Test
-    void UpperInvalidBoundaryName() {
-        assertThrows(Error.class, () -> client.createUser(FIFTY_ONE_CHARACTER_WORD, "leader"));
-    }
-
-    /**
+     * <p>
      * Job Always Valid
      */
 
     @Test
+    void LowerInvalidBoundaryName() {
+        assertThrows(InvalidNameException.class, () -> client.createUser("a", "leader"));
+    }
+
+    @Test
+    void LowerValidBoundaryName() {
+        assertDoesNotThrow(() -> client.createUser("bb", "leader"));
+    }
+
+    @Test
+    void UpperValidBoundaryName() {
+        assertDoesNotThrow(() -> client.createUser(FIFTY_CHARACTER_WORD, "leader"));
+    }
+
+    @Test
+    void UpperInvalidBoundaryName() {
+        assertThrows(InvalidNameException.class, () -> client.createUser(FIFTY_ONE_CHARACTER_WORD, "leader"));
+    }
+
+    /**
+     * Name Always Valid
+     */
+
+    @Test
     void LowerInvalidBoundaryJob() {
-        assertThrows(Error.class, () -> client.createUser("morpheus", "a"));
+        assertThrows(InvalidJobException.class, () -> client.createUser("morpheus", "a"));
     }
 
     @Test
     void LowerValidBoundaryJob() {
-        assertThrows(Error.class, () -> client.createUser("morpheus", "bb"));
+        assertDoesNotThrow(() -> client.createUser("morpheus", "bb"));
     }
 
     @Test
     void UpperValidBoundaryJob() {
-        assertThrows(Error.class, () -> client.createUser("morpheus", FIFTY_CHARACTER_WORD));
+        assertDoesNotThrow(() -> client.createUser("morpheus", FIFTY_CHARACTER_WORD));
     }
 
     @Test
     void UpperInvalidBoundaryJob() {
-        assertThrows(Error.class, () -> client.createUser("morpheus", FIFTY_ONE_CHARACTER_WORD));
+        assertThrows(InvalidJobException.class, () -> client.createUser("morpheus", FIFTY_ONE_CHARACTER_WORD));
     }
-    
 }
