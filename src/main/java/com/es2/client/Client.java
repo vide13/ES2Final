@@ -2,6 +2,7 @@ package com.es2.client;
 
 import com.es2.controller.ControllerAPI;
 import com.es2.controller.ControllerInterface;
+import com.es2.exceptions.InvalidIdException;
 import com.es2.objects.*;
 
 import java.io.IOException;
@@ -65,9 +66,9 @@ public class Client {
         SingleResource singleResource = controller.singleResource(token, id);
     }
 
-    public void singleUser(Integer id) throws IOException {
+    public void singleUser(Integer id) throws IOException, InvalidIdException {
         if (!isValidIntegerArgument(id)) {
-            throw new Error("Invalid Id");
+            throw new InvalidIdException("Invalid Id");
         }
         if (!isValidToken(token)) throw new Error("Invalid Token");
         SingleUser singleUser = controller.singleUser(token, id);
