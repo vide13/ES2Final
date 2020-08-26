@@ -52,7 +52,7 @@ public class Client {
     }
 
     public void register(String email, String password) throws IOException {
-        if (!isValidStringArgument(email) || !isValidStringArgument(password)) {
+        if (!isValidStringArgument(email) || !isValidPasswordArgument(password)) {
             throw new Error("Invalid email or password");
         }
         Register register = controller.register(new Credentials(email, password));

@@ -1,9 +1,11 @@
 package com.es2.client;
 
+import com.es2.exceptions.InvalidEmailException;
+import com.es2.exceptions.InvalidPasswordException;
+import com.es2.exceptions.NullEmailException;
+import com.es2.exceptions.NullPasswordException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -11,142 +13,86 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class RegisterUserTest {
 
     private static Client client;
-    String bigWord = "estastringtemmaisdecinquentacarcatereseserautilizadaparanomesejobs";
-    String maximumWord = "esta_string_tem_exatamente_cinquenta_caracteres_ab";
+    private final String WORD_WHIT_128_CHARACTER = "esta_string_tem_exatamente_128_caracteres_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz";
+    private final String EIGHT_CHARACTER_WORD = "TestPassword";
 
     @BeforeAll
-    static void setup() throws IOException {
+    static void setup() {
         client = Client.getClient();
-        client.login("eve.holt@reqres.in", "cityslicka");
     }
 
     @Test
-    void createUserBlankEmailGoodPassword() {
-        assertThrows(Error.class, () -> client.register("  ", "pistol"));
-    }
-
-    @Test
-    void registerUserBigEmailBigPassword() {
-        assertThrows(Error.class, () -> client.register(bigWord, bigWord));
-    }
-
-    @Test
-    void registerUserBigEmailBlankPassword() {
-        assertThrows(Error.class, () -> client.register(bigWord, "  "));
-    }
-
-    @Test
-    void registerUserBigEmailEmptyPassword() {
-        assertThrows(Error.class, () -> client.register(bigWord, ""));
-    }
-
-    @Test
-    void registerUserBigEmailGoodPassword() {
-        assertThrows(Error.class, () -> client.register(bigWord, "pistol"));
-    }
-
-    @Test
-    void registerUserBigEmailNullPassword() {
-        assertThrows(Error.class, () -> client.register(bigWord, null));
-    }
-
-    @Test
-    void registerUserBlankEmailBlankPassword() {
-        assertThrows(Error.class, () -> client.register("  ", "  "));
-    }
-
-    @Test
-    void registerUserBlankEmailEmptyPassword() {
-        assertThrows(Error.class, () -> client.register("  ", ""));
-    }
-
-    @Test
-    void registerUserBlankEmailNullPassword() {
-        assertThrows(Error.class, () -> client.register("  ", null));
-    }
-
-    @Test
-    void registerUserEmptyEmailBigPassword() {
-        assertThrows(Error.class, () -> client.register("", bigWord));
-    }
-
-    @Test
-    void registerUserEmptyEmailBlankPassword() {
-        assertThrows(Error.class, () -> client.register("", "  "));
-    }
-
-    @Test
-    void registerUserEmptyEmailEmptyPassword() {
-        assertThrows(Error.class, () -> client.register("", ""));
-    }
-
-    @Test
-    void registerUserEmptyEmailGoodPassword() {
-        assertThrows(Error.class, () -> client.register("", "pistol"));
-    }
-
-    @Test
-    void registerUserEmptyEmailNullPassword() {
-        assertThrows(Error.class, () -> client.register("", null));
-    }
-
-    @Test
-    void registerUserGoodEmailBigPassword() {
-        assertThrows(Error.class, () -> client.register("eve.holt@reqres.in", bigWord));
-    }
-
-    @Test
-    void registerUserGoodEmailBlankPassword() {
-        assertThrows(Error.class, () -> client.register("eve.holt@reqres.in", "  "));
-    }
-
-    @Test
-    void registerUserGoodEmailEmptyPassword() {
-        assertThrows(Error.class, () -> client.register("eve.holt@reqres.in", ""));
-    }
-
-    @Test
-    void registerUserGoodEmailNullPassword() {
-        assertThrows(Error.class, () -> client.register("eve.holt@reqres.in", null));
-    }
-
-    @Test
-    void registerUserMaximumNameGoodJob() {
-        assertDoesNotThrow(() -> client.register(maximumWord, "pistol"));
-    }
-
-    @Test
-    void registerUserMinimumNameGoodJob() {
-        assertDoesNotThrow(() -> client.register("a", "pistol"));
-    }
-
-    @Test
-    void registerUserNullEmailBigPassword() {
-        assertThrows(Error.class, () -> client.register(null, bigWord));
-    }
-
-    @Test
-    void registerUserNullEmailBlankPassword() {
-        assertThrows(Error.class, () -> client.register(null, "  "));
-    }
-
-    @Test
-    void registerUserNullEmailEmptyPassword() {
-        assertThrows(Error.class, () -> client.register(null, ""));
-    }
-
-    @Test
-    void registerUserNullEmailGoodPassword() {
-        assertThrows(Error.class, () -> client.register(null, "pistol"));
-    }
-
-    @Test
-    void registerUserNullEmailNullPassword() {
-        assertThrows(Error.class, () -> client.register(null, null));
-    }
-
-    @Test
-    void registerUserSuccessful() {
+    void Successful() {
         assertDoesNotThrow(() -> client.register("eve.holt@reqres.in", "pistol"));
+    }
+
+    @Test
+    void NullPassword() {
+        assertThrows(NullPasswordException.class, () -> client.register("eve.holt@reqres.in", null));
+    }
+
+    @Test
+    void BlankPassword() {
+        assertThrows(InvalidPasswordException.class, () -> client.register("eve.holt@reqres.in", " "));
+    }
+
+    @Test
+    void NullEmail() {
+        assertThrows(NullEmailException.class, () -> client.register(null, "TestPassword"));
+    }
+
+    @Test
+    void BlankEmail() {
+        assertThrows(InvalidEmailException.class, () -> client.register(" ", "TestPassword"));
+    }
+
+    /**
+     * Boundary-value analysis
+     * <p>
+     * Password Always Valid
+     */
+
+    @Test
+    void LowerInvalidBoundaryEmail() {
+        assertThrows(InvalidEmailException.class, () -> client.register("a", "TestPassword"));
+    }
+
+    @Test
+    void LowerValidBoundaryEmail() {
+        assertDoesNotThrow(() -> client.register("bb", "TestPassword"));
+    }
+
+    @Test
+    void UpperValidBoundaryEmail() {
+        assertDoesNotThrow(() -> client.register(WORD_WHIT_128_CHARACTER, "TestPassword"));
+    }
+
+    @Test
+    void UpperInvalidBoundaryEmail() {
+        assertThrows(InvalidEmailException.class, () -> client.register(WORD_WHIT_128_CHARACTER+1, "TestPassword"));
+    }
+
+    /**
+     * Email Always Valid
+     */
+
+    @Test
+    void LowerInvalidBoundaryPassword() {
+        assertThrows(InvalidPasswordException.class, () -> client.register("eve.holt@reqres.in", "a"));
+    }
+
+    @Test
+    void LowerValidBoundaryPassword() {
+        assertDoesNotThrow(() -> client.register("eve.holt@reqres.in", EIGHT_CHARACTER_WORD));
+    }
+
+    @Test
+    void UpperValidBoundaryPassword() {
+        assertDoesNotThrow(() -> client.register("eve.holt@reqres.in", WORD_WHIT_128_CHARACTER));
+    }
+
+    @Test
+    void UpperInvalidBoundaryPassword() {
+        assertThrows(InvalidPasswordException.class, () -> client.register("eve.holt@reqres.in", WORD_WHIT_128_CHARACTER+1));
     }
 }
