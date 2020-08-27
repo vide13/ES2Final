@@ -2,7 +2,9 @@ package com.es2.client;
 
 import com.es2.controller.ControllerAPI;
 import com.es2.controller.ControllerInterface;
+import com.es2.exceptions.InvalidEmailException;
 import com.es2.exceptions.InvalidIdException;
+import com.es2.exceptions.InvalidPasswordException;
 import com.es2.objects.*;
 
 import java.io.IOException;
@@ -51,9 +53,10 @@ public class Client {
         token = controller.login(new Credentials(email, password)).getToken();
     }
 
-    public void register(String email, String password) throws IOException {
-        if (!isValidStringArgument(email) || !isValidPasswordArgument(password)) {
-            throw new Error("Invalid email or password");
+    public void register(String email, String password) throws IOException, InvalidPasswordException, InvalidEmailException {
+        isValidPasswordArgument(password);
+        if (!isValidStringArgument(email)) {
+            throw new InvalidEmailException("Invalid email or password");
         }
         Register register = controller.register(new Credentials(email, password));
     }
