@@ -12,7 +12,6 @@ class RegisterUserTest {
 
     private static Client client;
     private final String WORD_WHIT_128_CHARACTER = "esta_string_tem_exatamente_128_caracteres_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz";
-    private final String FIFTY_CHARACTER_WORD = "esta_string_tem_exatamente_cinquenta_caracteres_ab";
     private final String EIGHT_CHARACTER_WORD = "TestPassword";
 
     @BeforeAll
@@ -53,22 +52,22 @@ class RegisterUserTest {
 
     @Test
     void LowerInvalidBoundaryEmail() {
-        assertThrows(InvalidEmailException.class, () -> client.register("a", "TestPassword"));
+        assertThrows(InvalidEmailException.class, () -> client.register("aa", "TestPassword"));
     }
 
     @Test
     void LowerValidBoundaryEmail() {
-        assertDoesNotThrow(() -> client.register("bb", "TestPassword"));
+        assertDoesNotThrow(() -> client.register("b@b", "TestPassword"));
     }
 
     @Test
     void UpperValidBoundaryEmail() {
-        assertDoesNotThrow(() -> client.register(FIFTY_CHARACTER_WORD, "TestPassword"));
+        assertDoesNotThrow(() -> client.register(WORD_WHIT_128_CHARACTER, "TestPassword"));
     }
 
     @Test
     void UpperInvalidBoundaryEmail() {
-        assertThrows(InvalidEmailException.class, () -> client.register(FIFTY_CHARACTER_WORD + 1, "TestPassword"));
+        assertThrows(InvalidEmailException.class, () -> client.register(WORD_WHIT_128_CHARACTER + 1, "TestPassword"));
     }
 
     /**

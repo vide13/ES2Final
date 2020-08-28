@@ -55,9 +55,7 @@ public class Client {
 
     public void register(String email, String password) throws IOException, InvalidPasswordException, InvalidEmailException {
         isValidPasswordArgument(password);
-        if (!isValidStringArgument(email)) {
-            throw new InvalidEmailException("Invalid email or password");
-        }
+        isValidEmailArgument(email);
         Register register = controller.register(new Credentials(email, password));
     }
 
