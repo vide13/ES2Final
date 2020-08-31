@@ -46,10 +46,9 @@ public class Client {
         ListUsers listUsers = controller.listUsers(token);
     }
 
-    public void login(String email, String password) throws IOException {
-        if (!isValidStringArgument(email) || !isValidStringArgument(password)) {
-            throw new Error("Invalid email or password");
-        }
+    public void login(String email, String password) throws IOException, InvalidPasswordException, InvalidEmailException {
+        isValidPasswordArgument(password);
+        isValidEmailArgument(email);
         token = controller.login(new Credentials(email, password)).getToken();
     }
 
