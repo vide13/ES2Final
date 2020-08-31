@@ -2,9 +2,7 @@ package com.es2.client;
 
 import com.es2.controller.ControllerAPI;
 import com.es2.controller.ControllerInterface;
-import com.es2.exceptions.InvalidEmailException;
-import com.es2.exceptions.InvalidIdException;
-import com.es2.exceptions.InvalidPasswordException;
+import com.es2.exceptions.*;
 import com.es2.objects.*;
 
 import java.io.IOException;
@@ -28,21 +26,20 @@ public class Client {
         return client;
     }
 
-    public void createUser(String name, String job) throws IOException {
-        if (!isValidStringArgument(name) || !isValidStringArgument(job)) {
-            throw new Error("Invalid name or job");
-        }
-        if (!isValidToken(token)) throw new Error("Invalid Token");
+    public void createUser(String name, String job) throws IOException, InvalidJobException, InvalidNameException {
+        isValidNameArgument(name);
+        isValidJobArgument(job);
+        isValidToken(token);
         UserJob userJob = controller.createUser(token, new UserJob(name, job));
     }
 
     public void listResources() throws IOException {
-        if (!isValidToken(token)) throw new Error("Invalid Token");
+        isValidToken(token);
         ListResources listResources = controller.listResources(token);
     }
 
     public void listUsers() throws IOException {
-        if (!isValidToken(token)) throw new Error("Invalid Token");
+        isValidToken(token);
         ListUsers listUsers = controller.listUsers(token);
     }
 
@@ -60,13 +57,13 @@ public class Client {
 
     public void singleResource(Integer id) throws IOException, InvalidIdException {
         isValidIntegerArgument(id);
-        if (!isValidToken(token)) throw new Error("Invalid Token");
+        isValidToken(token);
         SingleResource singleResource = controller.singleResource(token, id);
     }
 
     public void singleUser(Integer id) throws IOException, InvalidIdException {
         isValidIntegerArgument(id);
-        if (!isValidToken(token)) throw new Error("Invalid Token");
+        isValidToken(token);
         SingleUser singleUser = controller.singleUser(token, id);
     }
 }

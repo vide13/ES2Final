@@ -13,6 +13,7 @@ class RegisterUserTest {
     private static Client client;
     private final String WORD_WHIT_128_CHARACTER = "esta_string_tem_exatamente_128_caracteres_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz";
     private final String EIGHT_CHARACTER_WORD = "TestPassword";
+    private final String SEVEN_CHARACTER_WORD = "TestPasswor";
 
     @BeforeAll
     static void setup() {
@@ -20,27 +21,27 @@ class RegisterUserTest {
     }
 
     @Test
-    void Successful() {
+    void successful() {
         assertDoesNotThrow(() -> client.register("eve.holt@reqres.in", "TestPassword"));
     }
 
     @Test
-    void NullPassword() {
+    void nullPassword() {
         assertThrows(InvalidPasswordException.class, () -> client.register("eve.holt@reqres.in", null));
     }
 
     @Test
-    void BlankPassword() {
+    void blankPassword() {
         assertThrows(InvalidPasswordException.class, () -> client.register("eve.holt@reqres.in", " "));
     }
 
     @Test
-    void NullEmail() {
+    void nullEmail() {
         assertThrows(InvalidEmailException.class, () -> client.register(null, "TestPassword"));
     }
 
     @Test
-    void BlankEmail() {
+    void blankEmail() {
         assertThrows(InvalidEmailException.class, () -> client.register(" ", "TestPassword"));
     }
 
@@ -51,22 +52,22 @@ class RegisterUserTest {
      */
 
     @Test
-    void LowerInvalidBoundaryEmail() {
+    void lowerInvalidBoundaryEmail() {
         assertThrows(InvalidEmailException.class, () -> client.register("aa", "TestPassword"));
     }
 
     @Test
-    void LowerValidBoundaryEmail() {
+    void lowerValidBoundaryEmail() {
         assertDoesNotThrow(() -> client.register("b@b", "TestPassword"));
     }
 
     @Test
-    void UpperValidBoundaryEmail() {
+    void upperValidBoundaryEmail() {
         assertDoesNotThrow(() -> client.register(WORD_WHIT_128_CHARACTER, "TestPassword"));
     }
 
     @Test
-    void UpperInvalidBoundaryEmail() {
+    void upperInvalidBoundaryEmail() {
         assertThrows(InvalidEmailException.class, () -> client.register(WORD_WHIT_128_CHARACTER + 1, "TestPassword"));
     }
 
@@ -75,22 +76,22 @@ class RegisterUserTest {
      */
 
     @Test
-    void LowerInvalidBoundaryPassword() {
-        assertThrows(InvalidPasswordException.class, () -> client.register("eve.holt@reqres.in", "a"));
+    void lowerInvalidBoundaryPassword() {
+        assertThrows(InvalidPasswordException.class, () -> client.register("eve.holt@reqres.in", SEVEN_CHARACTER_WORD));
     }
 
     @Test
-    void LowerValidBoundaryPassword() {
+    void lowerValidBoundaryPassword() {
         assertDoesNotThrow(() -> client.register("eve.holt@reqres.in", EIGHT_CHARACTER_WORD));
     }
 
     @Test
-    void UpperValidBoundaryPassword() {
+    void upperValidBoundaryPassword() {
         assertDoesNotThrow(() -> client.register("eve.holt@reqres.in", WORD_WHIT_128_CHARACTER));
     }
 
     @Test
-    void UpperInvalidBoundaryPassword() {
+    void upperInvalidBoundaryPassword() {
         assertThrows(InvalidPasswordException.class, () -> client.register("eve.holt@reqres.in", WORD_WHIT_128_CHARACTER + 1));
     }
 }

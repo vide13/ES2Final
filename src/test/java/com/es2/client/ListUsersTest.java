@@ -1,5 +1,7 @@
 package com.es2.client;
 
+import com.es2.exceptions.InvalidEmailException;
+import com.es2.exceptions.InvalidPasswordException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -12,12 +14,9 @@ class ListUsersTest {
     private static Client client;
 
     @BeforeAll
-    static void setup() throws IOException {
+    static void setup() throws IOException, InvalidEmailException, InvalidPasswordException {
         client = Client.getClient();
-        /*
-        Need token?
         client.login("eve.holt@reqres.in", "cityslicka");
-        */
     }
 
     @Test

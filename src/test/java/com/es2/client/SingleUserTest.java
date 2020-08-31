@@ -24,27 +24,27 @@ class SingleUserTest {
     }
 
     @Test
-    void NullId() {
+    void nullId() {
         assertThrows(InvalidIdException.class, () -> client.singleUser(null));
     }
 
     @Test
-    void LowerInvalidBoundaryId() {
+    void lowerInvalidBoundaryId() {
         assertThrows(InvalidIdException.class, () -> client.singleUser(LOWER_LIMIT - 1));
     }
 
     @Test
-    void LowerValidBoundaryId() {
+    void lowerValidBoundaryId() {
         assertDoesNotThrow(() -> client.singleUser(LOWER_LIMIT));
     }
 
     @Test
-    void UpperValidBoundaryId() {
+    void upperValidBoundaryId() {
         assertDoesNotThrow(() -> client.singleUser(UPPER_LIMIT));
     }
 
     @Test
-    void UpperInvalidBoundaryId() {
+    void upperInvalidBoundaryId() {
         assertThrows(InvalidIdException.class, () -> client.singleUser(UPPER_LIMIT + 1));
     }
 

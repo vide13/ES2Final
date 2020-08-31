@@ -1,16 +1,22 @@
 package com.es2.client;
 
-import com.es2.exceptions.InvalidEmailException;
-import com.es2.exceptions.InvalidIdException;
-import com.es2.exceptions.InvalidPasswordException;
+import com.es2.exceptions.*;
 
 public class Validation {
-    public static boolean isValidStringArgument(String arg) {
-        if (arg == null) return false;
-        else if (arg.length() > 50) return false;
-        else if (arg.isEmpty()) return false;
-        else return !arg.isBlank();
+    public static void isValidNameArgument(String arg) throws InvalidNameException {
+        if (arg == null) throw new InvalidNameException("Argument can't be null");
+        else if (arg.length() > 50) throw new InvalidNameException("Argument can't exceed 50 characters");
+        else if (arg.length() < 2) throw new InvalidNameException("Argument must contain more than 2 characters");
+        else if (arg.isBlank()) throw new InvalidNameException("Argument must contain other characters");
     }
+
+    public static void isValidJobArgument(String arg) throws InvalidJobException {
+        if (arg == null) throw new InvalidJobException("Argument can't be null");
+        else if (arg.length() > 50) throw new InvalidJobException("Argument can't exceed 50 characters");
+        else if (arg.length() < 2) throw new InvalidJobException("Argument must contain more than 2 characters");
+        else if (arg.isBlank()) throw new InvalidJobException("Argument must contain other characters");
+    }
+
     public static void isValidEmailArgument(String arg) throws InvalidEmailException {
         if (arg == null) throw new InvalidEmailException("Email can't be null");
         else if (arg.length() > 128) throw new InvalidEmailException("Email can't exceed 128 characters");
@@ -31,7 +37,7 @@ public class Validation {
         else if (arg < 1) throw new InvalidIdException("Id must be bigger than 0");
     }
 
-    public static boolean isValidToken(String arg) {
-        return arg != null;
+    public static void isValidToken(String arg) {
+        if (arg == null) throw new Error("Invalid Token");
     }
 }
