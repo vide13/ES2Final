@@ -1,8 +1,6 @@
 package com.es2.client;
 
-import com.es2.exceptions.InvalidJobException;
-import com.es2.exceptions.NullJobException;
-import com.es2.exceptions.NullNameException;
+import com.es2.exceptions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +17,7 @@ class CreateUserTest {
     private final String FIFTY_CHARACTER_WORD = "esta_string_tem_exatamente_cinquenta_caracteres_ab";
 
     @BeforeAll
-    static void setup() throws IOException {
+    static void setup() throws IOException, InvalidEmailException, InvalidPasswordException {
         client = Client.getClient();
         client.login("eve.holt@reqres.in", "cityslicka");
     }

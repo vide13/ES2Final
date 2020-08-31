@@ -1,6 +1,7 @@
 package com.es2.client;
 
 import com.es2.exceptions.InvalidEmailException;
+import com.es2.exceptions.InvalidIdException;
 import com.es2.exceptions.InvalidPasswordException;
 
 public class Validation {
@@ -24,10 +25,10 @@ public class Validation {
         else if (arg.isBlank()) throw new InvalidPasswordException("Password must contain other characters");
     }
 
-    public static boolean isValidIntegerArgument(Integer arg) {
-        if (arg == null) return false;
-        else if (arg > 10000) return false;
-        else return arg >= 1;
+    public static void isValidIntegerArgument(Integer arg) throws InvalidIdException {
+        if (arg == null) throw new InvalidIdException("Id can't be null");
+        else if (arg > 10000) throw new InvalidIdException("Id can't exceed number 10000");
+        else if (arg < 1) throw new InvalidIdException("Id must be bigger than 0");
     }
 
     public static boolean isValidToken(String arg) {

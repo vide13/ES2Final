@@ -58,18 +58,14 @@ public class Client {
         Register register = controller.register(new Credentials(email, password));
     }
 
-    public void singleResource(Integer id) throws IOException {
-        if (!isValidIntegerArgument(id)) {
-            throw new Error("Invalid Id");
-        }
+    public void singleResource(Integer id) throws IOException, InvalidIdException {
+        isValidIntegerArgument(id);
         if (!isValidToken(token)) throw new Error("Invalid Token");
         SingleResource singleResource = controller.singleResource(token, id);
     }
 
     public void singleUser(Integer id) throws IOException, InvalidIdException {
-        if (!isValidIntegerArgument(id)) {
-            throw new InvalidIdException("Invalid Id");
-        }
+        isValidIntegerArgument(id);
         if (!isValidToken(token)) throw new Error("Invalid Token");
         SingleUser singleUser = controller.singleUser(token, id);
     }

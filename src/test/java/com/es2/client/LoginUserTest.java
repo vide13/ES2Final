@@ -11,8 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class LoginUserTest {
 
     private static Client client;
-    String bigWord = "estastringtemmaisdecinquentacarcatereseserautilizadaparanomesejobs";
-    String maximumWord = "esta_string_tem_exatamente_cinquenta_caracteres_ab";
 
     @BeforeAll
     static void setup() {

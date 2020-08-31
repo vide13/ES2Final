@@ -1,8 +1,12 @@
 package com.es2.client;
 
+import com.es2.exceptions.InvalidEmailException;
 import com.es2.exceptions.InvalidIdException;
+import com.es2.exceptions.InvalidPasswordException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -14,12 +18,9 @@ class SingleUserTest {
     private final Integer LOWER_LIMIT = 1;
 
     @BeforeAll
-    static void setup() {
+    static void setup() throws InvalidEmailException, IOException, InvalidPasswordException {
         client = Client.getClient();
-        /*
-        Need token?
         client.login("eve.holt@reqres.in", "cityslicka");
-        */
     }
 
     @Test
