@@ -115,7 +115,7 @@ To test the application we use Black-Box tests such as **Boundary-value analysis
 | singleResourceUnsuccessful | White-Box |             |             `id:` 10              |   ✔    | InvalidTokenException | InvalidTokenException |
 |   singleUserUnsuccessful   | White-Box |             |             `id:` 10              |   ✔    | InvalidTokenException | InvalidTokenException |
 
-# 2. Global Test
+# 2. Integration Tests
 
 ## 2.1. Create User
 
@@ -156,7 +156,7 @@ To test the application we use Black-Box tests such as **Boundary-value analysis
 | :---------------------: | :-------: | :---------: | :--------: | :----: | :------------------: | :------------------: |
 | LowerInvalidBoundaryJob | White-Box |             |   `id:`0   |   ✔    | Invalid Id Exception | Invalid Id Exception |
 | LowerValidBoundaryName  | White-Box |             |   `id:`1   |   ✔    |    Does Not Throw    |    Does Not Throw    |
-| UpperValidBoundaryName  | White-Box |             | `id:`10000 |   ✔    |    Does Not Throw    |    Does Not Throw    |
+| UpperValidBoundaryName  | White-Box |             | `id:`10000 |   ❌   |    Does Not Throw    |      Error: {}       |
 | UpperInvalidBoundaryJob | White-Box |             | `id:`10001 |   ✔    | Invalid Id Exception | Invalid Id Exception |
 
 ## 2.3. List Users
@@ -181,16 +181,16 @@ To test the application we use Black-Box tests such as **Boundary-value analysis
 
 ### 2.4.2. Boundary-value analysis
 
-|             Name             |   Type    | Description |                          Input                           | Status |          Expected          |           Actual           |
-| :--------------------------: | :-------: | :---------: | :------------------------------------------------------: | :----: | :------------------------: | :------------------------: |
-|  LowerInvalidBoundaryEmail   | White Box |             |    `email:`String.length(2) `password:`"TestPassword"    |   ✔    | Invalid Password Exception | Invalid Password Exception |
-|   LowerValidBoundaryEmail    | White Box |             |    `email:`String.length(3) `password:`"TestPassword"    |   ✔    |       Does Not Throw       |       Does Not Throw       |
-|   UpperValidBoundaryEmail    | White Box |             |   `email:`String.length(128) `password:`"TestPassword"   |   ✔    |       Does Not Throw       |       Does Not Throw       |
-|  UpperInvalidBoundaryEmail   | White Box |             |   `email:`String.length(129) `password:`"TestPassword"   |   ✔    | Invalid Password Exception | Invalid Password Exception |
-| LowerInvalidBoundaryPassword | White Box |             |  `email:`eve.holt@reqres.in `password:`String.length(7)  |   ✔    | Invalid Password Exception | Invalid Password Exception |
-|  LowerValidBoundaryPassword  | White Box |             |  `email:`eve.holt@reqres.in `password:`String.length(8)  |   ✔    |       Does Not Throw       |       Does Not Throw       |
-|  UpperValidBoundaryPassword  | White Box |             | `email:`eve.holt@reqres.in `password:`String.length(128) |   ✔    |       Does Not Throw       |       Does Not Throw       |
-| UpperInvalidBoundaryPassword | White Box |             | `email:`eve.holt@reqres.in `password:`String.length(129) |   ✔    | Invalid Password Exception | Invalid Password Exception |
+|             Name             |   Type    | Description |                          Input                           | Status |          Expected          |                              Actual                              |
+| :--------------------------: | :-------: | :---------: | :------------------------------------------------------: | :----: | :------------------------: | :--------------------------------------------------------------: |
+|  LowerInvalidBoundaryEmail   | White Box |             |    `email:`String.length(2) `password:`"TestPassword"    |   ✔    | Invalid Password Exception |                    Invalid Password Exception                    |
+|   LowerValidBoundaryEmail    | White Box |             |    `email:`String.length(3) `password:`"TestPassword"    |   ❌   |       Does Not Throw       | Error: {"error":"Note: Only defined users succeed registration"} |
+|   UpperValidBoundaryEmail    | White Box |             |   `email:`String.length(128) `password:`"TestPassword"   |   ❌   |       Does Not Throw       | Error: {"error":"Note: Only defined users succeed registration"} |
+|  UpperInvalidBoundaryEmail   | White Box |             |   `email:`String.length(129) `password:`"TestPassword"   |   ✔    | Invalid Password Exception |                    Invalid Password Exception                    |
+| LowerInvalidBoundaryPassword | White Box |             |  `email:`eve.holt@reqres.in `password:`String.length(7)  |   ✔    | Invalid Password Exception |                    Invalid Password Exception                    |
+|  LowerValidBoundaryPassword  | White Box |             |  `email:`eve.holt@reqres.in `password:`String.length(8)  |   ✔    |       Does Not Throw       |                          Does Not Throw                          |
+|  UpperValidBoundaryPassword  | White Box |             | `email:`eve.holt@reqres.in `password:`String.length(128) |   ✔    |       Does Not Throw       |                          Does Not Throw                          |
+| UpperInvalidBoundaryPassword | White Box |             | `email:`eve.holt@reqres.in `password:`String.length(129) |   ✔    | Invalid Password Exception |                    Invalid Password Exception                    |
 
 ## 2.5. Login
 
