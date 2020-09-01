@@ -18,15 +18,17 @@ To test the application we use Black-Box tests such as **Boundary-value analysis
 
 ### 1.1.1. White-Box
 
-|    Name    | Description |               Input                | Status |        Expected        |         Actual         |
-| :--------: | :---------: | :--------------------------------: | :----: | :--------------------: | :--------------------: |
-| Successful |             | `name:` "morpheus" `job:`"leader"  |   ✔    |     Does Not Throw     |     Does Not Throw     |
-|  NullJob   |             | `name`: "morpheus" `job`: **NULL** |   ✔    | Invalid Job Exception  | Invalid Job Exception  |
-|  BlankJob  |             |   `name`: "morpheus" `job`: " "    |   ✔    | Invalid Job Exception  | Invalid Job Exception  |
-|  NullName  |             |  `name:` **NULL** `job:`"leader"   |   ✔    | Invalid Name Exception | Invalid Name Exception |
-| BlankName  |             |     `name:` "" `job:`"leader"      |   ✔    | Invalid Name Exception | Invalid Name Exception |
+### Decision Coverage Testing
 
-### 1.1.2. Boundary-value analysis
+|    Name    |               Input               | Status |        Expected        |         Actual         |
+| :--------: | :-------------------------------: | :----: | :--------------------: | :--------------------: |
+| Successful | `name:` "morpheus" `job:`"leader" |   ✔    |     Does Not Throw     |     Does Not Throw     |
+|  NullJob   | `name`: "morpheus" `job`:**NULL** |   ✔    | Invalid Job Exception  | Invalid Job Exception  |
+|  BlankJob  |   `name`: "morpheus" `job`:" "    |   ✔    | Invalid Job Exception  | Invalid Job Exception  |
+|  NullName  |  `name:` **NULL** `job:`"leader"  |   ✔    | Invalid Name Exception | Invalid Name Exception |
+| BlankName  |     `name:`"" `job:`"leader"      |   ✔    | Invalid Name Exception | Invalid Name Exception |
+
+### Boundary-value analysis
 
 |           Name           |                   Input                    | Status |           Expected           |            Actual            |
 | :----------------------: | :----------------------------------------: | :----: | :--------------------------: | :--------------------------: |
@@ -43,22 +45,27 @@ To test the application we use Black-Box tests such as **Boundary-value analysis
 
 ### 1.2.1. White-Box
 
-|  Name   | Type | Description | Input | Status |       Expected       |        Actual        |
-| :-----: | :--: | :---------: | :---: | :----: | :------------------: | :------------------: |
-| NulldId |      | `id:` null  |   ✔   |   ✔    | Invalid Id Exception | Invalid Id Exception |
+### Decision Coverage Testing
 
-### 1.2.2. Boundary-value analysis
+|    Name    | Description | Input | Status |       Expected       |        Actual        |
+| :--------: | :---------: | :---: | :----: | :------------------: | :------------------: |
+| Successful |  `id:` 10   |   ✔   |   ✔    |    Does Not Throw    |    Does Not Throw    |
+|  NulldId   | `id:` null  |   ✔   |   ✔    | Invalid Id Exception | Invalid Id Exception |
 
-|          Name           |   Type    | Description |   Input    | Status |       Expected       |        Actual        |
-| :---------------------: | :-------: | :---------: | :--------: | :----: | :------------------: | :------------------: |
-| LowerInvalidBoundaryJob | White-Box |             |   `id:`0   |   ✔    | Invalid Id Exception | Invalid Id Exception |
-| LowerValidBoundaryName  | White-Box |             |   `id:`1   |   ✔    |    Does Not Throw    |    Does Not Throw    |
-| UpperValidBoundaryName  | White-Box |             | `id:`10000 |   ✔    |    Does Not Throw    |    Does Not Throw    |
-| UpperInvalidBoundaryJob | White-Box |             | `id:`10001 |   ✔    | Invalid Id Exception | Invalid Id Exception |
+### Boundary-value analysis
+
+|          Name           |   Input    | Status |       Expected       |        Actual        |
+| :---------------------: | :--------: | :----: | :------------------: | :------------------: |
+| LowerInvalidBoundaryJob |   `id:`0   |   ✔    | Invalid Id Exception | Invalid Id Exception |
+| LowerValidBoundaryName  |   `id:`1   |   ✔    |    Does Not Throw    |    Does Not Throw    |
+| UpperValidBoundaryName  | `id:`10000 |   ✔    |    Does Not Throw    |    Does Not Throw    |
+| UpperInvalidBoundaryJob | `id:`10001 |   ✔    | Invalid Id Exception | Invalid Id Exception |
 
 ## 1.3. List Users
 
 ### 1.3.1. White-Box
+
+### Decision Coverage Testing
 
 |    Name    |   Type    | Description | Input | Status |    Expected    |     Actual     |
 | :--------: | :-------: | :---------: | :---: | :----: | :------------: | :------------: |
@@ -68,38 +75,44 @@ To test the application we use Black-Box tests such as **Boundary-value analysis
 
 ### 1.4.1. White-Box
 
-|     Name      | Description |                          Input                          | Status |          Expected          |           Actual           |
-| :-----------: | :---------: | :-----------------------------------------------------: | :----: | :------------------------: | :------------------------: |
-|  Successful   |             | `email:` "eve.holt@reqres.in" `password:`"TestPassword" |   ✔    |       Does Not Throw       |       Does Not Throw       |
-| NullPassword  |             |   `email`: "eve.holt@reqres.in" `password`: **NULL**    |   ✔    | Invalid password Exception | Invalid Password Exception |
-| BlankPassword |             |      `email`: "eve.holt@reqres.in" `password`: " "      |   ✔    | Invalid password Exception | Invalid Password Exception |
-|   NullEmail   |             |       `email:` **NULL** `password:`"TestPassword"       |   ✔    |  Invalid Email Exception   |  Invalid Email Exception   |
-|  BlankEmail   |             |         `email:` " " `password:`"TestPassword"          |   ✔    |  Invalid Email Exception   |  Invalid Email Exception   |
+### Decision Coverage Testing
 
-### 1.4.2. Boundary-value analysis
+|     Name      |                          Input                          | Status |          Expected          |           Actual           |
+| :-----------: | :-----------------------------------------------------: | :----: | :------------------------: | :------------------------: |
+|  Successful   | `email:` "eve.holt@reqres.in" `password:`"TestPassword" |   ✔    |       Does Not Throw       |       Does Not Throw       |
+| NullPassword  |   `email`: "eve.holt@reqres.in" `password`: **NULL**    |   ✔    | Invalid password Exception | Invalid Password Exception |
+| BlankPassword |      `email`: "eve.holt@reqres.in" `password`: " "      |   ✔    | Invalid password Exception | Invalid Password Exception |
+|   NullEmail   |       `email:` **NULL** `password:`"TestPassword"       |   ✔    |  Invalid Email Exception   |  Invalid Email Exception   |
+|  BlankEmail   |         `email:` " " `password:`"TestPassword"          |   ✔    |  Invalid Email Exception   |  Invalid Email Exception   |
 
-|             Name             |   Type    | Description |                          Input                           | Status |          Expected          |           Actual           |
-| :--------------------------: | :-------: | :---------: | :------------------------------------------------------: | :----: | :------------------------: | :------------------------: |
-|  LowerInvalidBoundaryEmail   | White Box |             |    `email:`String.length(2) `password:`"TestPassword"    |   ✔    |  Invalid Email Exception   |  Invalid Email Exception   |
-|   LowerValidBoundaryEmail    | White Box |             |    `email:`String.length(3) `password:`"TestPassword"    |   ✔    |       Does Not Throw       |       Does Not Throw       |
-|   UpperValidBoundaryEmail    | White Box |             |   `email:`String.length(128) `password:`"TestPassword"   |   ✔    |       Does Not Throw       |       Does Not Throw       |
-|  UpperInvalidBoundaryEmail   | White Box |             |   `email:`String.length(129) `password:`"TestPassword"   |   ✔    |  Invalid Email Exception   |  Invalid Email Exception   |
-| LowerInvalidBoundaryPassword | White Box |             |  `email:`eve.holt@reqres.in `password:`String.length(7)  |   ✔    | Invalid Password Exception | Invalid Password Exception |
-|  LowerValidBoundaryPassword  | White Box |             |  `email:`eve.holt@reqres.in `password:`String.length(8)  |   ✔    |       Does Not Throw       |       Does Not Throw       |
-|  UpperValidBoundaryPassword  | White Box |             | `email:`eve.holt@reqres.in `password:`String.length(128) |   ✔    |       Does Not Throw       |       Does Not Throw       |
-| UpperInvalidBoundaryPassword | White Box |             | `email:`eve.holt@reqres.in `password:`String.length(129) |   ✔    | Invalid Password Exception | Invalid Password Exception |
+### Boundary-value analysis
+
+|             Name             |                          Input                           | Status |          Expected          |           Actual           |
+| :--------------------------: | :------------------------------------------------------: | :----: | :------------------------: | :------------------------: |
+|  LowerInvalidBoundaryEmail   |    `email:`String.length(2) `password:`"TestPassword"    |   ✔    |  Invalid Email Exception   |  Invalid Email Exception   |
+|   LowerValidBoundaryEmail    |    `email:`String.length(3) `password:`"TestPassword"    |   ✔    |       Does Not Throw       |       Does Not Throw       |
+|   UpperValidBoundaryEmail    |   `email:`String.length(128) `password:`"TestPassword"   |   ✔    |       Does Not Throw       |       Does Not Throw       |
+|  UpperInvalidBoundaryEmail   |   `email:`String.length(129) `password:`"TestPassword"   |   ✔    |  Invalid Email Exception   |  Invalid Email Exception   |
+| LowerInvalidBoundaryPassword |  `email:`eve.holt@reqres.in `password:`String.length(7)  |   ✔    | Invalid Password Exception | Invalid Password Exception |
+|  LowerValidBoundaryPassword  |  `email:`eve.holt@reqres.in `password:`String.length(8)  |   ✔    |       Does Not Throw       |       Does Not Throw       |
+|  UpperValidBoundaryPassword  | `email:`eve.holt@reqres.in `password:`String.length(128) |   ✔    |       Does Not Throw       |       Does Not Throw       |
+| UpperInvalidBoundaryPassword | `email:`eve.holt@reqres.in `password:`String.length(129) |   ✔    | Invalid Password Exception | Invalid Password Exception |
 
 ## 1.5. Login
 
 ### 1.5.1. White-Box
 
-|    Name    |   Type    | Description |                        Input                         | Status |    Expected    |     Actual     |
-| :--------: | :-------: | :---------: | :--------------------------------------------------: | :----: | :------------: | :------------: |
-| Successful | White Box |             | `email:`eve.holt@reqres.in `password:`"TestPassword" |   ✔    | Does Not Throw | Does Not Throw |
+### Decision Coverage Testing
+
+|    Name    |   Type    |                        Input                         | Status |    Expected    |     Actual     |
+| :--------: | :-------: | :--------------------------------------------------: | :----: | :------------: | :------------: |
+| Successful | White Box | `email:`eve.holt@reqres.in `password:`"TestPassword" |   ✔    | Does Not Throw | Does Not Throw |
 
 ## 1.7. Single Resource
 
 ### 1.7.1. White-Box
+
+### Decision Coverage Testing
 
 |    Name    |   Type    | Description |  Input   | Status |    Expected    |     Actual     |
 | :--------: | :-------: | :---------: | :------: | :----: | :------------: | :------------: |
@@ -107,13 +120,17 @@ To test the application we use Black-Box tests such as **Boundary-value analysis
 
 ## 1.8 Requests whit no token
 
-|            Name            |   Type    | Description |               Input               | Status |       Expected        |        Actual         |
-| :------------------------: | :-------: | :---------: | :-------------------------------: | :----: | :-------------------: | :-------------------: |
-|   createUserUnsuccessful   | White-Box |             | `name:` "morpheus" `job:`"leader" |   ✔    | InvalidTokenException | InvalidTokenException |
-| listResourcesUnsuccessful  | White-Box |             |                                   |   ✔    | InvalidTokenException | InvalidTokenException |
-|   listUsersUnsuccessful    | White-Box |             |                                   |   ✔    | InvalidTokenException | InvalidTokenException |
-| singleResourceUnsuccessful | White-Box |             |             `id:` 10              |   ✔    | InvalidTokenException | InvalidTokenException |
-|   singleUserUnsuccessful   | White-Box |             |             `id:` 10              |   ✔    | InvalidTokenException | InvalidTokenException |
+### 1.8.1. White-Box
+
+### Decision Coverage Testing
+
+|            Name            |               Input               | Status |       Expected        |        Actual         |
+| :------------------------: | :-------------------------------: | :----: | :-------------------: | :-------------------: |
+|   createUserUnsuccessful   | `name:` "morpheus" `job:`"leader" |   ✔    | InvalidTokenException | InvalidTokenException |
+| listResourcesUnsuccessful  |                                   |   ✔    | InvalidTokenException | InvalidTokenException |
+|   listUsersUnsuccessful    |                                   |   ✔    | InvalidTokenException | InvalidTokenException |
+| singleResourceUnsuccessful |             `id:` 10              |   ✔    | InvalidTokenException | InvalidTokenException |
+|   singleUserUnsuccessful   |             `id:` 10              |   ✔    | InvalidTokenException | InvalidTokenException |
 
 # 2. Integration Tests
 
@@ -121,15 +138,17 @@ To test the application we use Black-Box tests such as **Boundary-value analysis
 
 ### 2.1.1. White-Box
 
-|    Name    | Description |               Input                | Status |        Expected        |         Actual         |
-| :--------: | :---------: | :--------------------------------: | :----: | :--------------------: | :--------------------: |
-| Successful |             | `name:` "morpheus" `job:`"leader"  |   ✔    |     Does Not Throw     |     Does Not Throw     |
-|  NullJob   |             | `name`: "morpheus" `job`: **NULL** |   ✔    | Invalid Job Exception  | Invalid Job Exception  |
-|  BlankJob  |             |   `name`: "morpheus" `job`: " "    |   ✔    | Invalid Job Exception  | Invalid Job Exception  |
-|  NullName  |             |  `name:` **NULL** `job:`"leader"   |   ✔    | Invalid Name Exception | Invalid Name Exception |
-| BlankName  |             |     `name:` "" `job:`"leader"      |   ✔    | Invalid Name Exception | Invalid Name Exception |
+### Decision Coverage Testing
 
-### 2.1.2. Boundary-value analysis
+|    Name    |               Input                | Status |        Expected        |         Actual         |
+| :--------: | :--------------------------------: | :----: | :--------------------: | :--------------------: |
+| Successful | `name:` "morpheus" `job:`"leader"  |   ✔    |     Does Not Throw     |     Does Not Throw     |
+|  NullJob   | `name`: "morpheus" `job`: **NULL** |   ✔    | Invalid Job Exception  | Invalid Job Exception  |
+|  BlankJob  |   `name`: "morpheus" `job`: " "    |   ✔    | Invalid Job Exception  | Invalid Job Exception  |
+|  NullName  |  `name:` **NULL** `job:`"leader"   |   ✔    | Invalid Name Exception | Invalid Name Exception |
+| BlankName  |     `name:` " " `job:`"leader"     |   ✔    | Invalid Name Exception | Invalid Name Exception |
+
+### Boundary-value analysis
 
 |           Name           |                   Input                    | Status |           Expected           |            Actual            |
 | :----------------------: | :----------------------------------------: | :----: | :--------------------------: | :--------------------------: |
@@ -146,67 +165,77 @@ To test the application we use Black-Box tests such as **Boundary-value analysis
 
 ### 2.2.1. White-Box
 
-|  Name   | Type | Description | Input | Status |       Expected       |        Actual        |
-| :-----: | :--: | :---------: | :---: | :----: | :------------------: | :------------------: |
-| NulldId |      | `id:` null  |   ✔   |   ✔    | Invalid Id Exception | Invalid Id Exception |
+### Decision Coverage Testing
 
-### 2.2.2. Boundary-value analysis
+|  Name   |   Input    | Status |       Expected       |        Actual        |
+| :-----: | :--------: | :----: | :------------------: | :------------------: |
+| NulldId | `id:` null |   ✔    | Invalid Id Exception | Invalid Id Exception |
 
-|          Name           |   Type    | Description |   Input    | Status |       Expected       |        Actual        |
-| :---------------------: | :-------: | :---------: | :--------: | :----: | :------------------: | :------------------: |
-| LowerInvalidBoundaryJob | White-Box |             |   `id:`0   |   ✔    | Invalid Id Exception | Invalid Id Exception |
-| LowerValidBoundaryName  | White-Box |             |   `id:`1   |   ✔    |    Does Not Throw    |    Does Not Throw    |
-| UpperValidBoundaryName  | White-Box |             | `id:`10000 |   ❌   |    Does Not Throw    |      Error: {}       |
-| UpperInvalidBoundaryJob | White-Box |             | `id:`10001 |   ✔    | Invalid Id Exception | Invalid Id Exception |
+### Boundary-value analysis
+
+|          Name           |   Input    | Status |       Expected       |        Actual        |
+| :---------------------: | :--------: | :----: | :------------------: | :------------------: |
+| LowerInvalidBoundaryJob |   `id:`0   |   ✔    | Invalid Id Exception | Invalid Id Exception |
+| LowerValidBoundaryName  |   `id:`1   |   ✔    |    Does Not Throw    |    Does Not Throw    |
+| UpperValidBoundaryName  | `id:`10000 |   ❌   |    Does Not Throw    |      Error: {}       |
+| UpperInvalidBoundaryJob | `id:`10001 |   ✔    | Invalid Id Exception | Invalid Id Exception |
 
 ## 2.3. List Users
 
 ### 2.3.1. White-Box
 
-|    Name    |   Type    | Description | Input | Status |    Expected    |     Actual     |
-| :--------: | :-------: | :---------: | :---: | :----: | :------------: | :------------: |
-| Successful | White-Box |             |       |   ✔    | Does Not Throw | Does Not Throw |
+### Decision Coverage Testing
+
+|    Name    |   Type    | Input | Status |    Expected    |     Actual     |
+| :--------: | :-------: | :---: | :----: | :------------: | :------------: |
+| Successful | White-Box |       |   ✔    | Does Not Throw | Does Not Throw |
 
 ## 2.4. Register
 
 ### 2.4.1. White-Box
 
-|     Name      | Description |                          Input                          | Status |          Expected          |           Actual           |
-| :-----------: | :---------: | :-----------------------------------------------------: | :----: | :------------------------: | :------------------------: |
-|  Successful   |             | `email:` "eve.holt@reqres.in" `password:`"TestPassword" |   ✔    |       Does Not Throw       |       Does Not Throw       |
-| NullPassword  |             |   `email`: "eve.holt@reqres.in" `password`: **NULL**    |   ✔    | Invalid password Exception | Invalid Password Exception |
-| BlankPassword |             |      `email`: "eve.holt@reqres.in" `password`: " "      |   ✔    | Invalid password Exception | Invalid Password Exception |
-|   NullEmail   |             |       `email:` **NULL** `password:`"TestPassword"       |   ✔    |  Invalid Email Exception   |  Invalid Email Exception   |
-|  BlankEmail   |             |         `email:` " " `password:`"TestPassword"          |   ✔    |  Invalid Email Exception   |  Invalid Email Exception   |
+### Decision Coverage Testing
 
-### 2.4.2. Boundary-value analysis
+|     Name      |                          Input                          | Status |          Expected          |           Actual           |
+| :-----------: | :-----------------------------------------------------: | :----: | :------------------------: | :------------------------: |
+|  Successful   | `email:` "eve.holt@reqres.in" `password:`"TestPassword" |   ✔    |       Does Not Throw       |       Does Not Throw       |
+| NullPassword  |   `email`: "eve.holt@reqres.in" `password`: **NULL**    |   ✔    | Invalid password Exception | Invalid Password Exception |
+| BlankPassword |      `email`: "eve.holt@reqres.in" `password`: " "      |   ✔    | Invalid password Exception | Invalid Password Exception |
+|   NullEmail   |       `email:` **NULL** `password:`"TestPassword"       |   ✔    |  Invalid Email Exception   |  Invalid Email Exception   |
+|  BlankEmail   |         `email:` " " `password:`"TestPassword"          |   ✔    |  Invalid Email Exception   |  Invalid Email Exception   |
 
-|             Name             |   Type    | Description |                          Input                           | Status |          Expected          |                              Actual                              |
-| :--------------------------: | :-------: | :---------: | :------------------------------------------------------: | :----: | :------------------------: | :--------------------------------------------------------------: |
-|  LowerInvalidBoundaryEmail   | White Box |             |    `email:`String.length(2) `password:`"TestPassword"    |   ✔    | Invalid Password Exception |                    Invalid Password Exception                    |
-|   LowerValidBoundaryEmail    | White Box |             |    `email:`String.length(3) `password:`"TestPassword"    |   ❌   |       Does Not Throw       | Error: {"error":"Note: Only defined users succeed registration"} |
-|   UpperValidBoundaryEmail    | White Box |             |   `email:`String.length(128) `password:`"TestPassword"   |   ❌   |       Does Not Throw       | Error: {"error":"Note: Only defined users succeed registration"} |
-|  UpperInvalidBoundaryEmail   | White Box |             |   `email:`String.length(129) `password:`"TestPassword"   |   ✔    | Invalid Password Exception |                    Invalid Password Exception                    |
-| LowerInvalidBoundaryPassword | White Box |             |  `email:`eve.holt@reqres.in `password:`String.length(7)  |   ✔    | Invalid Password Exception |                    Invalid Password Exception                    |
-|  LowerValidBoundaryPassword  | White Box |             |  `email:`eve.holt@reqres.in `password:`String.length(8)  |   ✔    |       Does Not Throw       |                          Does Not Throw                          |
-|  UpperValidBoundaryPassword  | White Box |             | `email:`eve.holt@reqres.in `password:`String.length(128) |   ✔    |       Does Not Throw       |                          Does Not Throw                          |
-| UpperInvalidBoundaryPassword | White Box |             | `email:`eve.holt@reqres.in `password:`String.length(129) |   ✔    | Invalid Password Exception |                    Invalid Password Exception                    |
+### Boundary-value analysis
+
+|             Name             |   Type    |                          Input                           | Status |          Expected          |                              Actual                              |
+| :--------------------------: | :-------: | :------------------------------------------------------: | :----: | :------------------------: | :--------------------------------------------------------------: |
+|  LowerInvalidBoundaryEmail   | White Box |    `email:`String.length(2) `password:`"TestPassword"    |   ✔    | Invalid Password Exception |                    Invalid Password Exception                    |
+|   LowerValidBoundaryEmail    | White Box |    `email:`String.length(3) `password:`"TestPassword"    |   ❌   |       Does Not Throw       | Error: {"error":"Note: Only defined users succeed registration"} |
+|   UpperValidBoundaryEmail    | White Box |   `email:`String.length(128) `password:`"TestPassword"   |   ❌   |       Does Not Throw       | Error: {"error":"Note: Only defined users succeed registration"} |
+|  UpperInvalidBoundaryEmail   | White Box |   `email:`String.length(129) `password:`"TestPassword"   |   ✔    | Invalid Password Exception |                    Invalid Password Exception                    |
+| LowerInvalidBoundaryPassword | White Box |  `email:`eve.holt@reqres.in `password:`String.length(7)  |   ✔    | Invalid Password Exception |                    Invalid Password Exception                    |
+|  LowerValidBoundaryPassword  | White Box |  `email:`eve.holt@reqres.in `password:`String.length(8)  |   ✔    |       Does Not Throw       |                          Does Not Throw                          |
+|  UpperValidBoundaryPassword  | White Box | `email:`eve.holt@reqres.in `password:`String.length(128) |   ✔    |       Does Not Throw       |                          Does Not Throw                          |
+| UpperInvalidBoundaryPassword | White Box | `email:`eve.holt@reqres.in `password:`String.length(129) |   ✔    | Invalid Password Exception |                    Invalid Password Exception                    |
 
 ## 2.5. Login
 
 ### 2.5.1. White-Box
 
-|    Name    |   Type    | Description |                        Input                         | Status |    Expected    |     Actual     |
-| :--------: | :-------: | :---------: | :--------------------------------------------------: | :----: | :------------: | :------------: |
-| Successful | White Box |             | `email:`eve.holt@reqres.in `password:`"TestPassword" |   ✔    | Does Not Throw | Does Not Throw |
+### Decision Coverage Testing
+
+|    Name    |   Type    |                        Input                         | Status |    Expected    |     Actual     |
+| :--------: | :-------: | :--------------------------------------------------: | :----: | :------------: | :------------: |
+| Successful | White Box | `email:`eve.holt@reqres.in `password:`"TestPassword" |   ✔    | Does Not Throw | Does Not Throw |
 
 ## 2.7. Single Resource
 
 ### 2.7.1. White-Box
 
-|    Name    |   Type    | Description |  Input   | Status |    Expected    |     Actual     |
-| :--------: | :-------: | :---------: | :------: | :----: | :------------: | :------------: |
-| Successful | White-Box |             | `id:` 10 |   ✔    | Does Not Throw | Does Not Throw |
+### Decision Coverage Testing
+
+|    Name    |   Type    |  Input   | Status |    Expected    |     Actual     |
+| :--------: | :-------: | :------: | :----: | :------------: | :------------: |
+| Successful | White-Box | `id:` 10 |   ✔    | Does Not Throw | Does Not Throw |
 
 # 3. REST Service Test
 

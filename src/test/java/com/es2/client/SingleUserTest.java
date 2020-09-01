@@ -24,6 +24,11 @@ class SingleUserTest {
     }
 
     @Test
+    void successful() {
+        assertDoesNotThrow(() -> client.singleUser(10));
+    }
+
+    @Test
     void nullId() {
         assertThrows(InvalidIdException.class, () -> client.singleUser(null));
     }
