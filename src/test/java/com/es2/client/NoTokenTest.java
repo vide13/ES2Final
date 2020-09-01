@@ -1,5 +1,6 @@
 package com.es2.client;
 
+import com.es2.exceptions.InvalidTokenException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -16,27 +17,27 @@ public class NoTokenTest {
 
     @Test
     void createUserUnsuccessful() {
-        assertThrows(Error.class, () -> client.createUser("morpheus", "leader"));
+        assertThrows(InvalidTokenException.class, () -> client.createUser("morpheus", "leader"));
     }
 
     @Test
     void listResourcesUnsuccessful() {
-        assertThrows(Error.class, () -> client.listResources());
+        assertThrows(InvalidTokenException.class, () -> client.listResources());
     }
 
     @Test
     void listUsersUnsuccessful() {
-        assertThrows(Error.class, () -> client.listUsers());
+        assertThrows(InvalidTokenException.class, () -> client.listUsers());
     }
 
     @Test
     void singleResourceUnsuccessful() {
-        assertThrows(Error.class, () -> client.singleResource(2));
+        assertThrows(InvalidTokenException.class, () -> client.singleResource(2));
     }
 
     @Test
     void singleUserUnsuccessful() {
-        assertThrows(Error.class, () -> client.singleUser(2));
+        assertThrows(InvalidTokenException.class, () -> client.singleUser(2));
     }
 
 }

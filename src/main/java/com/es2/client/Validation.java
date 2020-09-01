@@ -37,7 +37,7 @@ public class Validation {
         else if (arg < 1) throw new InvalidIdException("Id must be bigger than 0");
     }
 
-    public static void isValidToken(String arg) {
-        if (arg == null) throw new Error("Invalid Token");
+    public static void isValidToken(String arg) throws InvalidTokenException {
+        if (arg == null) throw new InvalidTokenException("Invalid Token");
     }
 }

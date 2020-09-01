@@ -21,9 +21,9 @@ To test the application we use Black-Box tests such as **Boundary-value analysis
 |    Name    | Description |               Input                | Status |        Expected        |         Actual         |
 | :--------: | :---------: | :--------------------------------: | :----: | :--------------------: | :--------------------: |
 | Successful |             | `name:` "morpheus" `job:`"leader"  |   ✔    |     Does Not Throw     |     Does Not Throw     |
-|  NullJob   |             | `name`: "morpheus" `job`: **NULL** |   ✔    |   Null Job Exception   |   Null Job Exception   |
+|  NullJob   |             | `name`: "morpheus" `job`: **NULL** |   ✔    | Invalid Job Exception  | Invalid Job Exception  |
 |  BlankJob  |             |   `name`: "morpheus" `job`: " "    |   ✔    | Invalid Job Exception  | Invalid Job Exception  |
-|  NullName  |             |  `name:` **NULL** `job:`"leader"   |   ✔    |  Null Name Exception   |  Null Name Exception   |
+|  NullName  |             |  `name:` **NULL** `job:`"leader"   |   ✔    | Invalid Name Exception | Invalid Name Exception |
 | BlankName  |             |     `name:` "" `job:`"leader"      |   ✔    | Invalid Name Exception | Invalid Name Exception |
 
 ### 1.1.2. Boundary-value analysis
@@ -43,9 +43,9 @@ To test the application we use Black-Box tests such as **Boundary-value analysis
 
 ### 1.2.1. White-Box
 
-|  Name   | Type | Description | Input | Status |     Expected      |      Actual       |
-| :-----: | :--: | :---------: | :---: | :----: | :---------------: | :---------------: |
-| NulldId |      | `id:` null  |   ✔   |   ✔    | Null Id Exception | Null Id Exception |
+|  Name   | Type | Description | Input | Status |       Expected       |        Actual        |
+| :-----: | :--: | :---------: | :---: | :----: | :------------------: | :------------------: |
+| NulldId |      | `id:` null  |   ✔   |   ✔    | Invalid Id Exception | Invalid Id Exception |
 
 ### 1.2.2. Boundary-value analysis
 
@@ -80,10 +80,10 @@ To test the application we use Black-Box tests such as **Boundary-value analysis
 
 |             Name             |   Type    | Description |                          Input                           | Status |          Expected          |           Actual           |
 | :--------------------------: | :-------: | :---------: | :------------------------------------------------------: | :----: | :------------------------: | :------------------------: |
-|  LowerInvalidBoundaryEmail   | White Box |             |    `email:`String.length(2) `password:`"TestPassword"    |   ✔    | Invalid Password Exception | Invalid Password Exception |
+|  LowerInvalidBoundaryEmail   | White Box |             |    `email:`String.length(2) `password:`"TestPassword"    |   ✔    |  Invalid Email Exception   |  Invalid Email Exception   |
 |   LowerValidBoundaryEmail    | White Box |             |    `email:`String.length(3) `password:`"TestPassword"    |   ✔    |       Does Not Throw       |       Does Not Throw       |
 |   UpperValidBoundaryEmail    | White Box |             |   `email:`String.length(128) `password:`"TestPassword"   |   ✔    |       Does Not Throw       |       Does Not Throw       |
-|  UpperInvalidBoundaryEmail   | White Box |             |   `email:`String.length(129) `password:`"TestPassword"   |   ✔    | Invalid Password Exception | Invalid Password Exception |
+|  UpperInvalidBoundaryEmail   | White Box |             |   `email:`String.length(129) `password:`"TestPassword"   |   ✔    |  Invalid Email Exception   |  Invalid Email Exception   |
 | LowerInvalidBoundaryPassword | White Box |             |  `email:`eve.holt@reqres.in `password:`String.length(7)  |   ✔    | Invalid Password Exception | Invalid Password Exception |
 |  LowerValidBoundaryPassword  | White Box |             |  `email:`eve.holt@reqres.in `password:`String.length(8)  |   ✔    |       Does Not Throw       |       Does Not Throw       |
 |  UpperValidBoundaryPassword  | White Box |             | `email:`eve.holt@reqres.in `password:`String.length(128) |   ✔    |       Does Not Throw       |       Does Not Throw       |
@@ -105,6 +105,16 @@ To test the application we use Black-Box tests such as **Boundary-value analysis
 | :--------: | :-------: | :---------: | :------: | :----: | :------------: | :------------: |
 | Successful | White-Box |             | `id:` 10 |   ✔    | Does Not Throw | Does Not Throw |
 
+## 1.8 Requests whit no token
+
+|            Name            |   Type    | Description |               Input               | Status |       Expected        |        Actual         |
+| :------------------------: | :-------: | :---------: | :-------------------------------: | :----: | :-------------------: | :-------------------: |
+|   createUserUnsuccessful   | White-Box |             | `name:` "morpheus" `job:`"leader" |   ✔    | InvalidTokenException | InvalidTokenException |
+| listResourcesUnsuccessful  | White-Box |             |                                   |   ✔    | InvalidTokenException | InvalidTokenException |
+|   listUsersUnsuccessful    | White-Box |             |                                   |   ✔    | InvalidTokenException | InvalidTokenException |
+| singleResourceUnsuccessful | White-Box |             |             `id:` 10              |   ✔    | InvalidTokenException | InvalidTokenException |
+|   singleUserUnsuccessful   | White-Box |             |             `id:` 10              |   ✔    | InvalidTokenException | InvalidTokenException |
+
 # 2. Global Test
 
 ## 2.1. Create User
@@ -114,9 +124,9 @@ To test the application we use Black-Box tests such as **Boundary-value analysis
 |    Name    | Description |               Input                | Status |        Expected        |         Actual         |
 | :--------: | :---------: | :--------------------------------: | :----: | :--------------------: | :--------------------: |
 | Successful |             | `name:` "morpheus" `job:`"leader"  |   ✔    |     Does Not Throw     |     Does Not Throw     |
-|  NullJob   |             | `name`: "morpheus" `job`: **NULL** |   ✔    |   Null Job Exception   |   Null Job Exception   |
+|  NullJob   |             | `name`: "morpheus" `job`: **NULL** |   ✔    | Invalid Job Exception  | Invalid Job Exception  |
 |  BlankJob  |             |   `name`: "morpheus" `job`: " "    |   ✔    | Invalid Job Exception  | Invalid Job Exception  |
-|  NullName  |             |  `name:` **NULL** `job:`"leader"   |   ✔    |  Null Name Exception   |  Null Name Exception   |
+|  NullName  |             |  `name:` **NULL** `job:`"leader"   |   ✔    | Invalid Name Exception | Invalid Name Exception |
 | BlankName  |             |     `name:` "" `job:`"leader"      |   ✔    | Invalid Name Exception | Invalid Name Exception |
 
 ### 2.1.2. Boundary-value analysis
@@ -136,9 +146,9 @@ To test the application we use Black-Box tests such as **Boundary-value analysis
 
 ### 2.2.1. White-Box
 
-|  Name   | Type | Description | Input | Status |     Expected      |      Actual       |
-| :-----: | :--: | :---------: | :---: | :----: | :---------------: | :---------------: |
-| NulldId |      | `id:` null  |   ✔   |   ✔    | Null Id Exception | Null Id Exception |
+|  Name   | Type | Description | Input | Status |       Expected       |        Actual        |
+| :-----: | :--: | :---------: | :---: | :----: | :------------------: | :------------------: |
+| NulldId |      | `id:` null  |   ✔   |   ✔    | Invalid Id Exception | Invalid Id Exception |
 
 ### 2.2.2. Boundary-value analysis
 

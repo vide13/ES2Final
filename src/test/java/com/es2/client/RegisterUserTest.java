@@ -12,8 +12,8 @@ class RegisterUserTest {
 
     private static Client client;
     private final String WORD_WHIT_128_CHARACTER = "esta_string_tem_exatamente_128_caracteres_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz";
-    private final String EIGHT_CHARACTER_WORD = "TestPassword";
-    private final String SEVEN_CHARACTER_WORD = "TestPasswor";
+    private final String EIGHT_CHARACTER_WORD = "TestPass";
+    private final String SEVEN_CHARACTER_WORD = "TestPas";
 
     @BeforeAll
     static void setup() {
