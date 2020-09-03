@@ -25,6 +25,9 @@ class RegisterUserTest {
         assertDoesNotThrow(() -> client.register("eve.holt@reqres.in", "TestPassword"));
     }
 
+    /**
+     * Black-Box Tests
+     */
     @Test
     void nullPassword() {
         assertThrows(InvalidPasswordException.class, () -> client.register("eve.holt@reqres.in", null));

@@ -24,14 +24,13 @@ class CreateUserTest {
         client.login("eve.holt@reqres.in", "cityslicka");
     }
 
-    /**
-     * White-Box Tests
-     */
-
     @Test
     void successful() {
         assertDoesNotThrow(() -> client.createUser("morpheus", "leader"));
     }
+    /**
+     * Black-Box Tests
+     */
 
     @Test
     void nullJob() {

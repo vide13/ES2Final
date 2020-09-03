@@ -28,6 +28,10 @@ class SingleUserTest {
         assertDoesNotThrow(() -> client.singleUser(10));
     }
 
+    /**
+     * Black-Box Tests
+     */
+    
     @Test
     void nullId() {
         assertThrows(InvalidIdException.class, () -> client.singleUser(null));
