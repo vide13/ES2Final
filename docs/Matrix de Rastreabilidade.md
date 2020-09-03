@@ -106,7 +106,12 @@ Testing **NULL** and blank parameters in both arguments
 ### Boundary-value analysis
 
 Testing boundaries according to the follwing specifications:
+
+Email Boundaries:
 ![](https://i.imgur.com/Se53J2p.png)
+
+Password Boundaries:
+![](https://i.imgur.com/2tsft3l.png)
 
 |             Name             |                          Input                           | Status |          Expected          |           Actual           |
 | :--------------------------: | :------------------------------------------------------: | :----: | :------------------------: | :------------------------: |
@@ -243,7 +248,12 @@ Testing **NULL** and blank parameters in both arguments
 ### Boundary-value analysis
 
 Testing boundaries according to the follwing specifications:
+
+Email Boundaries:
 ![](https://i.imgur.com/Se53J2p.png)
+
+Password Boundaries:
+![](https://i.imgur.com/2tsft3l.png)
 
 |             Name             |                          Input                           | Status |          Expected          |                              Actual                              |
 | :--------------------------: | :------------------------------------------------------: | :----: | :------------------------: | :--------------------------------------------------------------: |
