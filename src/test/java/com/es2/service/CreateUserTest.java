@@ -31,9 +31,6 @@ public class CreateUserTest {
         ).toJsonObject()).execute().body().getToken();
     }
 
-    /**
-     * Black-Box Tests
-     */
 
     @Test
     void Successful() throws IOException {
@@ -42,6 +39,10 @@ public class CreateUserTest {
         Response<UserJob> response = request.execute();
         Assertions.assertEquals(201, response.code());
     }
+
+    /**
+     * Black-Box Tests
+     */
 
     @Test
     void NullJob() throws IOException {
@@ -78,42 +79,6 @@ public class CreateUserTest {
     /**
      * Boundary-value analysis
      * <p>
-     * Name Always Valid
-     */
-    @Test
-    void LowerInvalidBoundaryJob() throws IOException {
-        UserJob user = new UserJob("morpheus", "l");
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertTrue(response.code() > 399);
-    }
-
-    @Test
-    void LowerValidBoundaryJob() throws IOException {
-        UserJob user = new UserJob("morpheus", "le");
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(201, response.code());
-    }
-
-    @Test
-    void UpperValidBoundaryJob() throws IOException {
-        UserJob user = new UserJob("morpheus", FIFTY_CHARACTER_WORD);
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertEquals(201, response.code());
-    }
-
-    @Test
-    void UpperInvalidBoundaryJob() throws IOException {
-        UserJob user = new UserJob("morpheus", FIFTY_ONE_CHARACTER_WORD);
-        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
-        Response<UserJob> response = request.execute();
-        Assertions.assertTrue(response.code() > 399);
-    }
-
-
-    /**
      * Job Always Valid
      */
 
@@ -144,6 +109,42 @@ public class CreateUserTest {
     @Test
     void UpperInvalidBoundaryName() throws IOException {
         UserJob user = new UserJob(FIFTY_ONE_CHARACTER_WORD, "leader");
+        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
+        Response<UserJob> response = request.execute();
+        Assertions.assertTrue(response.code() > 399);
+    }
+
+    /**
+     * Name Always Valid
+     */
+
+    @Test
+    void LowerInvalidBoundaryJob() throws IOException {
+        UserJob user = new UserJob("morpheus", "l");
+        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
+        Response<UserJob> response = request.execute();
+        Assertions.assertTrue(response.code() > 399);
+    }
+
+    @Test
+    void LowerValidBoundaryJob() throws IOException {
+        UserJob user = new UserJob("morpheus", "le");
+        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
+        Response<UserJob> response = request.execute();
+        Assertions.assertEquals(201, response.code());
+    }
+
+    @Test
+    void UpperValidBoundaryJob() throws IOException {
+        UserJob user = new UserJob("morpheus", FIFTY_CHARACTER_WORD);
+        Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
+        Response<UserJob> response = request.execute();
+        Assertions.assertEquals(201, response.code());
+    }
+
+    @Test
+    void UpperInvalidBoundaryJob() throws IOException {
+        UserJob user = new UserJob("morpheus", FIFTY_ONE_CHARACTER_WORD);
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
         Assertions.assertTrue(response.code() > 399);

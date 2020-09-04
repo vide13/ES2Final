@@ -31,7 +31,7 @@ class SingleUserTest {
     /**
      * Black-Box Tests
      */
-    
+
     @Test
     void nullId() {
         assertThrows(InvalidIdException.class, () -> client.singleUser(null));

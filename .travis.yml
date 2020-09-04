@@ -5,6 +5,7 @@ jdk:
   - openjdk14
 script:
 - echo "skipping tests"
+- mvn verify
 env:
   - WORKDIR=ES2Final
 after_success:

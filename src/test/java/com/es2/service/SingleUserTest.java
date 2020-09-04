@@ -25,11 +25,9 @@ public class SingleUserTest {
 
     @Test
     void singleUserBigId() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         Call<SingleUser> request = endpoint.singleUser(token, 1000000);
         Response<SingleUser> response = request.execute();
         Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
     }
 
     @Test

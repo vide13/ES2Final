@@ -13,7 +13,7 @@
 # 1. Application Test
 
 To test the application we use Black-Box tests such as **Boundary-value analysis** and **Equivalence partitioning**.
-All the tests that require a valid Login token, are executed whit it.
+All the tests that require a valid Login token, are executed with it.
 
 ## 1.1. Create User
 
@@ -36,7 +36,7 @@ Testing **NULL** and blank parameters in both arguments
 
 ### Boundary-value analysis
 
-Testing boundaries according to the follwing specifications:
+Testing boundaries according to the following specifications:
 ![](https://i.imgur.com/a32zUWt.png)
 
 |           Name           |                   Input                    | Status |           Expected           |            Actual            |
@@ -52,7 +52,7 @@ Testing boundaries according to the follwing specifications:
 
 ## 1.2. Single User
 
-Test if requirement works with valid arguments
+Test if requirement works with valid arguments.
 
 |    Name    | Description | Input | Status | Expected | Actual |
 | :--------: | :---------: | :---: | :----: | :------: | :----: |
@@ -66,7 +66,7 @@ Test if requirement works with valid arguments
 
 ### Boundary-value analysis
 
-Testing boundaries according to the follwing specifications:
+Testing boundaries according to the following specifications:
 ![](https://i.imgur.com/bCn3Uij.png)
 
 |          Name           |   Input    | Status |       Expected       |        Actual        |
@@ -86,7 +86,7 @@ Test if requirement works with valid arguments
 
 ## 1.4. Register
 
-Test if requirement works with valid arguments
+Test if requirement works with valid arguments.
 
 |    Name    |                          Input                          | Status | Expected | Actual |
 | :--------: | :-----------------------------------------------------: | :----: | :------: | :----: |
@@ -94,7 +94,7 @@ Test if requirement works with valid arguments
 
 ### 1.4.1. Black-Box
 
-Testing **NULL** and blank parameters in both arguments
+Testing **NULL** and blank parameters in both arguments.
 
 |     Name      |                       Input                        | Status |          Expected          |           Actual           |
 | :-----------: | :------------------------------------------------: | :----: | :------------------------: | :------------------------: |
@@ -105,7 +105,7 @@ Testing **NULL** and blank parameters in both arguments
 
 ### Boundary-value analysis
 
-Testing boundaries according to the follwing specifications:
+Testing boundaries according to the following specifications:
 
 Email Boundaries:
 ![](https://i.imgur.com/Se53J2p.png)
@@ -134,15 +134,15 @@ Test if requirement works with valid arguments
 
 ## 1.7. Single Resource
 
-Test if requirement works with valid arguments
+Test if requirement works with valid arguments.
 
 |    Name    |  Input   | Status | Expected | Actual |
 | :--------: | :------: | :----: | :------: | :----: |
 | Successful | `id:` 10 |   ✔    |    Ok    |   Ok   |
 
-## 1.8 Requests whit no token
+## 1.8 Requests with no token
 
-The follwing tests in chapter 1.8 were executed whitout a login token
+The following tests in chapter 1.8 were executed without a login token.
 
 |            Name            |               Input               | Status |       Expected        |        Actual         |
 | :------------------------: | :-------------------------------: | :----: | :-------------------: | :-------------------: |
@@ -154,12 +154,12 @@ The follwing tests in chapter 1.8 were executed whitout a login token
 
 # 2. Gobal Tests
 
-After the integration is complete global tests were excetuted in order to verify if the new modules are well iplemented
-All the tests that require a valid Login token, are executed whit it.
+After the integration is complete global tests were excetuted in order to verify if the new modules are well implemented.
+All the tests that require a valid Login token were executed with it.
 
 ## 2.1. Create User
 
-Test if requirement works with valid arguments
+Test if requirement works with valid arguments.
 
 |    Name    |               Input               | Status | Expected | Actual |
 | :--------: | :-------------------------------: | :----: | :------: | :----: |
@@ -167,7 +167,7 @@ Test if requirement works with valid arguments
 
 ### 2.1.1. Black-Box
 
-Testing **NULL** and blank parameters in both arguments
+Testing **NULL** and blank parameters in both arguments.
 
 |   Name    |               Input               | Status |        Expected        |         Actual         |
 | :-------: | :-------------------------------: | :----: | :--------------------: | :--------------------: |
@@ -178,7 +178,7 @@ Testing **NULL** and blank parameters in both arguments
 
 ### Boundary-value analysis
 
-Testing boundaries according to the follwing specifications:
+Testing boundaries according to the following specifications:
 ![](https://i.imgur.com/a32zUWt.png)
 
 |           Name           |                   Input                    | Status |           Expected           |            Actual            |
@@ -208,7 +208,7 @@ Test if requirement works with valid arguments
 
 ### Boundary-value analysis
 
-Testing boundaries according to the follwing specifications:
+Testing boundaries according to the following specifications:
 ![](https://i.imgur.com/bCn3Uij.png)
 
 |          Name           |   Input    | Status |       Expected       |        Actual        |
@@ -247,7 +247,7 @@ Testing **NULL** and blank parameters in both arguments
 
 ### Boundary-value analysis
 
-Testing boundaries according to the follwing specifications:
+Testing boundaries according to the following specifications:
 
 Email Boundaries:
 ![](https://i.imgur.com/Se53J2p.png)
@@ -268,7 +268,7 @@ Password Boundaries:
 
 ## 2.5. Login
 
-Test if requirement works with valid arguments
+Test if requirement works with valid arguments.
 
 |    Name    |                        Input                         | Status | Expected | Actual |
 | :--------: | :--------------------------------------------------: | :----: | :------: | :----: |
@@ -276,7 +276,7 @@ Test if requirement works with valid arguments
 
 ## 2.7. Single Resource
 
-Test if requirement works with valid arguments
+Test if requirement works with valid arguments.
 
 |    Name    |  Input   | Status | Expected | Actual |
 | :--------: | :------: | :----: | :------: | :----: |
@@ -284,7 +284,7 @@ Test if requirement works with valid arguments
 
 ## 2.8 Requests whit no token
 
-The follwing tests in chapter 2.8 were executed whitout a login token
+The following tests in chapter 2.8 were executed without a login token.
 
 |            Name            |               Input               | Status |       Expected        |        Actual         |
 | :------------------------: | :-------------------------------: | :----: | :-------------------: | :-------------------: |
@@ -294,7 +294,7 @@ The follwing tests in chapter 2.8 were executed whitout a login token
 | singleResourceUnsuccessful |             `id:` 10              |   ✔    | InvalidTokenException | InvalidTokenException |
 |   singleUserUnsuccessful   |             `id:` 10              |   ✔    | InvalidTokenException | InvalidTokenException |
 
-## 3. REST Service Test
+# 3. REST Service Test
 
 HTTP response status codes indicate whether a specific [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP) request has been successfully completed. Responses are grouped in five classes: informational responses, successful responses, redirects, client errors, and servers errors.
 
@@ -306,19 +306,40 @@ HTTP response status codes indicate whether a specific [HTTP](https://developer.
 | 401         |  🔴  | Unauthorized |      Client must authenticate itself       |
 | 404         |  🔴  |  Not Found   | The server can not find requested resource |
 
+All the tests that require a valid Login token, are executed whit it.
+
+Test if requirement works with valid arguments.
+
 ### 3.1. Create User
+
+|                        Descrição                         |    Name    |               Input               | Status |  Expected  |    Actual    |
+| :------------------------------------------------------: | :--------: | :-------------------------------: | :----: | :--------: | :----------: |
+| Test if request with valid arguments returns **OK** code | Successful | `name:` "morpheus" `job:`"leader" |   ✔    | `code:`201 | `code:`201 ` |
 
 #### 3.1.1. Black-Box
 
-|     Name     |                              Input                               | Status |                                                       Expected                                                       |                                                          Actual                                                          |
-| :----------: | :--------------------------------------------------------------: | :----: | :------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------: |
-|  Successful  |  `token:`"QpwL5tke4Pnpja7X4" `name:` "morpheus" `job:`"leader"   |   ✔    | `code:`400 `content-type:`application/json {`name`:"morpheus", `job:`"leader",`id:`**!NULL**, `createdAt:`**!NULL**} |  `code:`201 `content-type:`application/json {`name`: "morpheus", `job:`"leader", `id:`**!NULL**, `createdAt:`**!NULL**}  |
-| InvalidName  |      `token:`"QpwL5tke4Pnpja7X4" `name:` "" `job:`"leader"       |   ❌   |                            `code:`400 `content-type:`application/json {`error`:**!NULL**}                            |      `code:`201 `content-type:`application/json {`name`: "", `job:`"leader", `id:`**!NULL**, `createdAt:`**!NULL**}      |
-|   NullName   |     `token:`"QpwL5tke4Pnpja7X4" `name:` null `job:`"leader"      |   ❌   |                            `code:`400 `content-type:`application/json {`error`:**!NULL**}                            |  `code:`201 `content-type:`application/json {`name`: "**NULL**", `job:`"leader", `id:`**!NULL**, `createdAt:`**!NULL**}  |
-|  InvalidJob  |     `token:`"QpwL5tke4Pnpja7X4" `name:` "morpheus" `job:`""      |   ❌   |                            `code:`400 `content-type:`application/json {`error`:**!NULL**}                            |     `code:`201 `content-type:`application/json {`name`: "morpheus", `job:`"", `id:`**!NULL**, `createdAt:`**!NULL**}     |
-|   NullJob    | `token:`"QpwL5tke4Pnpja7X4" `name:` "morpheus" `job:`"**!NULL**" |   ❌   |                            `code:`400 `content-type:`application/json {`error`:**!NULL**}                            | `code:`201 `content-type:`application/json {`name`: "morpheus, `job:`"**!NULL**", `id:`**!NULL**, `createdAt:`**!NULL**} |
-| InvalidToken |    `token:`"token_invalido" `name:` "morpheus" `job:`"leader"    |   ❌   |                            `code:`401 `content-type:`application/json {`error`:**!NULL**}                            |  `code:`201 `content-type:`application/json {`name`: "morpheus", `job:`"leader", `id:`**!NULL**, `createdAt:`**!NULL**}  |
-|  NullToken   |        `token:`**NULL** `name:` "morpheus" `job:`"leader"        |   ❌   |                            `code:`401 `content-type:`application/json {`error`:**!NULL**}                            |  `code:`201 `content-type:`application/json {`name`: "morpheus", `job:`"leader", `id:`**!NULL**, `createdAt:`**!NULL**}  |
+|                       Descrição                        |   Name    |               Input                | Status |  Expected  |   Actual   |
+| :----------------------------------------------------: | :-------: | :--------------------------------: | :----: | :--------: | :--------: |
+| Test if request with **BLANK** Name returns error code | BlankName |     `name:`" " `job:`"leader"      |   ❌   | `code:`400 | `code:`201 |
+| Test if request with **NULL** Name returns error code  | NullName  |     `name:`null `job:`"leader"     |   ❌   | `code:`400 | `code:`201 |
+| Test if request with **BLANK** Job returns error code  | BlankJob  |    `name:`"morpheus" `job:`" "     |   ❌   | `code:`400 | `code:`201 |
+| Test if request with **NULL** Name returns error code  |  NullJob  | `name:`"morpheus" `job:`"**NULL**" |   ❌   | `code:`400 | `code:`201 |
+
+### Boundary-value analysis
+
+Testing boundaries according to the following specifications:
+![](https://i.imgur.com/a32zUWt.png)
+
+|           Name           |                   Input                    | Status |           Expected           |            Actual            |
+| :----------------------: | :----------------------------------------: | :----: | :--------------------------: | :--------------------------: |
+| LowerInvalidBoundaryName |   `name:`String.length(1) `job:`"leader"   |   ✔    | Throw Invalid Name Exception | Throw Invalid Name Exception |
+|  LowerValidBoundaryName  |   `name:`String.length(2) `job:`"leader"   |   ✔    |              Ok              |              Ok              |
+|  UpperValidBoundaryName  |  `name:`String.length(50) `job:`"leader"   |   ✔    |              Ok              |              Ok              |
+| UpperInvalidBoundaryName |  `name:`String.length(51) `job:`"leader"   |   ✔    | Throw Invalid Name Exception | Throw Invalid Name Exception |
+| LowerInvalidBoundaryJob  | `name:` "morpheus" `job:`String.length(1)  |   ✔    | Throw Invalid Job Exception  | Throw Invalid Job Exception  |
+|  LowerValidBoundaryJob   | `name:` "morpheus" `job:`String.length(2)  |   ✔    |              Ok              |              Ok              |
+|  UpperValidBoundaryJob   | `name:` "morpheus" `job:`String.length(50) |   ✔    |              Ok              |              Ok              |
+| UpperInvalidBoundaryJob  | `name:` "morpheus" `job:`String.length(51) |   ✔    | Throw Invalid Job Exception  | Throw Invalid Job Exception  |
 
 ### 3.2. Single User
 
@@ -407,3 +428,8 @@ HTTP response status codes indicate whether a specific [HTTP](https://developer.
 | :--------: | :-------: | :---------: | :--------: | :----: | :--------: | :--------: |
 | IdUnderMin | Black Box |             |  `id:` 0   |   ❌   | `code:`400 | `code:`404 |
 | IdAboveMax | Black Box |             | `id:` 1001 |   ❌   | `code:`400 | `code:`404 |
+
+| Descrição |     Name     |                           Input                            | Status |  Expected  |    Actual    |
+| :-------: | :----------: | :--------------------------------------------------------: | :----: | :--------: | :----------: |
+|     s     | InvalidToken | `token:`"token_invalido" `name:` "morpheus" `job:`"leader" |   ❌   | `code:`401 | `code:`201 ` |
+|     s     |   NoToken    |     `token:`**NULL** `name:` "morpheus" `job:`"leader"     |   ❌   | `code:`401 | `code:`201 ` |
