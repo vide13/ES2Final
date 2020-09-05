@@ -361,21 +361,21 @@ Testing boundaries according to the following specifications:
 |  UpperValidBoundaryId  | `id:`10000 |   ❌   | `code:`200  | `code:`404 |
 | UpperInvalidBoundaryId | `id:`10001 |   ✔    | `code:`>399 | `code:`404 |
 
-### 3.3. List Users
+## 3.3. List Users
 
-#### 3.3.1. Black-Box
+### 3.3.1. Black-Box
 
 |                       Descrição                       |    Name    | Input | Status |  Expected  |   Actual   |
 | :---------------------------------------------------: | :--------: | :---: | :----: | :--------: | :--------: |
 | Test if request with valid arguments returns 200 code | Successful |       |   ✔    | `code:`200 | `code:`200 |
 
-### 3.4. Register
+## 3.4. Register
 
 |                       Descrição                       |    Name    |                          Input                          | Status |  Expected  |   Actual   |
 | :---------------------------------------------------: | :--------: | :-----------------------------------------------------: | :----: | :--------: | :--------: |
 | Test if request with valid arguments returns 200 code | Successful | `email:` "eve.holt@reqres.in" `password:`"TestPassword" |   ✔    | `code:`200 | `code:`200 |
 
-#### 3.4.1. Black-Box
+### 3.4.1. Black-Box
 
 |                         Descrição                          |     Name      |                       Input                        | Status |  Expected   |   Actual   |
 | :--------------------------------------------------------: | :-----------: | :------------------------------------------------: | :----: | :---------: | :--------: |
@@ -384,7 +384,7 @@ Testing boundaries according to the following specifications:
 |  Test if request with **BLANK** Email returns error code   |  BlankEmail   |       `email:` " " `password:`"TestPassword"       |   ✔    | `code:`>399 | `code:`400 |
 |   Test if request with **NULL** Email returns error code   |   NullEmail   |       `email:`**!NULL** `password:`"leader"        |   ✔    | `code:`>399 | `code:`400 |
 
-### Boundary-value analysis
+#### Boundary-value analysis
 
 Testing boundaries according to the following specifications:
 
@@ -405,9 +405,9 @@ Password Boundaries:
 |  UpperValidBoundaryPassword  | `email:`eve.holt@reqres.in `password:`String.length(128) |   ✔    | `code:`200  | `code:`400 |
 | UpperInvalidBoundaryPassword | `email:`eve.holt@reqres.in `password:`String.length(129) |   ❌   | `code:`>399 | `code:`200 |
 
-### 3.5. Login
+## 3.5. Login
 
-#### 3.5.1. Black-Box
+### 3.5.1. Black-Box
 
 |     Name     |                                     Input                                      | Status |                                                     Expected                                                     |                                                    Actual                                                    |
 | :----------: | :----------------------------------------------------------------------------: | :----: | :--------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------: |
@@ -419,23 +419,23 @@ Password Boundaries:
 | InvalidToken | `token:`"token_invalido" `email:` "eve.holt@reqres.in" `password:`"cityslicka" |   ❌   |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          | `code:`200 `content-type:`application/json {`email`: "morpheus", `password:`"cityslicka", `token:`**!NULL**} |
 |  NullToken   |     `token:`**NULL** `email:` "eve.holt@reqres.in" `password:`"cityslicka"     |   ❌   |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          | `code:`200 `content-type:`application/json {`email`: "morpheus", `password:`"cityslicka", `token:`**!NULL**} |
 
-### 3.6. List Resource
+## 3.6. List Resource
 
-#### 3.6.1. Black-Box
+### 3.6.1. Black-Box
 
 |    Name    |   Type    | Description | Input | Status |  Expected  |   Actual   |
 | :--------: | :-------: | :---------: | :---: | :----: | :--------: | :--------: |
 | Successful | Black-Box |             |       |   ✔    | `code:`200 | `code:`200 |
 
-### 3.7. Single Resource
+## 3.7. Single Resource
 
-#### 3.7.1. Black-Box
+### 3.7.1. Black-Box
 
 |    Name    |                 Input                 | Status |  Expected  |   Actual   |
 | :--------: | :-----------------------------------: | :----: | :--------: | :--------: |
 | Successful | `token:`"QpwL5tke4Pnpja7X4" `id:` "2" |   ✔    | `code:`200 | `code:`200 |
 
-#### 3.7.2. Boundary-value analysis
+### 3.7.2. Boundary-value analysis
 
 | Name  |   Type    | Description |   Input    | Status |  Expected  |   Actual   |
 | :---: | :-------: | :---------: | :--------: | :----: | :--------: | :--------: |
