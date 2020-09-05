@@ -1,0 +1,35 @@
+{
+  "scenarioName": "SchemaListResourcesPerPageTest",
+  "ignoreStepFailures": true,
+  "steps": [
+    {
+      "name": "SchemaListResourcesPerPageTest",
+      "url": "/api/unknown?per_page=2",
+      "method": "GET",
+      "request": {
+      },
+      "verify": {
+        "status": 200,
+        "body": {
+          "per_page": 2,
+          "data": [
+            {
+              "id": 1,
+              "name": "$IS.NOTNULL",
+              "year": "$IS.NOTNULL",
+              "color": "$IS.NOTNULL",
+              "pantone_value": "$IS.NOTNULL"
+            },
+            {
+              "id": "$IS.NOTNULL",
+              "name": "$IS.NOTNULL",
+              "year": "$IS.NOTNULL",
+              "color": "$IS.NOTNULL",
+              "pantone_value": "$IS.NOTNULL"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

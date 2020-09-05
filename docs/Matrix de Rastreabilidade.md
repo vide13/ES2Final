@@ -449,6 +449,37 @@ Password Boundaries:
 | :---------------------------------------------------: | :--------: | :---: | :----: | :--------: | :--------: |
 | Test if request with valid arguments returns 200 code | Successful |       |   ✔    | `code:`200 | `code:`200 |
 
+### 3.6.1 Schema Testing
+
+|                                Descrição                                |    Name    | Input | Status |            Expected            |              Actual               |
+| :---------------------------------------------------------------------: | :--------: | :---: | :----: | :----------------------------: | :-------------------------------: |
+| Testing if, when asked for 2 resources per page the response is correct | Successful |       |   ✔    | SchemaListResourcesPerPageTest | Response Received, matched schema |
+
+### Expected payload
+
+```java
+"status": 200,
+"body": {
+  "per_page": 2,
+  "data": [
+    {
+      "id": "$IS.NOTNULL",
+      "name": "$IS.NOTNULL",
+      "year": "$IS.NOTNULL",
+      "color": "$IS.NOTNULL",
+      "pantone_value": "$IS.NOTNULL"
+    },
+    {
+      "id": "$IS.NOTNULL",
+      "name": "$IS.NOTNULL",
+      "year": "$IS.NOTNULL",
+      "color": "$IS.NOTNULL",
+      "pantone_value": "$IS.NOTNULL"
+    }
+  ]
+}
+```
+
 ## 3.7. Single Resource
 
 ### 3.7.1. Black-Box

@@ -51,4 +51,13 @@ public class SchemaTests {
     public void SchemaSingleUserTest() {
 
     }
+
+    /**
+     * Testing if, when asked for 2 resources per page the response is correct
+     */
+    @Scenario("SchemaTests/SchemaListResourcesPerPageTest.json")
+    @Test
+    public void SchemaListResourcesPerPageTest() {
+
+    }
 }
