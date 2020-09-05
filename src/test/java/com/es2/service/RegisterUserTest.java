@@ -143,5 +143,4 @@ public class RegisterUserTest {
         Response<Register> response = request.execute();
         Assertions.assertTrue(response.code() > 399);
     }
-
 }
