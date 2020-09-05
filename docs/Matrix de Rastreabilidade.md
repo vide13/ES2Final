@@ -69,12 +69,12 @@ Test if requirement works with valid arguments.
 Testing boundaries according to the following specifications:
 ![](https://i.imgur.com/bCn3Uij.png)
 
-|          Name           |   Input    | Status |       Expected       |        Actual        |
-| :---------------------: | :--------: | :----: | :------------------: | :------------------: |
-| LowerInvalidBoundaryJob |   `id:`0   |   ✔    | Invalid Id Exception | Invalid Id Exception |
-| LowerValidBoundaryName  |   `id:`1   |   ✔    |          Ok          |          Ok          |
-| UpperValidBoundaryName  | `id:`10000 |   ✔    |          Ok          |          Ok          |
-| UpperInvalidBoundaryJob | `id:`10001 |   ✔    | Invalid Id Exception | Invalid Id Exception |
+|          Name          |   Input    | Status |       Expected       |        Actual        |
+| :--------------------: | :--------: | :----: | :------------------: | :------------------: |
+| LowerInvalidBoundaryId |   `id:`0   |   ✔    | Invalid Id Exception | Invalid Id Exception |
+|  LowerValidBoundaryId  |   `id:`1   |   ✔    |          Ok          |          Ok          |
+|  UpperValidBoundaryId  | `id:`10000 |   ✔    |          Ok          |          Ok          |
+| UpperInvalidBoundaryId | `id:`10001 |   ✔    | Invalid Id Exception | Invalid Id Exception |
 
 ## 1.3. List Users
 
@@ -318,43 +318,48 @@ Test if requirement works with valid arguments.
 
 #### 3.1.1. Black-Box
 
-|                       Descrição                        |   Name    |               Input                | Status |  Expected  |   Actual   |
-| :----------------------------------------------------: | :-------: | :--------------------------------: | :----: | :--------: | :--------: |
-| Test if request with **BLANK** Name returns error code | BlankName |     `name:`" " `job:`"leader"      |   ❌   | `code:`400 | `code:`201 |
-| Test if request with **NULL** Name returns error code  | NullName  |     `name:`null `job:`"leader"     |   ❌   | `code:`400 | `code:`201 |
-| Test if request with **BLANK** Job returns error code  | BlankJob  |    `name:`"morpheus" `job:`" "     |   ❌   | `code:`400 | `code:`201 |
-| Test if request with **NULL** Name returns error code  |  NullJob  | `name:`"morpheus" `job:`"**NULL**" |   ❌   | `code:`400 | `code:`201 |
+|                       Descrição                        |   Name    |              Input               | Status |  Expected   |   Actual   |
+| :----------------------------------------------------: | :-------: | :------------------------------: | :----: | :---------: | :--------: |
+| Test if request with **BLANK** Name returns error code | BlankName |    `name:`" " `job:`"leader"     |   ❌   | `code:`>399 | `code:`201 |
+| Test if request with **NULL** Name returns error code  | NullName  |  `name:`**NULL** `job:`"leader"  |   ❌   | `code:`>399 | `code:`201 |
+| Test if request with **BLANK** Job returns error code  | BlankJob  |   `name:`"morpheus" `job:`" "    |   ❌   | `code:`>399 | `code:`201 |
+| Test if request with **NULL** Name returns error code  |  NullJob  | `name:`"morpheus" `job:`**NULL** |   ❌   | `code:`>399 | `code:`201 |
 
 ### Boundary-value analysis
 
 Testing boundaries according to the following specifications:
 ![](https://i.imgur.com/a32zUWt.png)
 
-|           Name           |                   Input                    | Status |           Expected           |            Actual            |
-| :----------------------: | :----------------------------------------: | :----: | :--------------------------: | :--------------------------: |
-| LowerInvalidBoundaryName |   `name:`String.length(1) `job:`"leader"   |   ✔    | Throw Invalid Name Exception | Throw Invalid Name Exception |
-|  LowerValidBoundaryName  |   `name:`String.length(2) `job:`"leader"   |   ✔    |              Ok              |              Ok              |
-|  UpperValidBoundaryName  |  `name:`String.length(50) `job:`"leader"   |   ✔    |              Ok              |              Ok              |
-| UpperInvalidBoundaryName |  `name:`String.length(51) `job:`"leader"   |   ✔    | Throw Invalid Name Exception | Throw Invalid Name Exception |
-| LowerInvalidBoundaryJob  | `name:` "morpheus" `job:`String.length(1)  |   ✔    | Throw Invalid Job Exception  | Throw Invalid Job Exception  |
-|  LowerValidBoundaryJob   | `name:` "morpheus" `job:`String.length(2)  |   ✔    |              Ok              |              Ok              |
-|  UpperValidBoundaryJob   | `name:` "morpheus" `job:`String.length(50) |   ✔    |              Ok              |              Ok              |
-| UpperInvalidBoundaryJob  | `name:` "morpheus" `job:`String.length(51) |   ✔    | Throw Invalid Job Exception  | Throw Invalid Job Exception  |
+|           Name           |                   Input                    | Status |  Expected   |   Actual   |
+| :----------------------: | :----------------------------------------: | :----: | :---------: | :--------: |
+| LowerInvalidBoundaryName |   `name:`String.length(1) `job:`"leader"   |   ❌   | `code:`>399 | `code:`201 |
+|  LowerValidBoundaryName  |   `name:`String.length(2) `job:`"leader"   |   ✔    | `code:`201  | `code:`201 |
+|  UpperValidBoundaryName  |  `name:`String.length(50) `job:`"leader"   |   ✔    | `code:`201  | `code:`201 |
+| UpperInvalidBoundaryName |  `name:`String.length(51) `job:`"leader"   |   ❌   | `code:`>399 | `code:`201 |
+| LowerInvalidBoundaryJob  | `name:` "morpheus" `job:`String.length(1)  |   ❌   | `code:`>399 | `code:`201 |
+|  LowerValidBoundaryJob   | `name:` "morpheus" `job:`String.length(2)  |   ✔    | `code:`201  | `code:`201 |
+|  UpperValidBoundaryJob   | `name:` "morpheus" `job:`String.length(50) |   ✔    | `code:`201  | `code:`201 |
+| UpperInvalidBoundaryJob  | `name:` "morpheus" `job:`String.length(51) |   ❌   | `code:`>399 | `code:`201 |
 
 ### 3.2. Single User
 
 #### 3.2.1. Black-Box
 
-|    Name    |                 Input                 | Status |  Expected  |   Actual   |
-| :--------: | :-----------------------------------: | :----: | :--------: | :--------: |
-| Successful | `token:`"QpwL5tke4Pnpja7X4" `id:` "2" |   ✔    | `code:`200 | `code:`200 |
+|    Name    | Input  | Status |  Expected  |   Actual   |
+| :--------: | :----: | :----: | :--------: | :--------: |
+| Successful | `id:`2 |   ✔    | `code:`200 | `code:`200 |
 
 #### 3.2.2. Boundary-value analysis
 
-| Name  |   Type    | Description |   Input    | Status |  Expected  |   Actual   |
-| :---: | :-------: | :---------: | :--------: | :----: | :--------: | :--------: |
-| MinId | Black Box |             |  `id:` 1   |   ✔    | `code:`200 | `code:`200 |
-| MaxId | Black Box |             | `id:` 1000 |   ❌   | `code:`200 | `code:`404 | . |
+Testing boundaries according to the following specifications:
+![](https://i.imgur.com/bCn3Uij.png)
+
+|          Name          |   Input    | Status |  Expected   |   Actual   |
+| :--------------------: | :--------: | :----: | :---------: | :--------: |
+| LowerInvalidBoundaryId |   `id:`0   |   ✔    | `code:`>399 | `code:`404 |
+|  LowerValidBoundaryId  |   `id:`1   |   ✔    | `code:`200  | `code:`200 |
+|  UpperValidBoundaryId  | `id:`10000 |   ❌   | `code:`200  | `code:`404 |
+| UpperInvalidBoundaryId | `id:`10001 |   ✔    | `code:`>399 | `code:`404 |
 
 #### 3.2.3. Equivalence partitioning
 
@@ -371,7 +376,7 @@ Testing boundaries according to the following specifications:
 | :--------: | :-------: | :---------: | :---: | :----: | :--------: | :--------: |
 | Successful | Black-Box |             |       |   ✔    | `code:`200 | `code:`200 |
 
-### 3.4. Regist
+### 3.4. Register
 
 #### 3.4.1. Black-Box
 

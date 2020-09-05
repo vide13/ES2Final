@@ -33,7 +33,7 @@ public class CreateUserTest {
 
 
     @Test
-    void Successful() throws IOException {
+    void successful() throws IOException {
         UserJob user = new UserJob("morpheus", "leader");
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -45,7 +45,7 @@ public class CreateUserTest {
      */
 
     @Test
-    void NullJob() throws IOException {
+    void nullJob() throws IOException {
         UserJob user = new UserJob("morpheus", null);
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -53,7 +53,7 @@ public class CreateUserTest {
     }
 
     @Test
-    void BlankJob() throws IOException {
+    void blankJob() throws IOException {
         UserJob user = new UserJob("morpheus", " ");
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -61,7 +61,7 @@ public class CreateUserTest {
     }
 
     @Test
-    void NullName() throws IOException {
+    void nullName() throws IOException {
         UserJob user = new UserJob(null, "leader");
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -69,7 +69,7 @@ public class CreateUserTest {
     }
 
     @Test
-    void BlankName() throws IOException {
+    void blankName() throws IOException {
         UserJob user = new UserJob(" ", "leader");
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -83,7 +83,7 @@ public class CreateUserTest {
      */
 
     @Test
-    void LowerInvalidBoundaryName() throws IOException {
+    void lowerInvalidBoundaryName() throws IOException {
         UserJob user = new UserJob("m", "leader");
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -91,7 +91,7 @@ public class CreateUserTest {
     }
 
     @Test
-    void LowerValidBoundaryName() throws IOException {
+    void lowerValidBoundaryName() throws IOException {
         UserJob user = new UserJob("mo", "leader");
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -99,7 +99,7 @@ public class CreateUserTest {
     }
 
     @Test
-    void UpperValidBoundaryName() throws IOException {
+    void upperValidBoundaryName() throws IOException {
         UserJob user = new UserJob(FIFTY_CHARACTER_WORD, "leader");
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -107,7 +107,7 @@ public class CreateUserTest {
     }
 
     @Test
-    void UpperInvalidBoundaryName() throws IOException {
+    void upperInvalidBoundaryName() throws IOException {
         UserJob user = new UserJob(FIFTY_ONE_CHARACTER_WORD, "leader");
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -119,7 +119,7 @@ public class CreateUserTest {
      */
 
     @Test
-    void LowerInvalidBoundaryJob() throws IOException {
+    void lowerInvalidBoundaryJob() throws IOException {
         UserJob user = new UserJob("morpheus", "l");
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -127,7 +127,7 @@ public class CreateUserTest {
     }
 
     @Test
-    void LowerValidBoundaryJob() throws IOException {
+    void lowerValidBoundaryJob() throws IOException {
         UserJob user = new UserJob("morpheus", "le");
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -135,7 +135,7 @@ public class CreateUserTest {
     }
 
     @Test
-    void UpperValidBoundaryJob() throws IOException {
+    void upperValidBoundaryJob() throws IOException {
         UserJob user = new UserJob("morpheus", FIFTY_CHARACTER_WORD);
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -143,7 +143,7 @@ public class CreateUserTest {
     }
 
     @Test
-    void UpperInvalidBoundaryJob() throws IOException {
+    void upperInvalidBoundaryJob() throws IOException {
         UserJob user = new UserJob("morpheus", FIFTY_ONE_CHARACTER_WORD);
         Call<UserJob> request = endpoint.createUser(token, user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -151,7 +151,7 @@ public class CreateUserTest {
     }
 
     @Test
-    void InvalidToken() throws IOException {
+    void invalidToken() throws IOException {
         UserJob user = new UserJob("morpheus", "leader");
         Call<UserJob> request = endpoint.createUser("token_invalido", user.toJsonObject());
         Response<UserJob> response = request.execute();
@@ -159,7 +159,7 @@ public class CreateUserTest {
     }
 
     @Test
-    void NullToken() throws IOException {
+    void nullToken() throws IOException {
         UserJob user = new UserJob("morpheus", "leader");
         Call<UserJob> request = endpoint.createUser(null, user.toJsonObject());
         Response<UserJob> response = request.execute();

@@ -24,42 +24,37 @@ public class SingleUserTest {
     }
 
     @Test
-    void singleUserBigId() throws IOException {
-        Call<SingleUser> request = endpoint.singleUser(token, 1000000);
-        Response<SingleUser> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-    }
-
-    @Test
-    void singleUserIdLesserThanZero() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
-        Call<SingleUser> request = endpoint.singleUser(token, -5);
-        Response<SingleUser> response = request.execute();
-        Assertions.assertEquals(400, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void singleUserNotFound() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
-        Call<SingleUser> request = endpoint.singleUser(token, 23);
-        Response<SingleUser> response = request.execute();
-        Assertions.assertEquals(404, response.code());
-        Assertions.assertNull(response.body());
-    }
-
-    @Test
-    void singleUserSuccessful() throws IOException {
-        Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
+    void successful() throws IOException {
         Call<SingleUser> request = endpoint.singleUser(token, 2);
         Response<SingleUser> response = request.execute();
         Assertions.assertEquals(200, response.code());
-        assert response.body() != null;
-        Assertions.assertEquals(2, response.body().getData().getId());
-        Assertions.assertEquals("janet.weaver@reqres.in", response.body().getData().getEmail());
-        Assertions.assertEquals("Janet", response.body().getData().getFirst_name());
-        Assertions.assertEquals("Weaver", response.body().getData().getLast_name());
-        Assertions.assertEquals("https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg", response.body().getData().getAvatar());
     }
 
+    @Test
+    void lowerInvalidBoundaryId() throws IOException {
+        Call<SingleUser> request = endpoint.singleUser(token, 0);
+        Response<SingleUser> response = request.execute();
+        Assertions.assertTrue(response.code() > 399);
+    }
+
+    @Test
+    void lowerValidBoundaryId() throws IOException {
+        Call<SingleUser> request = endpoint.singleUser(token, 1);
+        Response<SingleUser> response = request.execute();
+        Assertions.assertEquals(200, response.code());
+    }
+
+    @Test
+    void upperValidBoundaryId() throws IOException {
+        Call<SingleUser> request = endpoint.singleUser(token, 0);
+        Response<SingleUser> response = request.execute();
+        Assertions.assertEquals(200, response.code());
+    }
+
+    @Test
+    void upperInvalidBoundaryId() throws IOException {
+        Call<SingleUser> request = endpoint.singleUser(token, 10000);
+        Response<SingleUser> response = request.execute();
+        Assertions.assertTrue(response.code() > 399);
+    }
 }
