@@ -34,7 +34,7 @@ public class ControllerAPI implements ControllerInterface {
 
 
     public ListResources listResourcesCacheTest(String token) throws IOException {
-        Call<ListResources> request = endpoint.listResources(token);
+        Call<ListResources> request = endpoint.listResources(token,null,null);
         Response<ListResources> response = request.execute();
         checkResponse(response);
         assert response.body() != null;
@@ -54,7 +54,7 @@ public class ControllerAPI implements ControllerInterface {
 
     @Override
     public ListResources listResources(String token) throws IOException {
-        Call<ListResources> request = endpoint.listResources(token);
+        Call<ListResources> request = endpoint.listResources(token,null,null);
         Response<ListResources> response = request.execute();
         checkResponse(response);
         assert response.body() != null;

@@ -343,13 +343,13 @@ Testing boundaries according to the following specifications:
 
 ## 3.2. Single User
 
-#### 3.2.1. Black-Box
+### 3.2.1. Black-Box
 
 |                       Descrição                       |    Name    | Input  | Status |  Expected  |   Actual   |
 | :---------------------------------------------------: | :--------: | :----: | :----: | :--------: | :--------: |
 | Test if request with valid arguments returns 200 code | Successful | `id:`2 |   ✔    | `code:`200 | `code:`200 |
 
-#### 3.2.2. Boundary-value analysis
+### 3.2.2. Boundary-value analysis
 
 Testing boundaries according to the following specifications:
 ![](https://i.imgur.com/bCn3Uij.png)
@@ -384,7 +384,7 @@ Testing boundaries according to the following specifications:
 |  Test if request with **BLANK** Email returns error code   |  BlankEmail   |       `email:` " " `password:`"TestPassword"       |   ✔    | `code:`>399 | `code:`400 |
 |   Test if request with **NULL** Email returns error code   |   NullEmail   |       `email:`**!NULL** `password:`"leader"        |   ✔    | `code:`>399 | `code:`400 |
 
-#### Boundary-value analysis
+### Boundary-value analysis
 
 Testing boundaries according to the following specifications:
 
@@ -407,49 +407,64 @@ Password Boundaries:
 
 ## 3.5. Login
 
+|                       Descrição                       |    Name    |                          Input                          | Status |  Expected  |   Actual   |
+| :---------------------------------------------------: | :--------: | :-----------------------------------------------------: | :----: | :--------: | :--------: |
+| Test if request with valid arguments returns 200 code | Successful | `email:` "eve.holt@reqres.in" `password:`"TestPassword" |   ✔    | `code:`200 | `code:`200 |
+
 ### 3.5.1. Black-Box
 
-|     Name     |                                     Input                                      | Status |                                                     Expected                                                     |                                                    Actual                                                    |
-| :----------: | :----------------------------------------------------------------------------: | :----: | :--------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------: |
-|  Successful  |             `email:` "eve.holt@reqres.in" `password:`"cityslicka"              |   ✔    | `code:`200 `content-type:`application/json {`email`:"eve.holt@reqres.in", `password:`"leader",`token:`**!NULL**} | `code:`200 `content-type:`application/json {`email`: "morpheus", `password:`"cityslicka", `token:`**!NULL**} |
-| InvalidName  |                      `email:` "" `password:`"cityslicka"                       |   ✔    |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          |                        `code:`400 `content-type:`application/json {`error`:**!NULL**}                        |
-|   NullName   |                       `email:` null `password:`"leader"                        |   ✔    |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          |                        `code:`400 `content-type:`application/json {`error`:**!NULL**}                        |
-|  InvalidJob  |                  `email:` "eve.holt@reqres.in" `password:`""                   |   ✔    |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          |                        `code:`400 `content-type:`application/json {`error`:**!NULL**}                        |
-|   NullJob    |              `email:` "eve.holt@reqres.in" `password:`"**!NULL**"              |   ✔    |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          |                        `code:`400 `content-type:`application/json {`error`:**!NULL**}                        |
-| InvalidToken | `token:`"token_invalido" `email:` "eve.holt@reqres.in" `password:`"cityslicka" |   ❌   |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          | `code:`200 `content-type:`application/json {`email`: "morpheus", `password:`"cityslicka", `token:`**!NULL**} |
-|  NullToken   |     `token:`**NULL** `email:` "eve.holt@reqres.in" `password:`"cityslicka"     |   ❌   |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          | `code:`200 `content-type:`application/json {`email`: "morpheus", `password:`"cityslicka", `token:`**!NULL**} |
+|                         Descrição                          |     Name      |                       Input                        | Status |  Expected   |   Actual   |
+| :--------------------------------------------------------: | :-----------: | :------------------------------------------------: | :----: | :---------: | :--------: |
+| Test if request with **NULL** Password returns error code  | NullPassword  | `email:` "eve.holt@reqres.in" `password:`**!NULL** |   ✔    | `code:`>399 | `code:`400 |
+| Test if request with **BLANK** Password returns error code | BlankPassword |    `email:` "eve.holt@reqres.in" `password:`" "    |   ❌   | `code:`>399 | `code:`200 |
+|  Test if request with **BLANK** Email returns error code   |  BlankEmail   |       `email:` " " `password:`"TestPassword"       |   ✔    | `code:`>399 | `code:`400 |
+|   Test if request with **NULL** Email returns error code   |   NullEmail   |       `email:`**!NULL** `password:`"leader"        |   ✔    | `code:`>399 | `code:`400 |
 
-## 3.6. List Resource
+### Boundary-value analysis
+
+Testing boundaries according to the following specifications:
+
+Email Boundaries:
+![](https://i.imgur.com/Se53J2p.png)
+
+Password Boundaries:
+![](https://i.imgur.com/2tsft3l.png)
+
+|             Name             |                          Input                           | Status |  Expected   |   Actual   |
+| :--------------------------: | :------------------------------------------------------: | :----: | :---------: | :--------: |
+|  LowerInvalidBoundaryEmail   |    `email:`String.length(2) `password:`"TestPassword"    |   ✔    | `code:`>399 | `code:`400 |
+|   LowerValidBoundaryEmail    |    `email:`String.length(3) `password:`"TestPassword"    |   ❌   | `code:`200  | `code:`400 |
+|   UpperValidBoundaryEmail    |   `email:`String.length(128) `password:`"TestPassword"   |   ❌   | `code:`200  | `code:`400 |
+|  UpperInvalidBoundaryEmail   |   `email:`String.length(129) `password:`"TestPassword"   |   ✔    | `code:`>399 | `code:`400 |
+| LowerInvalidBoundaryPassword |  `email:`eve.holt@reqres.in `password:`String.length(7)  |   ❌   | `code:`>399 | `code:`200 |
+|  LowerValidBoundaryPassword  |  `email:`eve.holt@reqres.in `password:`String.length(8)  |   ✔    | `code:`200  | `code:`200 |
+|  UpperValidBoundaryPassword  | `email:`eve.holt@reqres.in `password:`String.length(128) |   ✔    | `code:`200  | `code:`400 |
+| UpperInvalidBoundaryPassword | `email:`eve.holt@reqres.in `password:`String.length(129) |   ❌   | `code:`>399 | `code:`200 |
+
+## 3.6. List Resources
 
 ### 3.6.1. Black-Box
 
-|    Name    |   Type    | Description | Input | Status |  Expected  |   Actual   |
-| :--------: | :-------: | :---------: | :---: | :----: | :--------: | :--------: |
-| Successful | Black-Box |             |       |   ✔    | `code:`200 | `code:`200 |
+|                       Descrição                       |    Name    | Input | Status |  Expected  |   Actual   |
+| :---------------------------------------------------: | :--------: | :---: | :----: | :--------: | :--------: |
+| Test if request with valid arguments returns 200 code | Successful |       |   ✔    | `code:`200 | `code:`200 |
 
 ## 3.7. Single Resource
 
 ### 3.7.1. Black-Box
 
-|    Name    |                 Input                 | Status |  Expected  |   Actual   |
-| :--------: | :-----------------------------------: | :----: | :--------: | :--------: |
-| Successful | `token:`"QpwL5tke4Pnpja7X4" `id:` "2" |   ✔    | `code:`200 | `code:`200 |
+|                       Descrição                       |    Name    |   Input   | Status |  Expected  |   Actual   |
+| :---------------------------------------------------: | :--------: | :-------: | :----: | :--------: | :--------: |
+| Test if request with valid arguments returns 200 code | Successful | `id:` "2" |   ✔    | `code:`200 | `code:`200 |
 
 ### 3.7.2. Boundary-value analysis
 
-| Name  |   Type    | Description |   Input    | Status |  Expected  |   Actual   |
-| :---: | :-------: | :---------: | :--------: | :----: | :--------: | :--------: |
-| MinId | Black Box |             |  `id:` 1   |   ✔    | `code:`200 | `code:`200 |
-| MaxId | Black Box |             | `id:` 1000 |   ❌   | `code:`200 | `code:`404 | . |
+Testing boundaries according to the following specifications:
+![](https://i.imgur.com/bCn3Uij.png)
 
-#### 3.7.3. Equivalence partitioning
-
-|    Name    |   Type    | Description |   Input    | Status |  Expected  |   Actual   |
-| :--------: | :-------: | :---------: | :--------: | :----: | :--------: | :--------: |
-| IdUnderMin | Black Box |             |  `id:` 0   |   ❌   | `code:`400 | `code:`404 |
-| IdAboveMax | Black Box |             | `id:` 1001 |   ❌   | `code:`400 | `code:`404 |
-
-| Descrição |     Name     |                           Input                            | Status |  Expected  |    Actual    |
-| :-------: | :----------: | :--------------------------------------------------------: | :----: | :--------: | :----------: |
-|     s     | InvalidToken | `token:`"token_invalido" `name:` "morpheus" `job:`"leader" |   ❌   | `code:`401 | `code:`201 ` |
-|     s     |   NoToken    |     `token:`**NULL** `name:` "morpheus" `job:`"leader"     |   ❌   | `code:`401 | `code:`201 ` |
+|          Name          |    Input    | Status |  Expected   |   Actual   |
+| :--------------------: | :---------: | :----: | :---------: | :--------: |
+| LowerInvalidBoundaryId |   `id:` 0   |   ✔    | `code:`>399 | `code:`404 |
+|  LowerValidBoundaryId  |   `id:` 1   |   ✔    | `code:`200  | `code:`200 |
+|  UpperValidBoundaryId  | `id:` 10000 |   ✔    | `code:`200  | `code:`200 |
+| UpperInvalidBoundaryId | `id:` 10001 |   ✔    | `code:`>399 | `code:`404 |
