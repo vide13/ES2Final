@@ -29,6 +29,5 @@ public class ListUsersTest {
         Call<ListUsers> request = endpoint.listUsers(token);
         Response<ListUsers> response = request.execute();
         Assertions.assertEquals(200, response.code());
-        Assertions.assertNotNull(response.body());
     }
 }

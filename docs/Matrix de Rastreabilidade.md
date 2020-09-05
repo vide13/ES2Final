@@ -1,14 +1,14 @@
 # Requirements
 
-| ID - Chapter |     Description     |
-| :----------: | :-----------------: |
-|      1       |     Create User     |
-|      2       |   Get Single User   |
-|      3       |     List Users      |
-|      4       |    Register User    |
-|      5       |        Login        |
-|      6       |   List Resources    |
-|      7       | Get Single Resource |
+| ID  |     Description     |                   Endpoint                   | Type |
+| :-: | :-----------------: | :------------------------------------------: | :--: |
+|  1  |     Create User     |        "https://reqres.in/api/users"         | POST |
+|  2  |   Get Single User   |    "https://reqres.in/api/users/{userID}"    | GET  |
+|  3  |     List Users      |        "https://reqres.in/api/users"         | GET  |
+|  4  |    Register User    |       "https://reqres.in/api/register"       | POST |
+|  5  |        Login        |        "https://reqres.in/api/login"         | POST |
+|  6  |   List Resources    |       "https://reqres.in/api/unknown"        | GET  |
+|  7  | Get Single Resource | "https://reqres.in/api/unknown/{resourceID}" | GET  |
 
 # 1. Application Test
 
@@ -310,13 +310,13 @@ All the tests that require a valid Login token, are executed whit it.
 
 Test if requirement works with valid arguments.
 
-### 3.1. Create User
+## 3.1. Create User
 
-|                        Descrição                         |    Name    |               Input               | Status |  Expected  |    Actual    |
-| :------------------------------------------------------: | :--------: | :-------------------------------: | :----: | :--------: | :----------: |
-| Test if request with valid arguments returns **OK** code | Successful | `name:` "morpheus" `job:`"leader" |   ✔    | `code:`201 | `code:`201 ` |
+|                       Descrição                       |    Name    |               Input               | Status |  Expected  |    Actual    |
+| :---------------------------------------------------: | :--------: | :-------------------------------: | :----: | :--------: | :----------: |
+| Test if request with valid arguments returns 201 code | Successful | `name:` "morpheus" `job:`"leader" |   ✔    | `code:`201 | `code:`201 ` |
 
-#### 3.1.1. Black-Box
+### 3.1.1. Black-Box
 
 |                       Descrição                        |   Name    |              Input               | Status |  Expected   |   Actual   |
 | :----------------------------------------------------: | :-------: | :------------------------------: | :----: | :---------: | :--------: |
@@ -341,13 +341,13 @@ Testing boundaries according to the following specifications:
 |  UpperValidBoundaryJob   | `name:` "morpheus" `job:`String.length(50) |   ✔    | `code:`201  | `code:`201 |
 | UpperInvalidBoundaryJob  | `name:` "morpheus" `job:`String.length(51) |   ❌   | `code:`>399 | `code:`201 |
 
-### 3.2. Single User
+## 3.2. Single User
 
 #### 3.2.1. Black-Box
 
-|    Name    | Input  | Status |  Expected  |   Actual   |
-| :--------: | :----: | :----: | :--------: | :--------: |
-| Successful | `id:`2 |   ✔    | `code:`200 | `code:`200 |
+|                       Descrição                       |    Name    | Input  | Status |  Expected  |   Actual   |
+| :---------------------------------------------------: | :--------: | :----: | :----: | :--------: | :--------: |
+| Test if request with valid arguments returns 200 code | Successful | `id:`2 |   ✔    | `code:`200 | `code:`200 |
 
 #### 3.2.2. Boundary-value analysis
 
@@ -361,48 +361,63 @@ Testing boundaries according to the following specifications:
 |  UpperValidBoundaryId  | `id:`10000 |   ❌   | `code:`200  | `code:`404 |
 | UpperInvalidBoundaryId | `id:`10001 |   ✔    | `code:`>399 | `code:`404 |
 
-#### 3.2.3. Equivalence partitioning
-
-|    Name    |   Type    | Description |   Input    | Status |  Expected  |   Actual   |
-| :--------: | :-------: | :---------: | :--------: | :----: | :--------: | :--------: |
-| IdUnderMin | Black Box |             |  `id:` 0   |   ❌   | `code:`400 | `code:`404 |
-| IdAboveMax | Black Box |             | `id:` 1001 |   ❌   | `code:`400 | `code:`404 |
-
 ### 3.3. List Users
 
 #### 3.3.1. Black-Box
 
-|    Name    |   Type    | Description | Input | Status |  Expected  |   Actual   |
-| :--------: | :-------: | :---------: | :---: | :----: | :--------: | :--------: |
-| Successful | Black-Box |             |       |   ✔    | `code:`200 | `code:`200 |
+|                       Descrição                       |    Name    | Input | Status |  Expected  |   Actual   |
+| :---------------------------------------------------: | :--------: | :---: | :----: | :--------: | :--------: |
+| Test if request with valid arguments returns 200 code | Successful |       |   ✔    | `code:`200 | `code:`200 |
 
 ### 3.4. Register
 
+|                       Descrição                       |    Name    |                          Input                          | Status |  Expected  |   Actual   |
+| :---------------------------------------------------: | :--------: | :-----------------------------------------------------: | :----: | :--------: | :--------: |
+| Test if request with valid arguments returns 200 code | Successful | `email:` "eve.holt@reqres.in" `password:`"TestPassword" |   ✔    | `code:`200 | `code:`200 |
+
 #### 3.4.1. Black-Box
 
-|     Name     |                                      Input                                       | Status |                                                             Expected                                                             |                                                          Actual                                                          |
-| :----------: | :------------------------------------------------------------------------------: | :----: | :------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------: |
-|  Successful  |  `token:`"QpwL5tke4Pnpja7X4" `email:` "eve.holt@reqres.in" `password:`"pistol"   |   ✔    | `code:`200 `content-type:`application/json {`email`:"eve.holt@reqres.in", `password:`"leader",`id:`**!NULL**, `token:`**!NULL**} | `code:`200 `content-type:`application/json {`email`: "morpheus", `password:`"pistol", `id:`**!NULL**, `token:`**!NULL**} |
-| InvalidName  |           `token:`"QpwL5tke4Pnpja7X4" `email:` "" `password:`"pistol"            |   ✔    |                                  `code:`400 `content-type:`application/json {`error`:**!NULL**}                                  |                              `code:`400 `content-type:`application/json {`error`:**!NULL**}                              |
-|   NullName   |          `token:`"QpwL5tke4Pnpja7X4" `email:` null `password:`"leader"           |   ✔    |                                  `code:`400 `content-type:`application/json {`error`:**!NULL**}                                  |                              `code:`400 `content-type:`application/json {`error`:**!NULL**}                              |
-|  InvalidJob  |     `token:`"QpwL5tke4Pnpja7X4" `email:` "eve.holt@reqres.in" `password:`""      |   ✔    |                                  `code:`400 `content-type:`application/json {`error`:**!NULL**}                                  |                              `code:`400 `content-type:`application/json {`error`:**!NULL**}                              |
-|   NullJob    | `token:`"QpwL5tke4Pnpja7X4" `email:` "eve.holt@reqres.in" `password:`"**!NULL**" |   ✔    |                                  `code:`400 `content-type:`application/json {`error`:**!NULL**}                                  |                              `code:`400 `content-type:`application/json {`error`:**!NULL**}                              |
-| InvalidToken |    `token:`"token_invalido" `email:` "eve.holt@reqres.in" `password:`"pistol"    |   ❌   |                                  `code:`400 `content-type:`application/json {`error`:**!NULL**}                                  | `code:`200 `content-type:`application/json {`email`: "morpheus", `password:`"pistol", `id:`**!NULL**, `token:`**!NULL**} |
-|  NullToken   |        `token:`**NULL** `email:` "eve.holt@reqres.in" `password:`"pistol"        |   ❌   |                                  `code:`400 `content-type:`application/json {`error`:**!NULL**}                                  | `code:`200 `content-type:`application/json {`email`: "morpheus", `password:`"pistol", `id:`**!NULL**, `token:`**!NULL**} |
+|                         Descrição                          |     Name      |                       Input                        | Status |  Expected   |   Actual   |
+| :--------------------------------------------------------: | :-----------: | :------------------------------------------------: | :----: | :---------: | :--------: |
+| Test if request with **NULL** Password returns error code  | NullPassword  | `email:` "eve.holt@reqres.in" `password:`**!NULL** |   ✔    | `code:`>399 | `code:`400 |
+| Test if request with **BLANK** Password returns error code | BlankPassword |    `email:` "eve.holt@reqres.in" `password:`" "    |   ❌   | `code:`>399 | `code:`200 |
+|  Test if request with **BLANK** Email returns error code   |  BlankEmail   |       `email:` " " `password:`"TestPassword"       |   ✔    | `code:`>399 | `code:`400 |
+|   Test if request with **NULL** Email returns error code   |   NullEmail   |       `email:`**!NULL** `password:`"leader"        |   ✔    | `code:`>399 | `code:`400 |
+
+### Boundary-value analysis
+
+Testing boundaries according to the following specifications:
+
+Email Boundaries:
+![](https://i.imgur.com/Se53J2p.png)
+
+Password Boundaries:
+![](https://i.imgur.com/2tsft3l.png)
+
+|             Name             |                          Input                           | Status |  Expected   |   Actual   |
+| :--------------------------: | :------------------------------------------------------: | :----: | :---------: | :--------: |
+|  LowerInvalidBoundaryEmail   |    `email:`String.length(2) `password:`"TestPassword"    |   ✔    | `code:`>399 | `code:`400 |
+|   LowerValidBoundaryEmail    |    `email:`String.length(3) `password:`"TestPassword"    |   ❌   | `code:`200  | `code:`400 |
+|   UpperValidBoundaryEmail    |   `email:`String.length(128) `password:`"TestPassword"   |   ❌   | `code:`200  | `code:`400 |
+|  UpperInvalidBoundaryEmail   |   `email:`String.length(129) `password:`"TestPassword"   |   ✔    | `code:`>399 | `code:`400 |
+| LowerInvalidBoundaryPassword |  `email:`eve.holt@reqres.in `password:`String.length(7)  |   ❌   | `code:`>399 | `code:`200 |
+|  LowerValidBoundaryPassword  |  `email:`eve.holt@reqres.in `password:`String.length(8)  |   ✔    | `code:`200  | `code:`200 |
+|  UpperValidBoundaryPassword  | `email:`eve.holt@reqres.in `password:`String.length(128) |   ✔    | `code:`200  | `code:`400 |
+| UpperInvalidBoundaryPassword | `email:`eve.holt@reqres.in `password:`String.length(129) |   ❌   | `code:`>399 | `code:`200 |
 
 ### 3.5. Login
 
 #### 3.5.1. Black-Box
 
-|     Name     |                                       Input                                       | Status |                                                     Expected                                                     |                                                    Actual                                                    |
-| :----------: | :-------------------------------------------------------------------------------: | :----: | :--------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------: |
-|  Successful  | `token:`"QpwL5tke4Pnpja7X4" `email:` "eve.holt@reqres.in" `password:`"cityslicka" |   ✔    | `code:`200 `content-type:`application/json {`email`:"eve.holt@reqres.in", `password:`"leader",`token:`**!NULL**} | `code:`200 `content-type:`application/json {`email`: "morpheus", `password:`"cityslicka", `token:`**!NULL**} |
-| InvalidName  |          `token:`"QpwL5tke4Pnpja7X4" `email:` "" `password:`"cityslicka"          |   ✔    |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          |                        `code:`400 `content-type:`application/json {`error`:**!NULL**}                        |
-|   NullName   |           `token:`"QpwL5tke4Pnpja7X4" `email:` null `password:`"leader"           |   ✔    |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          |                        `code:`400 `content-type:`application/json {`error`:**!NULL**}                        |
-|  InvalidJob  |      `token:`"QpwL5tke4Pnpja7X4" `email:` "eve.holt@reqres.in" `password:`""      |   ✔    |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          |                        `code:`400 `content-type:`application/json {`error`:**!NULL**}                        |
-|   NullJob    | `token:`"QpwL5tke4Pnpja7X4" `email:` "eve.holt@reqres.in" `password:`"**!NULL**"  |   ✔    |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          |                        `code:`400 `content-type:`application/json {`error`:**!NULL**}                        |
-| InvalidToken |  `token:`"token_invalido" `email:` "eve.holt@reqres.in" `password:`"cityslicka"   |   ❌   |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          | `code:`200 `content-type:`application/json {`email`: "morpheus", `password:`"cityslicka", `token:`**!NULL**} |
-|  NullToken   |      `token:`**NULL** `email:` "eve.holt@reqres.in" `password:`"cityslicka"       |   ❌   |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          | `code:`200 `content-type:`application/json {`email`: "morpheus", `password:`"cityslicka", `token:`**!NULL**} |
+|     Name     |                                     Input                                      | Status |                                                     Expected                                                     |                                                    Actual                                                    |
+| :----------: | :----------------------------------------------------------------------------: | :----: | :--------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------: |
+|  Successful  |             `email:` "eve.holt@reqres.in" `password:`"cityslicka"              |   ✔    | `code:`200 `content-type:`application/json {`email`:"eve.holt@reqres.in", `password:`"leader",`token:`**!NULL**} | `code:`200 `content-type:`application/json {`email`: "morpheus", `password:`"cityslicka", `token:`**!NULL**} |
+| InvalidName  |                      `email:` "" `password:`"cityslicka"                       |   ✔    |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          |                        `code:`400 `content-type:`application/json {`error`:**!NULL**}                        |
+|   NullName   |                       `email:` null `password:`"leader"                        |   ✔    |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          |                        `code:`400 `content-type:`application/json {`error`:**!NULL**}                        |
+|  InvalidJob  |                  `email:` "eve.holt@reqres.in" `password:`""                   |   ✔    |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          |                        `code:`400 `content-type:`application/json {`error`:**!NULL**}                        |
+|   NullJob    |              `email:` "eve.holt@reqres.in" `password:`"**!NULL**"              |   ✔    |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          |                        `code:`400 `content-type:`application/json {`error`:**!NULL**}                        |
+| InvalidToken | `token:`"token_invalido" `email:` "eve.holt@reqres.in" `password:`"cityslicka" |   ❌   |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          | `code:`200 `content-type:`application/json {`email`: "morpheus", `password:`"cityslicka", `token:`**!NULL**} |
+|  NullToken   |     `token:`**NULL** `email:` "eve.holt@reqres.in" `password:`"cityslicka"     |   ❌   |                          `code:`400 `content-type:`application/json {`error`:**!NULL**}                          | `code:`200 `content-type:`application/json {`email`: "morpheus", `password:`"cityslicka", `token:`**!NULL**} |
 
 ### 3.6. List Resource
 
