@@ -44,7 +44,7 @@ public class SingleResourceTest {
         Endpoint endpoint = Retrofit.getClient().create(Endpoint.class);
         Call<SingleResource> request = endpoint.singleResource(token, 10000);
         Response<SingleResource> response = request.execute();
-        Assertions.assertTrue(response.code() > 399);
+        Assertions.assertEquals(200, response.code());
     }
 
     @Test
