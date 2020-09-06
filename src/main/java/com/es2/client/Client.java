@@ -11,7 +11,7 @@ import java.io.IOException;
 import static com.es2.client.Validation.*;
 
 public class Client {
-    public static final ControllerInterface controller = new ControllerAPI();
+    public static final ControllerInterface controller = new ControllerSTUB();
     private static String token;
 
     private static Client client;
@@ -66,5 +66,15 @@ public class Client {
         isValidIntegerArgument(id);
         isValidToken(token);
         SingleUser singleUser = controller.singleUser(token, id);
+    }
+
+    public SingleUser pairOrNotTest(Integer a, Integer b) throws Exception {
+        if (a + b == 0) {
+            throw new Exception("Can't be 0");
+        } else if ((a + b) % 2 == 0) {
+            return controller.singleUser(token, 2);
+        } else {
+            return controller.singleUser(token, 1);
+        }
     }
 }

@@ -1,8 +1,10 @@
 package com.es2.controller;
 
 import com.es2.objects.*;
+import com.google.gson.JsonObject;
 import retrofit2.Response;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -18,13 +20,22 @@ public class ControllerSTUB implements ControllerInterface {
 
     @Override
     public SingleUser singleUser(String token, Integer id) {
-        return Response.success(200,
-                new SingleUser(new UserData(2,
-                        "janet.weaver@reqres.in",
-                        "Janet",
-                        "Weaver",
-                        "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"))
-        ).body();
+        if (id == 1)
+            return Response.success(200,
+                    new SingleUser(new UserData(1,
+                            "janet.weaver@reqres.in",
+                            "Janet",
+                            "Weaver",
+                            "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"))
+            ).body();
+        else
+            return Response.success(200,
+                    new SingleUser(new UserData(2,
+                            "janet.weaver@reqres.in",
+                            "Janet",
+                            "Weaver",
+                            "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"))
+            ).body();
     }
 
     @Override
@@ -58,5 +69,10 @@ public class ControllerSTUB implements ControllerInterface {
     @Override
     public SingleResource singleResource(String token, Integer id) {
         return Response.success(200, new SingleResource(new ResourceData(2, "fuchsia rose", 2001, "#C74375", "17-2031"))).body();
+    }
+
+    @Override
+    public JsonObject randomUser(String token) throws IOException {
+        return null;
     }
 }

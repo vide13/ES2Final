@@ -1,6 +1,7 @@
 package com.es2.controller;
 
 import com.es2.objects.*;
+import com.google.gson.JsonObject;
 
 import java.io.IOException;
 
@@ -18,4 +19,6 @@ public interface ControllerInterface {
     SingleResource singleResource(String token, Integer id) throws IOException;
 
     SingleUser singleUser(String token, Integer id) throws IOException;
+
+    JsonObject randomUser(String token) throws IOException;
 }

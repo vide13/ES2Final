@@ -60,4 +60,13 @@ public class SchemaTests {
     public void SchemaListResourcesPerPageTest() {
 
     }
+
+    /**
+     * Testing if, when asked for 2 users per page the response is correct
+     */
+    @Scenario("SchemaTests/SchemaListUsersPerPageTest.json")
+    @Test
+    public void SchemaListUsersPerPageTest() {
+
+    }
 }

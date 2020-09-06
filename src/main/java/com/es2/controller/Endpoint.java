@@ -28,5 +28,5 @@ public interface Endpoint {
     Call<SingleResource> singleResource(@Header("Token") String token, @Path("id") long id);
 
     @GET("/api/random")
-    Call<ListUsers> randomRequest();
+    Call<JsonObject> randomUser(@Header("Token") String token);
 }

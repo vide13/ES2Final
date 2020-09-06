@@ -1,0 +1,35 @@
+{
+  "scenarioName": "SchemaListUsersPerPageTest",
+  "ignoreStepFailures": true,
+  "steps": [
+    {
+      "name": "SchemaListUsersPerPageTest",
+      "url": "/api/users?per_page=2",
+      "method": "GET",
+      "request": {
+      },
+      "verify": {
+        "status": 200,
+        "body": {
+          "per_page": 2,
+          "data": [
+            {
+              "id": "$IS.NOTNULL",
+              "email": "$IS.NOTNULL",
+              "first_name": "$IS.NOTNULL",
+              "last_name": "$IS.NOTNULL",
+              "avatar": "$IS.NOTNULL"
+            },
+            {
+              "id": "$IS.NOTNULL",
+              "email": "$IS.NOTNULL",
+              "first_name": "$IS.NOTNULL",
+              "last_name": "$IS.NOTNULL",
+              "avatar": "$IS.NOTNULL"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

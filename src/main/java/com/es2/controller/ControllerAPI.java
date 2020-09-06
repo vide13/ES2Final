@@ -3,6 +3,7 @@ package com.es2.controller;
 import com.es2.HTTPClient.Retrofit;
 import com.es2.cache.CacheTest;
 import com.es2.objects.*;
+import com.google.gson.JsonObject;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -34,7 +35,7 @@ public class ControllerAPI implements ControllerInterface {
 
 
     public ListResources listResourcesCacheTest(String token) throws IOException {
-        Call<ListResources> request = endpoint.listResources(token,null,null);
+        Call<ListResources> request = endpoint.listResources(token, null, null);
         Response<ListResources> response = request.execute();
         checkResponse(response);
         assert response.body() != null;
@@ -54,7 +55,7 @@ public class ControllerAPI implements ControllerInterface {
 
     @Override
     public ListResources listResources(String token) throws IOException {
-        Call<ListResources> request = endpoint.listResources(token,null,null);
+        Call<ListResources> request = endpoint.listResources(token, null, null);
         Response<ListResources> response = request.execute();
         checkResponse(response);
         assert response.body() != null;
@@ -110,6 +111,13 @@ public class ControllerAPI implements ControllerInterface {
 
         assert response.body() != null;
         if (!response.body().getClass().equals(SingleUser.class)) throw new Error("Invalid schema");
+        return response.body();
+    }
+
+    @Override
+    public JsonObject randomUser(String token) throws IOException {
+        Call<JsonObject> request = endpoint.randomUser(token);
+        Response<JsonObject> response = request.execute();
         return response.body();
     }
 }

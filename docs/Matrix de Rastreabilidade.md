@@ -152,6 +152,17 @@ The following tests in chapter 1.8 were executed without a login token.
 | singleResourceUnsuccessful |             `id:` 10              |   ✔    | InvalidTokenException | InvalidTokenException |
 |   singleUserUnsuccessful   |             `id:` 10              |   ✔    | InvalidTokenException | InvalidTokenException |
 
+## 1.9 PairOrNot Testing
+
+Example of White-Box tests
+![](https://i.imgur.com/L96cyKS.png)
+
+|                                 Descrição                                 | Name |          Input           | Status |   Expected   |  Actual   |  Line   |
+| :-----------------------------------------------------------------------: | :--: | :----------------------: | :----: | :----------: | :-------: | :-----: |
+| Test if given 2 numbers wich make a pair number, returns user whit id = 2 | Pair | `number1:`1 `number2:`1  |   ✔    | User.Id == 2 | User.Id=2 | Line 74 |
+| Test if given 2 numbers wich make a odd number, returns user whit id = 1  | Odd  | `number1:`1 `number2:`2  |   ✔    | User.Id == 1 | User.Id=1 | Line 76 |
+|        Test if given 2 numbers wich make 0, triggers an Exception         | Zero | `number1:`1 `number2:`-1 |   ✔    |  Exception   | Exception | Line 72 |
+
 # 2. Gobal Tests
 
 After the integration is complete global tests were excetuted in order to verify if the new modules are well implemented.
@@ -294,6 +305,17 @@ The following tests in chapter 2.8 were executed without a login token.
 | singleResourceUnsuccessful |             `id:` 10              |   ✔    | InvalidTokenException | InvalidTokenException |
 |   singleUserUnsuccessful   |             `id:` 10              |   ✔    | InvalidTokenException | InvalidTokenException |
 
+## 2.9 PairOrNot Testing
+
+Example of White-Box tests
+![](https://i.imgur.com/L96cyKS.png)
+
+|                                 Descrição                                 | Name |          Input           | Status |   Expected   |  Actual   |  Line   |
+| :-----------------------------------------------------------------------: | :--: | :----------------------: | :----: | :----------: | :-------: | :-----: |
+| Test if given 2 numbers wich make a pair number, returns user whit id = 2 | Pair | `number1:`1 `number2:`1  |   ✔    | User.Id == 2 | User.Id=2 | Line 74 |
+| Test if given 2 numbers wich make a odd number, returns user whit id = 1  | Odd  | `number1:`1 `number2:`2  |   ✔    | User.Id == 1 | User.Id=1 | Line 76 |
+|        Test if given 2 numbers wich make 0, triggers an Exception         | Zero | `number1:`1 `number2:`-1 |   ✔    |  Exception   | Exception | Line 72 |
+
 # 3. REST Service Test
 
 HTTP response status codes indicate whether a specific [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP) request has been successfully completed. Responses are grouped in five classes: informational responses, successful responses, redirects, client errors, and servers errors.
@@ -368,6 +390,39 @@ Testing boundaries according to the following specifications:
 |                       Descrição                       |    Name    | Input | Status |  Expected  |   Actual   |
 | :---------------------------------------------------: | :--------: | :---: | :----: | :--------: | :--------: |
 | Test if request with valid arguments returns 200 code | Successful |       |   ✔    | `code:`200 | `code:`200 |
+
+### 3.6.1 Schema Testing
+
+|                              Descrição                              |    Name    | Input | Status |          Expected          |              Actual               |
+| :-----------------------------------------------------------------: | :--------: | :---: | :----: | :------------------------: | :-------------------------------: |
+| Testing if, when asked for 2 users per page the response is correct | Successful |       |   ✔    | SchemaListUsersPerPageTest | Response Received, matched schema |
+
+### Expected payload
+
+#### Users:
+
+```java
+"status": 200,
+"body": {
+  "per_page": 2,
+  "data": [
+    {
+      "id": "$IS.NOTNULL",
+      "email": "$IS.NOTNULL",
+      "first_name": "$IS.NOTNULL",
+      "last_name": "$IS.NOTNULL",
+      "avatar": "$IS.NOTNULL"
+    },
+    {
+      "id": "$IS.NOTNULL",
+      "email": "$IS.NOTNULL",
+      "first_name": "$IS.NOTNULL",
+      "last_name": "$IS.NOTNULL",
+      "avatar": "$IS.NOTNULL"
+    }
+  ]
+}
+```
 
 ## 3.4. Register
 
@@ -454,6 +509,7 @@ Password Boundaries:
 |                                Descrição                                |    Name    | Input | Status |            Expected            |              Actual               |
 | :---------------------------------------------------------------------: | :--------: | :---: | :----: | :----------------------------: | :-------------------------------: |
 | Testing if, when asked for 2 resources per page the response is correct | Successful |       |   ✔    | SchemaListResourcesPerPageTest | Response Received, matched schema |
+|   Testing if, when asked for 2 users per page the response is correct   | Successful |       |   ✔    |   SchemaListUsersPerPageTest   | Response Received, matched schema |
 
 ### Expected payload
 
@@ -499,3 +555,12 @@ Testing boundaries according to the following specifications:
 |  LowerValidBoundaryId  |   `id:` 1   |   ✔    | `code:`200  | `code:`200 |
 |  UpperValidBoundaryId  | `id:` 10000 |   ✔    | `code:`200  | `code:`200 |
 | UpperInvalidBoundaryId | `id:` 10001 |   ✔    | `code:`>399 | `code:`404 |
+
+## 3.8. Non-existent endpoint
+
+RandomUserTest should return 1 random user
+
+|                          Descrição                           |      Name      | Input | Status |  Expected  |   Actual   |
+| :----------------------------------------------------------: | :------------: | :---: | :----: | :--------: | :--------: |
+|    Test if request with valid arguments returns 200 code     |   Successful   |       |   ✔    | `code:`200 | `code:`200 |
+| Test if request with valid arguments returns correct payload | correctPayload |       |   ✔    |   1 User   |  6 Users   |
