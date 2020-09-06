@@ -401,7 +401,7 @@ Testing boundaries according to the following specifications:
 
 #### Users:
 
-```java
+```json
 "status": 200,
 "body": {
   "per_page": 2,
@@ -513,7 +513,7 @@ Password Boundaries:
 
 ### Expected payload
 
-```java
+```json
 "status": 200,
 "body": {
   "per_page": 2,
