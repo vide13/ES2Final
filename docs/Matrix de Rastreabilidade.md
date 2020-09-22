@@ -200,7 +200,7 @@ Testing boundaries according to the following specifications:
 | UpperInvalidBoundaryName |  `name:` String.length(51) `job:`"leader"  |   ✔    | Throw Invalid Name Exception | Throw Invalid Name Exception |
 | LowerInvalidBoundaryJob  | `name:` "morpheus" `job:`String.length(1)  |   ✔    | Throw Invalid Job Exception  | Throw Invalid Job Exception  |
 |  LowerValidBoundaryJob   | `name:` "morpheus" `job:`String.length(2)  |   ✔    |              Ok              |              Ok              |
-|  UpperValidBoundaryJob   | `name:` "morpheus" `job:`String.length(50) |   ❌   |              Ok              |          Error: {}           |
+|  UpperValidBoundaryJob   | `name:` "morpheus" `job:`String.length(50) |   ✔    |              Ok              |              Ok              |
 | UpperInvalidBoundaryJob  | `name:` "morpheus" `job:`String.length(51) |   ✔    | Throw Invalid Job Exception  | Throw Invalid Job Exception  |
 
 ## 2.2. Single User

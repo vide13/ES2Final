@@ -1,5 +1,6 @@
 package com.es2.performance.load;
 
+/*
 import com.es2.performance.tests.get.GetScreeningServiceTest;
 import org.jsmart.zerocode.core.domain.LoadWith;
 import org.jsmart.zerocode.core.domain.TestMapping;
@@ -11,4 +12,4 @@ import org.junit.runner.RunWith;
 @RunWith(ZeroCodeLoadRunner.class)
 public class LoadGetTest {
 
-}
+}*/

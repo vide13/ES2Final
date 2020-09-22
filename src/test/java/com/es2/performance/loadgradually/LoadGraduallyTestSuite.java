@@ -1,6 +1,6 @@
 package com.es2.performance.loadgradually;
 
-import com.es2.performance.loadgradually.get.LoadGet1Per1SecTest;
+/*import com.es2.performance.loadgradually.get.LoadGet1Per1SecTest;
 import com.es2.performance.loadgradually.get.LoadGet1Per5SecTest;
 import com.es2.performance.loadgradually.get.LoadGet5Per1SecTest;
 import org.junit.runner.RunWith;
@@ -16,4 +16,4 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 public class LoadGraduallyTestSuite {
 
-}
+}*/
