@@ -3,7 +3,9 @@ package com.es2.client;
 import com.es2.controller.ControllerInterface;
 import com.es2.controller.ControllerSTUB;
 import com.es2.exceptions.*;
-import com.es2.objects.*;
+import com.es2.objects.Credentials;
+import com.es2.objects.SingleUser;
+import com.es2.objects.UserJob;
 
 import java.io.IOException;
 
@@ -30,17 +32,17 @@ public class Client {
         isValidNameArgument(name);
         isValidJobArgument(job);
         isValidToken(token);
-        UserJob userJob = controller.createUser(token, new UserJob(name, job));
+        controller.createUser(token, new UserJob(name, job));
     }
 
     public void listResources() throws IOException, InvalidTokenException {
         isValidToken(token);
-        ListResources listResources = controller.listResources(token);
+        controller.listResources(token);
     }
 
     public void listUsers() throws IOException, InvalidTokenException {
         isValidToken(token);
-        ListUsers listUsers = controller.listUsers(token);
+        controller.listUsers(token);
     }
 
     public void login(String email, String password) throws IOException, InvalidPasswordException, InvalidEmailException {
@@ -52,19 +54,19 @@ public class Client {
     public void register(String email, String password) throws IOException, InvalidPasswordException, InvalidEmailException {
         isValidPasswordArgument(password);
         isValidEmailArgument(email);
-        Register register = controller.register(new Credentials(email, password));
+        controller.register(new Credentials(email, password));
     }
 
     public void singleResource(Integer id) throws IOException, InvalidIdException, InvalidTokenException {
         isValidIntegerArgument(id);
         isValidToken(token);
-        SingleResource singleResource = controller.singleResource(token, id);
+        controller.singleResource(token, id);
     }
 
     public void singleUser(Integer id) throws IOException, InvalidIdException, InvalidTokenException {
         isValidIntegerArgument(id);
         isValidToken(token);
-        SingleUser singleUser = controller.singleUser(token, id);
+        controller.singleUser(token, id);
     }
 
     public SingleUser pairOrNotTest(Integer a, Integer b) throws Exception {
