@@ -1,5 +1,6 @@
 package com.es2.objects;
 
+@SuppressWarnings("unused")
 public class UserData {
     private final Integer id;
     private final String email;
@@ -23,17 +24,4 @@ public class UserData {
     public String getEmail() {
         return email;
     }
-
-    public String getFirst_name() {
-        return first_name;
-    }
-
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
 }

@@ -7,11 +7,11 @@ import com.google.gson.JsonParser;
 import java.util.ArrayList;
 
 public class ListResources {
+    final ArrayList<ResourceData> data;
     private final Integer page;
     private final Integer per_page;
     private final Integer total;
     private final Integer total_pages;
-    final ArrayList<ResourceData> data;
 
     public ListResources(Integer page, Integer per_page, Integer total, Integer total_pages, ArrayList<ResourceData> data) {
         this.page = page;

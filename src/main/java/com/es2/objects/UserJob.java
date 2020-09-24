@@ -4,11 +4,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+@SuppressWarnings("unused")
 public class UserJob {
+    private final String job;
+    private final String name;
     private String id;
     private String createdAt;
-    private String name;
-    private final String job;
 
     public UserJob(String name, String job) {
         this.name = name;
@@ -26,20 +27,8 @@ public class UserJob {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getJob() {
-        return job;
-    }
-
     public String getId() {
         return id;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
     }
 
     public JsonObject toJsonObject() {

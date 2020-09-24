@@ -6,6 +6,7 @@ import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("unused")
 public class ListUsers {
     private final Integer page;
     private final Integer per_page;

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+@SuppressWarnings("unused")
 public class SingleResource {
     private final ResourceData data;
 

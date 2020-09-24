@@ -1,5 +1,6 @@
 package com.es2.objects;
 
+@SuppressWarnings("unused")
 public class ResourceData {
     private final Integer id;
     private final String name;
@@ -21,17 +22,5 @@ public class ResourceData {
 
     public String getName() {
         return name;
-    }
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public String getPantone_value() {
-        return pantone_value;
     }
 }
