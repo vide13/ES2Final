@@ -22,7 +22,7 @@ public interface Endpoint {
     Call<Login> login(@Body JsonObject jsonObject);
 
     @GET("/api/unknown")
-    Call<ListResources> listResources(@Header("Token") String token,@Query("page") Integer currentPage,@Query("per_page") Integer currentPerPage);
+    Call<ListResources> listResources(@Header("Token") String token);
 
     @GET("/api/unknown/{id}")
     Call<SingleResource> singleResource(@Header("Token") String token, @Path("id") long id);

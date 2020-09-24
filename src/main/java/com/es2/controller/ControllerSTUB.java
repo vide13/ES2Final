@@ -4,7 +4,6 @@ import com.es2.objects.*;
 import com.google.gson.JsonObject;
 import retrofit2.Response;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -72,7 +71,7 @@ public class ControllerSTUB implements ControllerInterface {
     }
 
     @Override
-    public JsonObject randomUser(String token) throws IOException {
+    public JsonObject randomUser(String token) {
         return null;
     }
 }

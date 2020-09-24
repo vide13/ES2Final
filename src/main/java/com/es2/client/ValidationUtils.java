@@ -2,7 +2,7 @@ package com.es2.client;
 
 import com.es2.exceptions.*;
 
-public class Validation {
+public class ValidationUtils {
     public static void isValidNameArgument(String arg) throws InvalidNameException {
         if (arg == null) throw new InvalidNameException("Argument can't be null");
         else if (arg.length() > 50) throw new InvalidNameException("Argument can't exceed 50 characters");

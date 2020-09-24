@@ -8,7 +8,7 @@ public class UserJob {
     private String id;
     private String createdAt;
     private String name;
-    private String job;
+    private final String job;
 
     public UserJob(String name, String job) {
         this.name = name;

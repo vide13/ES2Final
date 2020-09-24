@@ -25,7 +25,7 @@ public class ListResourcesTest {
 
     @Test
     void listResources() throws IOException {
-        Call<ListResources> request = endpoint.listResources(token,null,null);
+        Call<ListResources> request = endpoint.listResources(token);
         Response<ListResources> response = request.execute();
         Assertions.assertEquals(200, response.code());
     }

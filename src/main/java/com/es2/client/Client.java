@@ -1,6 +1,5 @@
 package com.es2.client;
 
-import com.es2.controller.ControllerAPI;
 import com.es2.controller.ControllerInterface;
 import com.es2.controller.ControllerSTUB;
 import com.es2.exceptions.*;
@@ -8,7 +7,7 @@ import com.es2.objects.*;
 
 import java.io.IOException;
 
-import static com.es2.client.Validation.*;
+import static com.es2.client.ValidationUtils.*;
 
 public class Client {
     public static final ControllerInterface controller = new ControllerSTUB();

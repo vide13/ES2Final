@@ -4,7 +4,6 @@ import com.es2.HTTPClient.Retrofit;
 import com.es2.controller.Endpoint;
 import com.es2.objects.Credentials;
 import com.es2.objects.Login;
-import com.es2.objects.Login;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
